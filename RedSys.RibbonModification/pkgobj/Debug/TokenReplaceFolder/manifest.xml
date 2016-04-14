@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="fcbb0227-b430-47f9-8d46-4df41299dbca" ResetWebServer="TRUE" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="Ensol.Abbyy.ReportRibbon.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="RedSys.ReportRibbon_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

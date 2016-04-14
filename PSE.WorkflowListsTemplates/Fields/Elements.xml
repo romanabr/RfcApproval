@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <!-- Список ролей -->
+  <Field Name="RoleKind" StaticName="RoleKind" ID="{D5B9B028-E351-480C-B030-98BBFD89F4F0}" DisplayName="Вид роли" Type="MultiChoice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>МВЗ</CHOICE>
+      <CHOICE>Статья затрат</CHOICE>
+      <CHOICE>Юридическое лицо</CHOICE>
+      <CHOICE>Филиал</CHOICE>
+    </CHOICES>
+  </Field>
+  <!--Пользователи и роли -->
+  <Field Name="AD" StaticName="AD" ID="{E22F4A02-4248-4CFF-87B0-4DA63473880E}" DisplayName="Учетная запись. Справочник AD" Type="UserMulti" Group="PSE.Workflow" />
+  <Field Name="Role_Ref" StaticName="Role_Ref" ID="{CA416A1D-3B7A-40CA-997E-BAF9524EEAAE}" DisplayName="Роль" Type="Lookup" Group="PSE.Workflow" List="Lists/RoleLI" ShowField="Title" /> 
+  <Field Name="IsDefaultUser" StaticName="IsDefaultUser" ID="{573B675A-51AA-490F-BF09-208C4708E095}" DisplayName="Исполнитель по умолчанию" Type="Boolean" Group="PSE.Workflow">
+    <Default>0</Default>
+  </Field>
+    
+  <!-- Заместители -->
+  <Field Name="DeputyUser" StaticName="DeputyUser" ID="{391DC227-2A36-4250-914D-D3ABF1888F43}" DisplayName="Заместитель" Type="UserMulti" Group="PSE.Workflow" />
+  <Field Name="Sub" StaticName="Sub" ID="{A8E5A3B3-C92B-4D54-B3A7-8B601A1A19CE}" DisplayName="Замещаемый" Type="UserMulti" Group="PSE.Workflow" />
+  <Field Name="Start_Date" StaticName="Start_Date" ID="{63837D31-398E-4292-BD05-BE17670461F7}" DisplayName="Начальная дата" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
+  <Field Name="End_Date" StaticName="End_Date" ID="{C3C7FBFB-B7A3-4506-9EF2-D5A80AC3E22C}" DisplayName="Конечная дата" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
+  <Field Name="ZamComment" StaticName="ZamComment" ID="{DFC298E9-372F-4323-BADB-6E879647A9A1}" DisplayName="Описание" Type="Note" Group="PSE.Workflow" />
+  
+  <!-- Список этапов -->
+  <Field Name="StageNumber" StaticName="StageNumber" ID="{0FDF16DA-06E1-4D53-8B53-1E90C4200E3A}" DisplayName="Номер этапа" Type="Integer" Group="PSE.Workflow" />
+  <Field Name="StageType" StaticName="StageType" ID="{3F83720E-FD0F-486C-9FE9-AE5A49783118}" DisplayName="Тип этапа" Type="Choice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>Автоматический</CHOICE>
+      <CHOICE>Ручной</CHOICE>
+      <CHOICE>Код</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field Name="SkipPermissions" StaticName="SkipPermissions" ID="{43527DAA-0F22-414B-9A02-7101A11F3AA8}" DisplayName="Пропускать права" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="Waiting" StaticName="Waiting" ID="{43527D0C-0F22-414B-9A02-7101A83F30A8}" DisplayName="Ожидание" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="DocumentTypeName" StaticName="DocumentTypeName" ID="{1c40fba5-f6fe-4b9a-9fcd-7e01ef187c3d}" DisplayName="Тип документа" Type="Text" Group="PSE.Workflow" ShowField="Title" />
+  <Field Name="StageName" StaticName="StageName" ID="{019772F0-BF2D-48E6-8347-D4D00EE5DCCC}" DisplayName="Название этапа" Type="Text" Group="PSE.Workflow" />
+  <Field Name="Duration1" StaticName="Duration1" ID="{757A3CCA-A4A0-49AD-B313-7EF4E45A51A4}" DisplayName="Длительность" Type="Text" Group="PSE.Workflow" />
+  <Field Name="EmptyUserName" StaticName="EmptyUserName" ID="{E487BCA2-738C-4B3D-9277-56BEDE271330}" DisplayName="Пропускать без исполнителя" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="ForcedAgreement" StaticName="ForcedAgreement" ID="{8A90692C-454F-4BCF-97A6-A921772DE31E}" DisplayName="Принудительное согласование" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="CreateTask" StaticName="CreateTask" ID="{E6AEE2BA-D3D5-4AFB-B1F2-DB8FC64D4062}" DisplayName="Создавать задачу" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="TypeAgreement" StaticName="TypeAgreement" ID="{7635B5C0-D8CD-462E-A9BA-8FED98AE06CD}" DisplayName="Тип согласования" Type="Choice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>Параллельный</CHOICE>
+      <CHOICE>Последовательный</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field Name="StepNextGood" StaticName="StepNextGood" ID="{61DFC3AE-0CAD-4848-8E90-FFE2A66C3D8F}" DisplayName="№ следующего этапа положительный" Type="Integer" Group="PSE.Workflow" />
+  <Field Name="StepNextBad" StaticName="StepNextBad" ID="{A16CB1E6-A926-4013-AD2A-328AE77CC068}" DisplayName="№ следующего этапа отрицательный" Type="Integer" Group="PSE.Workflow" />
+  <Field Name="ListOfAgreement" StaticName="ListOfAgreement" ID="{F1AA78C9-F475-4F9A-BA88-9E372B3D3419}" DisplayName="Вносить в лист согласования" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="ContentOfTask" StaticName="ContentOfTask" ID="{011507FE-900C-4078-9419-5AB41BD7DE27}" DisplayName="Содержание задания" Type="Text" Group="PSE.Workflow" />
+  <Field Name="CardField" StaticName="CardField" ID="{03AC2810-CB4E-4E1E-AD94-6F9F1CDDC4D6}" DisplayName="Поле карточки для сравнения" Type="Text" Group="PSE.Workflow" />
+  <Field Name="ComparePattern" StaticName="ComparePattern" ID="{0647CA3A-E2D2-4C12-8A9B-41CB4F22567B}" DisplayName="Значение для сравнения" Type="Text" Group="PSE.Workflow" />
+  <Field Name="FieldType" StaticName="FieldType" ID="{7DCED563-6F08-430E-80D6-C3869777E64D}" DisplayName="Тип поля" Type="Choice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>Int32</CHOICE>
+      <CHOICE>Decimal</CHOICE>
+      <CHOICE>Double</CHOICE>
+      <CHOICE>DateTime</CHOICE>
+      <CHOICE>String</CHOICE>
+      <CHOICE>Boolean</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field Name="Operation" StaticName="Operation" ID="{42A3FABD-FDCC-4946-8E0E-19522827947C}" DisplayName="Правило" Type="Choice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>Больше</CHOICE>
+      <CHOICE>Больше или равно</CHOICE>
+      <CHOICE>Включает</CHOICE>
+      <CHOICE>Меньше</CHOICE>
+      <CHOICE>Меньше или равно</CHOICE>
+      <CHOICE>Начинается с</CHOICE>
+      <CHOICE>Не нуль</CHOICE>
+      <CHOICE>Не равно</CHOICE>
+      <CHOICE>Нуль</CHOICE>
+      <CHOICE>Равно</CHOICE>
+    </CHOICES>
+  </Field>
+  
+  <Field Name="CopyFields" StaticName="CopyFields" ID="{070300AF-F0F2-4CF6-989E-21B975529416}" DisplayName="Поля для переноса в задачу" Type="Text" Group="PSE.Workflow" />
+  <Field Name="Email_Text" StaticName="Email_Text" ID="{914D07D9-A435-49F7-B718-81493D8634DD}" DisplayName="Текст уведомления" Type="Note" Group="PSE.Workflow" />  
+  <Field Name="EndEmailText" StaticName="EndEmailText" ID="{83530659-DAFC-4262-8D19-1916FFD4041F}" DisplayName="Уведомление по завершению задачи" Type="Note" Group="PSE.Workflow" />  
+  <Field Name="EndStageText" StaticName="EndStageText" ID="{07A210CA-36C9-433D-ADD0-9B866481F42F}" DisplayName="Уведомление по завершению этапа" Type="Note" Group="PSE.Workflow" />
+  <Field Name="EndWorkflowText" StaticName="EndWorkflowText" ID="{2775F577-C338-4AB8-9843-04DD720193B3}" DisplayName="Уведомление по завершению процесса" Type="Note" Group="PSE.Workflow" />
+  <Field Name="SecurityType" StaticName="SecurityType" ID="{D21A81CB-36C8-4594-B6CB-53F34738A566}" DisplayName="Права на карточку" Type="Choice" Group="PSE.Workflow" >
+    <CHOICES>
+      <CHOICE>Изменение</CHOICE>
+      <CHOICE>Чтение</CHOICE>
+    </CHOICES>
+  </Field>
+  
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+ <Field Name="TypeOfTask" StaticName="TypeOfTask" ID="{ED7EBB1F-3839-4A4A-98D8-72300D63E827}" DisplayName="Тип задания" Type="Lookup" Group="PSE.Workflow" List="Lists/TaskTypeList" ShowField="Title" />
+  
+  <!-- Для задач -->
+  <Field Name="TaskComment" StaticName="TaskComment" ID="{54E6DD1C-5AD5-453F-8D15-DD7F1DA46D9D}" DisplayName="Комментарий" Type="Note" Group="PSE.Workflow" />
+  <Field Name="AssignToUsers" StaticName="AssignToUsers" ID="{6F6D142F-914B-49CE-9DCF-7764B3F1CE04}" DisplayName="Исполнители задачи" Type="UserMulti" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" />
+  <Field Name="Approvd" StaticName="Approvd" ID="{BD76650F-2E1F-4DD7-9EF8-3E2D0DF9E0A0}" DisplayName="Утверждено?" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="TaskStartDate" StaticName="TaskStartDate" ID="{95907CF5-DDFB-4F84-A873-61F129938ABB}" DisplayName="Дата начала" Type="DateTime" Group="PSE.Workflow" />
+  <Field Name="TaskPlanDate" StaticName="TaskPlanDate" ID="{2BA11169-B338-44B5-B385-6DF02A8308A0}" DisplayName="Срок исполнения" Type="DateTime" Group="PSE.Workflow" />
+  <Field Name="TaskEndDate" StaticName="TaskEndDate" ID="{35DA837C-404C-4B88-A278-CE7837435C2C}" DisplayName="Дата завершения" Type="DateTime" Group="PSE.Workflow" />
+  <Field Name="DocURL" StaticName="DocURL" ID="{76E993F2-A061-4C53-9726-4CC48E2B7ACC}" DisplayName="Документ" Type="URL" Group="PSE.Workflow" />
+  <Field Name="DocID" StaticName="DocID" ID="{EE9DA2A6-0EED-4B6C-91CB-F5714100B9DB}" DisplayName="Документ ИД" Type="Text" Group="PSE.Workflow" />
+  <Field Name="DocLib" StaticName="DocLib" ID="{5F300192-4EB2-49EB-AABA-040782A41E0D}" DisplayName="Библиотека" Type="Text" Group="PSE.Workflow" />
+  <Field Name="CompletedUser" StaticName="CompletedUser" ID="{4196C14C-A96B-4E8D-87B2-BB0E91F67BA1}" DisplayName="Завершивший исполнитель" Type="User" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" />
+  <Field Name="TaskResult" StaticName="TaskResult" ID="{141C982A-743B-4791-A6F7-49EC262F6B59}" DisplayName="Решение согласующего" Type="Text" Group="PSE.Workflow"/>
+
+  <!-- Для элемента рабочего процесса -->
+  <Field Name="Stage" StaticName="Stage" ID="{F0D9617F-67A7-4BD1-AED3-7256DE77E99F}" DisplayName="Статус рабочего процесса" Group="PSE.Workflow" Type="Text" ShowInDisplayForm="TRUE" ShowInEditForm="FALSE" ShowInNewForm="FALSE"  />
+	<Field Name="WFData" StaticName="WFData" ID="{54E6DD1C-5AD5-453F-8D15-8256DE77E99F}" DisplayName="WFData" Type="Note" Group="PSE.Workflow" ShowInNewForm="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" />
+	<Field Name="WFCurrentUser" StaticName="WFCurrentUser" ID="{8B6F91A6-E376-43A6-9DC3-B23F98B4D132}" DisplayName="Текущий исполнитель" Type="UserMulti" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" ShowInNewForm ="FALSE" ShowInEditForm="FALSE" />
+
+	<!-- ???? -->
+  <Field Name="RepeatedAgreement" StaticName="RepeatedAgreement" ID="{E59BDD9E-8FE6-4330-A034-A83EBCAC75FF}" DisplayName="Повторное согласование" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="RepeatedUserAgreement" StaticName="RepeatedUserAgreement" ID="{E59BDD9E-8FE6-4322-A127-A83EBCAC75AA}" DisplayName="Исключать повтор согласующего" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="ComparePatternText" StaticName="ComparePatternText" ID="{4F99F18E-6990-4F89-900E-AA4B325E594E}" DisplayName="Образ для сравнения текст" Type="Text" Group="PSE.Workflow" />
+  <Field Name="ComparePatternInt" StaticName="ComparePatternInt" ID="{6B58BEA3-4BA6-4EDD-8334-CD5DDF77203B}" DisplayName="Образ для сравнения целое число" Type="Text" Group="PSE.Workflow" />
+  <Field Name="ComparePatternFloat" StaticName="ComparePatternFloat" ID="{E460B058-0D37-4F1A-AB78-EB587F4AEF73}" DisplayName="Образ для сравнения целое число с плавающей точкой" Type="Number" Group="PSE.Workflow" />
+  <Field Name="ComparePatternCurrent" StaticName="ComparePatternCurrent" ID="{9C635906-1707-4B5C-AB09-0310F7E32367}" DisplayName="Образ для сравнения сумма" Type="Currency" Group="PSE.Workflow" />
+  <Field Name="ComparePatternBool" StaticName="ComparePatternBool" ID="{E96F23FE-FAB3-4D06-8A13-119AA01925C5}" DisplayName="Образ для сравнения логический" Type="Boolean" Group="PSE.Workflow" />
+  <Field Name="ComparePatternDate" StaticName="ComparePatternDate" ID="{DA7668D3-5179-4D64-8822-EBA3E375C6D6}" DisplayName="Образ для сравнения дата" Type="DateTime" Group="PSE.Workflow" />
+  <Field Name="DocumentTypeGuid" StaticName="DocumentTypeGuid" ID="{D170BE8A-019C-45EF-B2AA-ABFA4DF96B62}" DisplayName="Guid" Type="Text" Group="PSE.Workflow" />
+  
+  <!-- Для выходных -->
+  <Field Name="VacationDay" StaticName="VacationDay" ID="{7D3296BE-4E9F-4094-8B55-FA1A8951667B}" DisplayName="Дата выходного" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
+  <!-- Руководители -->
+  <Field Name="MasterUser" StaticName="MasterUser" ID="{3742725E-E5F8-4F4E-B3DB-ADD831491E44}" DisplayName="Руководитель ответственного" Type="UserMulti" Group="PSE.Workflow" />
+  <Field Name="RespUser" StaticName="RespUser" ID="{7E9E97C3-7B12-4025-ABFA-BB399C6E3432}" DisplayName="Ответственный" Type="UserMulti" Group="PSE.Workflow" />
+  
+</Elements>

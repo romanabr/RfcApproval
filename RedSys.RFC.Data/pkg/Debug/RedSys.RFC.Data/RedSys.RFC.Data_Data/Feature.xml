@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RFC] Структура данных" Description="Разворачивает поля, списки" Id="c9b345c3-5656-4007-876e-27e8d263db93" Scope="Web">
+  <ElementManifests>
+    <ElementManifest Location="JSLink\Elements.xml" />
+    <ElementFile Location="JSLink\jquery-1.12.2.min.map" />
+    <ElementFile Location="JSLink\jquery-1.12.2.min.js" />
+    <ElementFile Location="JSLink\jquery-1.12.2.js" />
+    <ElementFile Location="JSLink\jquery-1.12.2.intellisense.js" />
+    <ElementFile Location="JSLink\jquery-ui-1.11.4.js" />
+    <ElementFile Location="JSLink\jquery-ui-1.11.4.min.js" />
+    <ElementFile Location="JSLink\rfccontenttype.js" />
+    <ElementFile Location="JSLink\SPUtility.js" />
+    <ElementFile Location="JSLink\jquery-migrate.js" />
+    <ElementFile Location="JSLink\SPPlus.js" />
+    <ElementFile Location="JSLink\camljs.js" />
+    <ElementManifest Location="Asset\Elements.xml" />
+    <ElementFile Location="Asset\SiteLogo.png" />
+  </ElementManifests>
+</Feature>

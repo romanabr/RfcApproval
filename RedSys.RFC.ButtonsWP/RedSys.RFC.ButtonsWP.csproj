@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F14A3908-B2B5-4995-BF59-6311FF21FBE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RedSys.RFC.ButtonsWP</RootNamespace>
+    <AssemblyName>RedSys.RFC.ButtonsWP</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <AssemblyDeploymentTarget>GlobalAssemblyCache</AssemblyDeploymentTarget>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <ProjectMode>SharePointCustomization</ProjectMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Camlex.NET, Version=4.1.0.0, Culture=neutral, PublicKeyToken=831792d54d5285b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Camlex.NET.dll.4.1.0.0\lib\net20\Camlex.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Deliverables\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.DocumentManagement, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="SPMeta2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPMeta2.Core.1.2.60\lib\net45\SPMeta2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Microsoft.Office.Server, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Server.UserProfiles, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddDocument\AddDocument.ascx.cs">
+      <DependentUpon>AddDocument.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDocument\AddDocument.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddDocument.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Translate\Translate.cs" />
+    <Compile Include="Copydoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartReportWokflow\StartReportWorkFlow.cs" />
+    <Compile Include="WorkflowsWorkflowStepTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AddDocument\AddDocument.webpart" />
+    <None Include="AddDocument\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{96549249-d55b-4e44-8be7-0d6e189150e4}</SharePointProjectItemId>
+    </None>
+    <None Include="app.config" />
+    <None Include="Features\Start Report Workflow WebPart\Start Report Workflow WebPart.feature">
+      <FeatureId>{65da52a3-9afc-48c2-8afe-a6e138822960}</FeatureId>
+    </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{da8f3d03-6081-493a-92bc-9191372ac156}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="packages.config" />
+    <None Include="Package\Package.package">
+      <PackageId>{4295d103-e11f-4813-9dfb-f4439b11d8d6}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="StartReportWokflow\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ec6bfdf7-5a75-4990-b64b-10b1751227cd}</SharePointProjectItemId>
+    </None>
+    <None Include="StartReportWokflow\StartReportWorkflow.webpart" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AddDocument\AddDocument.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>AddDocument.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="AddDocument\Elements.xml" />
+    <Content Include="Features\Start Report Workflow WebPart\Start Report Workflow WebPart.Template.xml">
+      <DependentUpon>Start Report Workflow WebPart.feature</DependentUpon>
+    </Content>
+    <Content Include="Images\ReportWP\changeEng.png" />
+    <Content Include="Images\ReportWP\icbreakEng.png" />
+    <Content Include="Images\ReportWP\icrecallEng.png" />
+    <Content Include="Images\ReportWP\icStartApproveEng.png" />
+    <Content Include="Images\ReportWP\mainEng.png" />
+    <Content Include="StartReportWokflow\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RedSys.Common.Workflow\RedSys.Common.Workflow.csproj">
+      <Project>{c3ccc3cb-cfc9-479a-b6f7-6fe813845632}</Project>
+      <Name>RedSys.Common.Workflow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj">
+      <Project>{9d45b3b0-171c-4375-a598-993d89a33618}</Project>
+      <Name>RedSys.RFC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedSys.RFC.Data\RedSys.RFC.Data.csproj">
+      <Project>{b1038681-7c0d-42dc-a5de-a01d18320e6d}</Project>
+      <Name>RedSys.RFC.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="false" />
+</Project>

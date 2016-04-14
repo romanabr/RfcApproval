@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="RFC" Url="Style Library">
+    <File Path="RFC\Main.png" Url="RFC/Main.png" ReplaceContent="TRUE"  Type="GhostableInLibrary"/>
+    <File Path="RFC\Search.png" Url="RFC/Search.png"  Type="GhostableInLibrary" />
+    <File Path="RFC\Onapprove.png" Url="RFC/Onapprove.png" Type="GhostableInLibrary"/>
+    <File Path="RFC\Create.png" Url="RFC/Create.png" Type="GhostableInLibrary"/>
+    <File Path="RFC\AllRFC.png" Url="RFC/AllRFC.png" Type="GhostableInLibrary"/>
+    <File Path="RFC\MyRFC.png" Url="RFC/MyRFC.png" Type="GhostableInLibrary" />
+  </Module>
+</Elements>

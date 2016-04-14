@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Asset" Url="Style Library/RFC">
+    <File Path="Asset\SiteLogo.png" Url="SiteLogo.png" Type="GhostableInLibrary" />
+  </Module>
+</Elements>

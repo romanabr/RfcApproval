@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="a5c45bb2-0f6c-4d92-ab04-428f887904b3" solutionId="a5c45bb2-0f6c-4d92-ab04-428f887904b3" resetWebServer="false" sharePointProductVersion="15.0" name="RedSys.MultiTabs" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="1745c159-b5bd-4c16-b078-f4b303777769" />
+  </features>
+</package>

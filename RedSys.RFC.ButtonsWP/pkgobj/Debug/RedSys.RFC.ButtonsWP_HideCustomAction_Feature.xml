@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[Ensol] Hide Custom Action" Description="Hide javascript action" Id="2a4ab5bb-d1f3-4a3c-b9d5-b96a3e846e4b" Scope="Web"></Feature>

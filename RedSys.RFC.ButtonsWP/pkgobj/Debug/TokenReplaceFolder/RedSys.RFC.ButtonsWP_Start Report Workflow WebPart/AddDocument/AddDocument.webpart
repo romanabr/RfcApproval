@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="ReportButton.AddDocument.AddDocument, RedSys.RFC.ButtonsWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a26a4a64e0d39f61" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[Ensol] AddDocumentButtonWP</property>
+        <property name="Description" type="string">Add document and link button</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

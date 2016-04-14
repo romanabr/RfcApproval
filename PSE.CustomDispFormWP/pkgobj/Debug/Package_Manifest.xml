@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="cd458b7a-9cfe-4edb-920c-f05d6e903aaa" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="PSE.CustomDispFormWP.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="PSE.CustomDispFormWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4d459427013a989" Namespace="CustomDispFormWebPart.CustomDispWebPart" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="PSE.CustomDispFormWP_CustomDispFormWebPart\Feature.xml" />
+  </FeatureManifests>
+</Solution>

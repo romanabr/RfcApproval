@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="fcd7e37b-c4c2-4901-9a61-3921cd578102" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="PSELookup.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="PSELookup.Fields" TypeName="*" Safe="True" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <RootFiles>
+    <RootFile Location="ISAPI\PSELookup\DataService.svc" />
+    <RootFile Location="Resources\PSELookup.resx" />
+  </RootFiles>
+  <TemplateFiles>
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\Images\lupa.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\Images\searchresultui-61174269.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\jquery-ui-1.8.7.custom.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_flat_10_000000_40x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_e6f4ff_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_50_0072C6_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_222222_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_228ef1_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_2694e8_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_2e83ff_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_3d80b3_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_72a7cf_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ef8c08_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ffd27a_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ffffff_256x240.png" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\index.html" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.min.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.structure.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.structure.min.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.theme.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.theme.min.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\rich-controls.css" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\rich-controls.js" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\richcontrols.js" />
+    <TemplateFile Location="Layouts\PSELookup\AutocompleteLookup\ui-anim_basic_16x16.gif" />
+    <TemplateFile Location="CONTROLTEMPLATES\PSELookupAutocompleteField.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\PSELookupProperties.ascx" />
+    <TemplateFile Location="XML\fldtypes_PSELookup.xml" />
+  </TemplateFiles>
+</Solution>

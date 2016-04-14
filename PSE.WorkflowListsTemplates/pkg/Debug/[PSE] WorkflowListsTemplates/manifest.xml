@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="4ee3a049-14ee-404d-8972-12ed24e133d7" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="RedSys.Common.Workflow.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="WorkflowListsTemplates.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="Core.PSE.WorkflowListsTemplates_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

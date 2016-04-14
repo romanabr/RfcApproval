@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="ReportButton.StartReportWorkflow.StartReportWorkflow, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[RedSys] Start RFC WorkFlow</property>
+        <property name="Description" type="string">Start RFC WorkFlow</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

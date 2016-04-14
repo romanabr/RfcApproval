@@ -1,0 +1,89 @@
+﻿<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+	<CustomAction Id="Ribbon.RFCID" Location="CommandUI.Ribbon"  Title="RFC" RegistrationId="101">
+		<CommandUIExtension xmlns="http://schemas.microsoft.com/sharepoint/">
+			<CommandUIDefinitions>
+				<CommandUIDefinition Location="Ribbon.Tabs._children">
+					<Tab Id="Ribbon.RFCID.Tab" Title="Navigation" Description="Navigation" Sequence="1" Command="RFCID.MGC">
+						<Scaling Id="Ribbon.RFCID.Tab.Scaling">
+							<MaxSize Id="Group.Scaling.Maxsize.RFCID.0" GroupId="Group.RFCID.0" Size="LargeLarge" Sequence="10"/>
+							<MaxSize Id="Group.Scaling.Maxsize.RFCID.1" GroupId="Group.RFCID.1" Size="LargeLarge" Sequence="30"/>
+							<MaxSize Id="Group.Scaling.Maxsize.RFCID.2" GroupId="Group.RFCID.2" Size="LargeLarge" Sequence="10000"/>
+							<Scale Id="Group.Scaling.Scale.RFCID.0" GroupId="Group.RFCID.0" Size="LargeLarge" Sequence="1000010"/>
+							<Scale Id="Group.Scaling.Scale.RFCID.1" GroupId="Group.RFCID.1" Size="LargeLarge" Sequence="1000030"/>
+							<Scale Id="Group.Scaling.Scale.RFCID.2" GroupId="Group.RFCID.2" Size="LargeLarge" Sequence="1000010000"/>
+						</Scaling>
+						<Groups Id="Ribbon.RFCID.Tab.Groups">
+							<Group Id="Group.RFCID.0" Title="Main" Template="Ribbon.Templates.RFCID.Flexible" Sequence="10" Command="RFCID.MGC" Description="Main">
+								<Controls Id="Ribbon.RFCID.Tab.Group.Controls0 ">
+									<Button Id="Button.RFCID.0" LabelText="Главная" Image32by32="/Style Library/RFC/Main.png" Command="Command.Button.RFCID0" TemplateAlias="o1" Sequence="10" />
+									<Button Id="Button.RFCID.1" LabelText="Поиск" Image32by32="/Style Library/RFC/Search.png" Command="Command.Button.RFCID1" TemplateAlias="o1" Sequence="10000" />
+								</Controls>
+							</Group>
+							<Group Id="Group.RFCID.1" Title="Create report" Template="Ribbon.Templates.RFCID.Flexible" Sequence="30" Command="RFCID.MGC" Description="Create report">
+								<Controls Id="Ribbon.RFCID.Tab.Group.Controls1 ">
+									<Button Id="Button.RFCID.2" LabelText="Create RFC" Image32by32="/Style Library/RFC/Create.png" Command="Command.Button.RFCID2" TemplateAlias="o1" Sequence="10" />
+								</Controls>
+							</Group>
+							<Group Id="Group.RFCID.2" Title="RFC Center" Template="Ribbon.Templates.RFCID.Flexible" Sequence="10000" Command="RFCID.MGC" Description="RFC Center">
+								<Controls Id="Ribbon.RFCID.Tab.Group.Controls2 ">
+									<Button Id="Button.RFCID.3" LabelText="Мои запросы" Image32by32="/Style Library/RFC/MyRFC.png" Command="Command.Button.RFCID3" TemplateAlias="o1" Sequence="10000" />
+									<Button Id="Button.RFCID.4" LabelText="Все запросы" Image32by32="/Style Library/RFC/AllRFC.png" Command="Command.Button.RFCID4" TemplateAlias="o1" Sequence="20000" />
+									<Button Id="Button.RFCID.5" LabelText="На согласовании" Image32by32="/Style Library/RFC/OnApprove.png" Command="Command.Button.RFCID5" TemplateAlias="o1" Sequence="30000" />
+								</Controls>
+							</Group>
+						</Groups>
+					</Tab>
+				</CommandUIDefinition>
+				<CommandUIDefinition Location="Ribbon.Templates._children">
+					<GroupTemplate Id="Ribbon.Templates.RFCID.Flexible">
+						<Layout Title="LargeLarge" LayoutTitle="LargeLarge">
+							<OverflowSection DisplayMode="Large" TemplateAlias="o1" Type="OneRow" />
+							<OverflowSection DisplayMode="Large" TemplateAlias="o2" Type="OneRow" />
+						</Layout>
+						<Layout Title="LargeMedium" LayoutTitle="LargeMedium">
+							<OverflowSection DisplayMode="Large" TemplateAlias="o1" Type="OneRow" />
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+						<Layout Title="LargeSmall" LayoutTitle="LargeSmall">
+							<OverflowSection DisplayMode="Large" TemplateAlias="o1" Type="OneRow" />
+							<OverflowSection DisplayMode="Small" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+						<Layout Title="MediumLarge" LayoutTitle="MediumLarge">
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Large" TemplateAlias="o2" Type="OneRow" />
+						</Layout>
+						<Layout Title="MediumMedium" LayoutTitle="MediumMedium">
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+						<Layout Title="MediumSmall" LayoutTitle="MediumSmall">
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Small" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+						<Layout Title="SmallLarge" LayoutTitle="SmallLarge">
+							<OverflowSection DisplayMode="Small" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Large" TemplateAlias="o2" Type="OneRow" />
+						</Layout>
+						<Layout Title="SmallMedium" LayoutTitle="SmallMedium">
+							<OverflowSection DisplayMode="Small" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Medium" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+						<Layout Title="SmallSmall" LayoutTitle="SmallSmall">
+							<OverflowSection DisplayMode="Small" TemplateAlias="o1" Type="ThreeRow" />
+							<OverflowSection DisplayMode="Small" TemplateAlias="o2" Type="ThreeRow" />
+						</Layout>
+					</GroupTemplate>
+				</CommandUIDefinition>
+			</CommandUIDefinitions>
+			<CommandUIHandlers>
+				<CommandUIHandler Command="RFCID.MGC" CommandAction="javascript:return true;" EnabledScript="return true;"/>
+				<CommandUIHandler Command="Command.Button.RFCID0" CommandAction="javascript:WebRedirect('/SitePages/home.aspx');" />
+				<CommandUIHandler Command="Command.Button.RFCID1" CommandAction="javascript:WebRedirect('/SitePages/%D0%9F%D0%BE%D0%B8%D1%81%D0%BA.aspx');" />
+				<CommandUIHandler Command="Command.Button.RFCID2" CommandAction="javascript:WebRedirect('/_layouts/15/NewDocSet.aspx?List=00feb818%2D9c1e%2D403f%2D9262%2D81b3f1299223&amp;Source=http%3A%2F%2Fportal%2Epsdev%2Ecom%2FRFCCenter%2FForms%2FAllItems%2Easpx&amp;ContentTypeId=0x0120D52000AAC93B98F7764D5C9E6E66F2DC45A4000086EA838590504D41856A7D9B1819BD8A&amp;RootFolder={Server}%2FRFCCenter');" />
+				<CommandUIHandler Command="Command.Button.RFCID4" CommandAction="javascript:WebRedirect('/RFCCenter/Forms/AllItems.aspx');" />
+				<CommandUIHandler Command="Command.Button.RFCID5" CommandAction="javascript:WebRedirect('/RFCCenter/Forms/MyRFC.aspx');" />
+				<CommandUIHandler Command="Command.Button.RFCID6" CommandAction="javascript:WebRedirect('/RFCCenter/Forms/OnApprove.aspx');" />
+			</CommandUIHandlers>
+		</CommandUIExtension>
+	</CustomAction>
+</Elements>

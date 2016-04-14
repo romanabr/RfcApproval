@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90B3D64B-8BCA-4426-8D98-A88D270D6951}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSELookup</RootNamespace>
+    <AssemblyName>PSELookup</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CONTROLTEMPLATES\PSELookupAutocompleteField.ascx.cs">
+      <DependentUpon>PSELookupAutocompleteField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PSELookupAutocompleteField.ascx.designer.cs">
+      <DependentUpon>PSELookupAutocompleteField.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PSELookupProperties.ascx.cs">
+      <DependentUpon>PSELookupProperties.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PSELookupProperties.ascx.designer.cs">
+      <DependentUpon>PSELookupProperties.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Field\PSELookupField.cs" />
+    <Compile Include="Field\PSELookupFieldControl.cs" />
+    <Compile Include="Field\SPFieldExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\PSELookup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSELookup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c0494d5c-4b20-4904-809a-766e19a29c0a}</SharePointProjectItemId>
+    </None>
+    <None Include="ISAPI\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ea19818c-c9d5-4c69-8a4a-de7b32cafdeb}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8de35cf0-e528-4264-bab8-c16663605b8f}</SharePointProjectItemId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{fcd7e37b-c4c2-4901-9a61-3921cd578102}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Resources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2ae0b4f9-d850-4a7d-ad51-b5a325620a20}</SharePointProjectItemId>
+    </None>
+    <None Include="XML\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{68169dd7-cb6f-48bd-96c2-a84895e725b0}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CONTROLTEMPLATES\PSELookupAutocompleteField.ascx" />
+    <Content Include="CONTROLTEMPLATES\PSELookupProperties.ascx" />
+    <Content Include="ISAPI\PSELookup\DataService.svc" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\Images\lupa.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\Images\searchresultui-61174269.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\css\cupertino\jquery-ui-1.8.7.custom.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_e6f4ff_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_50_0072C6_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_222222_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\index.html" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.min.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.structure.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.structure.min.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.theme.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\jquery\js\jquery-ui.theme.min.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\rich-controls.css" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\rich-controls.js" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\richcontrols.js" />
+    <Content Include="Layouts\PSELookup\AutocompleteLookup\ui-anim_basic_16x16.gif" />
+    <Content Include="XML\fldtypes_PSELookup.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\PSELookup.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PSELookup.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj">
+      <Project>{9d45b3b0-171c-4375-a598-993d89a33618}</Project>
+      <Name>RedSys.RFC.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

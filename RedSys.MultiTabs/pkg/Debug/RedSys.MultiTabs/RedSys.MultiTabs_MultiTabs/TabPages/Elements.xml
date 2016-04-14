@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="TabPages" List="113" Url="_catalogs/wp">
+    <File Path="TabPages\TabPages.webpart" Url="RedSys.MultiTabs_TabPages.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="RedSys" />
+    </File>
+  </Module>
+</Elements>

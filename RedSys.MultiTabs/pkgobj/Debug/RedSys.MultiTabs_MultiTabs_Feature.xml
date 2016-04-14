@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[PSE] Веб-часть Вкладки" Id="11820c9c-b67a-41de-92ad-b46c211fde1c" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="Assets\Elements.xml" />
+    <ElementFile Location="Assets\tabs.css" />
+    <ElementFile Location="Assets\jquery.ba-hashchange.min.js" />
+    <ElementFile Location="Assets\jquery.easytabs.min.js" />
+    <ElementManifest Location="TabPages\Elements.xml" />
+    <ElementFile Location="TabPages\TabPages.webpart" />
+  </ElementManifests>
+</Feature>

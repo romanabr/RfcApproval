@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="RFC\" Type="ElementManifest" />
+    <ProjectItemFile Source="Main.png" Target="RFC\" Type="ElementFile" />
+    <ProjectItemFile Source="Search.png" Target="RFC\" Type="ElementFile" />
+    <ProjectItemFile Source="Onapprove.png" Target="RFC\" Type="ElementFile" />
+    <ProjectItemFile Source="Create.png" Target="RFC\" Type="ElementFile" />
+    <ProjectItemFile Source="AllRFC.png" Target="RFC\" Type="ElementFile" />
+    <ProjectItemFile Source="MyRFC.png" Target="RFC\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

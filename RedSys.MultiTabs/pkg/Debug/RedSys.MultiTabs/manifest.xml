@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="a5c45bb2-0f6c-4d92-ab04-428f887904b3" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="RedSys.MultiTabs.dll" DeploymentTarget="WebApplication">
+      <SafeControls>
+        <SafeControl Assembly="RedSys.MultiTabs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5441d14b2a19bcac" Namespace="RedSys.MultiTabs.WebParts.TabPages" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="RedSys.MultiTabs_MultiTabs\Feature.xml" />
+  </FeatureManifests>
+</Solution>

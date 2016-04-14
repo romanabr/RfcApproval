@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="3b752b84-56be-4b3f-9c0a-a55ff0559cc2" solutionId="3b752b84-56be-4b3f-9c0a-a55ff0559cc2" resetWebServer="false" sharePointProductVersion="15.0" name="RedSys.KEWP" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="RedSys.RFC.Core.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj" />
+  </assemblies>
+  <features>
+    <featureReference itemId="727f89f7-3e32-4c41-a4de-847e06aa5f7e" />
+  </features>
+</package>

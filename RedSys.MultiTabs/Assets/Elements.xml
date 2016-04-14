@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Assets" Url="Style Library/RedSys.MultiTabs">
+    <File Path="Assets\tabs.css" Url="tabs.css" Type="GhostableInLibrary" />
+    <File Path="Assets\jquery.ba-hashchange.min.js" Url="jquery.ba-hashchange.min.js" Type="GhostableInLibrary" />
+    <File Path="Assets\jquery.easytabs.min.js" Url="jquery.easytabs.min.js" Type="GhostableInLibrary" />
+  </Module>
+</Elements>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="56f0c8dc-b48f-4707-a8a7-fce1e9f01bcc" solutionId="56f0c8dc-b48f-4707-a8a7-fce1e9f01bcc" resetWebServer="false" sharePointProductVersion="15.0" name="RedSys.RFC.Data" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="RedSys.RFC.Core.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj" />
+    <customAssembly location="SPMeta2.Standard.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.Core.Standard.1.2.60\lib\net45\SPMeta2.Standard.dll" />
+    <customAssembly location="SPMeta2.SSOM.Standard.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.SSOM.Standard.1.2.60\lib\net45\SPMeta2.SSOM.Standard.dll" />
+  </assemblies>
+  <features>
+    <featureReference itemId="041ab28e-ea5b-45e9-ae69-2aa1abb6753a" />
+  </features>
+  <projectItems>
+    <projectItemReference itemId="d02ab99b-1d4a-401d-9451-8bddb3eef0ec" />
+  </projectItems>
+</package>

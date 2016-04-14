@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="56f0c8dc-b48f-4707-a8a7-fce1e9f01bcc" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="RedSys.RFC.Core.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="SPMeta2.Standard.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="SPMeta2.SSOM.Standard.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="RedSys.RFC.Data.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="Layouts\RedSys.RFC.Data\kekelinkcontenttype.js" />
+    <TemplateFile Location="Layouts\RedSys.RFC.Data\rfccontenttype.js" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="RedSys.RFC.Data_Data\Feature.xml" />
+  </FeatureManifests>
+</Solution>

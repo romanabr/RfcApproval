@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="KEListView" List="113" Url="_catalogs/wp">
+    <File Path="KEListView\KEListView.webpart" Url="RedSys.KEWP_KEListView.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="PSE" />
+    </File>
+  </Module>
+</Elements>

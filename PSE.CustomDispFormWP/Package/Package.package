@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="cd458b7a-9cfe-4edb-920c-f05d6e903aaa" solutionId="cd458b7a-9cfe-4edb-920c-f05d6e903aaa" resetWebServer="false" sharePointProductVersion="15.0" name="PSE.CustomDispFormWP" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="9f8af045-da88-45be-8434-0037aadde9a6" />
+  </features>
+</package>

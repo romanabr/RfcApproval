@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[Ensol] ReportButtonWP" AlwaysForceInstall="TRUE" Description="Веб-часть запуска рабочего процесса, управления процессом согласования" Id="baece3bd-5cca-4cd8-8116-37c805126991" ImageUrl="Ensol/Ensol.png" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="StartReportWokflow\Elements.xml" />
+    <ElementFile Location="StartReportWokflow\StartReportWorkflow.webpart" />
+    <ElementManifest Location="AddDocument\Elements.xml" />
+    <ElementFile Location="AddDocument\AddDocument.webpart" />
+  </ElementManifests>
+</Feature>

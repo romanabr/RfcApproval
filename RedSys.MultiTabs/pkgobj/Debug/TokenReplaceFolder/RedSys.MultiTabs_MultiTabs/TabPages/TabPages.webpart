@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="RedSys.MultiTabs.WebParts.TabPages.TabPages, RedSys.MultiTabs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5441d14b2a19bcac" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[RedSys] Веб-часть Вкладки</property>
+        <property name="Description" type="string"></property>
+        <property name="ChromeType" type="chrometype">None</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

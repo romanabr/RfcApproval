@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="4295d103-e11f-5813-9dfb-f4439b11d8d6" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="RedSys.RFC.Data.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="RedSys.RFC.Core.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="RedSys.Common.Workflow.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="RedSys.RFC.ButtonsWP.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="RedSys.RFC.ButtonsWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a26a4a64e0d39f61" Namespace="ReportButton.StartReportWorkflow" TypeName="*" />
+        <SafeControl Assembly="RedSys.RFC.ButtonsWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a26a4a64e0d39f61" Namespace="ReportButton.AddDocument" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="Images\ReportWP\changeEng.png" />
+    <TemplateFile Location="Images\ReportWP\icbreakEng.png" />
+    <TemplateFile Location="Images\ReportWP\icrecallEng.png" />
+    <TemplateFile Location="Images\ReportWP\icStartApproveEng.png" />
+    <TemplateFile Location="Images\ReportWP\mainEng.png" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="RedSys.RFC.ButtonsWP_Start Report Workflow WebPart\Feature.xml" />
+    <FeatureManifest Location="RedSys.RFC.ButtonsWP_HideCustomAction\Feature.xml" />
+  </FeatureManifests>
+</Solution>

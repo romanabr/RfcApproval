@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="3b752b84-56be-4b3f-9c0a-a55ff0559cc2" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="RedSys.RFC.Core.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="RedSys.KEWP.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="RedSys.KEWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3363b1b9c91f7cbe" Namespace="RedSys.KEWP.KEListView" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="CONTROLTEMPLATES\RedSys.KEWP\KEListView\KEListViewUserControl.ascx" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="RedSys.KEWP_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

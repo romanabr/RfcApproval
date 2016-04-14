@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="fcd7e37b-c4c2-4901-9a61-3921cd578102" solutionId="fcd7e37b-c4c2-4901-9a61-3921cd578102" resetWebServer="false" sharePointProductVersion="15.0" name="PSELookup" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="8de35cf0-e528-4264-bab8-c16663605b8f" />
+    <projectItemReference itemId="c0494d5c-4b20-4904-809a-766e19a29c0a" />
+    <projectItemReference itemId="ea19818c-c9d5-4c69-8a4a-de7b32cafdeb" />
+    <projectItemReference itemId="68169dd7-cb6f-48bd-96c2-a84895e725b0" />
+    <projectItemReference itemId="2ae0b4f9-d850-4a7d-ad51-b5a325620a20" />
+  </projectItems>
+</package>

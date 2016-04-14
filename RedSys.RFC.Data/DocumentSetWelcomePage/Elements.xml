@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="DocumentSetWelcomePage" >
+    <File Path="DocumentSetWelcomePage\docsethomepage.aspx" Url="DocumentSetWelcomePage/docsethomepage.aspx" />
+  </Module>
+</Elements>

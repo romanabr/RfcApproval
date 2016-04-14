@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[PSE] Веб-часть отображения информации из элемента" Description="Веб-часть отображения информации из элемента" Id="86441e2c-0544-4838-8661-cc9d800c1105" ImageUrl="Ensol/Ensol.png" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="CustomDispWebPart\Elements.xml" />
+    <ElementFile Location="CustomDispWebPart\CustomDispWebPart.webpart" />
+  </ElementManifests>
+</Feature>

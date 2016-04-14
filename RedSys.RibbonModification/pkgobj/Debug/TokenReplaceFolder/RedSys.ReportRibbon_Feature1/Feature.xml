@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RedSys]  Ribbon" Id="2f73a381-9fa5-485e-bd06-422119565b80" ImageUrl="Ensol/Ensol.png" Scope="Web">
+  <ElementManifests>
+    <ElementManifest Location="RibbonXML\Elements.xml" />
+    <ElementManifest Location="RFC\Elements.xml" />
+    <ElementFile Location="RFC\Main.png" />
+    <ElementFile Location="RFC\Search.png" />
+    <ElementFile Location="RFC\Onapprove.png" />
+    <ElementFile Location="RFC\Create.png" />
+    <ElementFile Location="RFC\AllRFC.png" />
+    <ElementFile Location="RFC\MyRFC.png" />
+  </ElementManifests>
+</Feature>

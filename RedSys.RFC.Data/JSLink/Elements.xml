@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="JSLink" Url="Style Library">
+    <File Path="JSLink\jquery-1.12.2.min.map" Url="JSLink/jquery-1.12.2.min.map" Type="GhostableInLibrary"/>
+    <File Path="JSLink\jquery-1.12.2.min.js" Url="JSLink/jquery-1.12.2.min.js" Type="GhostableInLibrary"/>
+    <File Path="JSLink\jquery-1.12.2.js" Url="JSLink/jquery-1.12.2.js" Type="GhostableInLibrary"/>
+    <File Path="JSLink\jquery-1.12.2.intellisense.js" Url="JSLink/jquery-1.12.2.intellisense.js" Type="GhostableInLibrary"/>
+    <File Path="JSLink\jquery-ui-1.11.4.js" Url="JSLink/jquery-ui-1.11.4.js" Type="GhostableInLibrary"/>
+    <File Path="JSLink\jquery-ui-1.11.4.min.js" Url="JSLink/jquery-ui-1.11.4.min.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\rfccontenttype.js" Url="JSLink/rfccontenttype.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\SPUtility.js" Url="JSLink/SPUtility.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\jquery-migrate.js" Url="JSLink/jquery-migrate.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\SPPlus.js" Url="JSLink/SPPlus.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\camljs.js" Url="JSLink/camljs.js" Type="GhostableInLibrary" />
+  </Module>
+</Elements>

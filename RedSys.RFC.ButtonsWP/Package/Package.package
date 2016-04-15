@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4295d103-e11f-4813-9dfb-f4439b11d8d6" solutionId="4295d103-e11f-5813-9dfb-f4439b11d8d6" resetWebServer="false" sharePointProductVersion="15.0" name="[PSE] ReportButtonWP" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4295d103-e11f-4813-9dfb-f4439b11d8d6" solutionId="4295d103-e11f-5813-9dfb-f4439b11d8d6" resetWebServer="false" sharePointProductVersion="15.0" name="PSE.ReportButtonWP" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
     <projectOutputAssembly location="RedSys.RFC.Data.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Data\RedSys.RFC.Data.csproj" />
     <projectOutputAssembly location="RedSys.RFC.Core.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj" />

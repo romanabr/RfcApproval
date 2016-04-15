@@ -169,6 +169,5 @@ C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\bin\Debug\ko\System.
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\bin\Debug\zh-Hant\System.Spatial.resources.dll
-C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\obj\Debug\RedSys.RFC.Core.csprojResolveAssemblyReference.cache
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\obj\Debug\RedSys.RFC.Core.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.RFC.Core\obj\Debug\RedSys.RFC.Core.pdb

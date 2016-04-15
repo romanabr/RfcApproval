@@ -12,6 +12,7 @@
     </Assembly>
   </Assemblies>
   <TemplateFiles>
+    <TemplateFile Location="Images\ReportWP\approve.png" />
     <TemplateFile Location="Images\ReportWP\changeEng.png" />
     <TemplateFile Location="Images\ReportWP\icbreakEng.png" />
     <TemplateFile Location="Images\ReportWP\icrecallEng.png" />

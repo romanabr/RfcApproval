@@ -1,1 +1,1 @@
-bin\Debug\[PSE] ReportButtonWP.wsp
+bin\Debug\PSE.ReportButtonWP.wsp

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="RedSys.KEWP.KEEffectListView.KEEffectListView, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[RedSys] КЕ Влияния</property>
+        <property name="Description" type="string">Веб-часть отображающая KE Влияния</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

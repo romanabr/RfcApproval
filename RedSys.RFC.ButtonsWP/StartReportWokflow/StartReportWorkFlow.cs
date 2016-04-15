@@ -24,6 +24,7 @@ using RedSys.Common.Workflow;
 using RedSys.RFC.Data.Fields;
 using RedSys.RFC.Data;
 using RedSys.RFC.Data.Const;
+using RedSys.RFC.Data.Code;
 
 namespace ReportButton.StartReportWorkflow
 {
@@ -32,6 +33,7 @@ namespace ReportButton.StartReportWorkflow
 	{
 		private SPLinkButton _copyButton;
 		private SPLinkButton _exportButton;
+        private SPLinkButton _superApproveButton;
 		private readonly Label _lblInfo;
 		private string _oldstatus;
 		private SPLinkButton _startButton;
@@ -39,6 +41,10 @@ namespace ReportButton.StartReportWorkflow
 		private SPLinkButton _toArchieveButton;
 		private SPLinkButton _onpreworkButton;
 		private Workflow _wf;
+        private RFCEntity rfcEntity;
+        private SPUser manager;
+        private SPUser author;
+        private SPUser currentUser;
 
 		public StartReportWorkflow()
 		{
@@ -99,11 +105,12 @@ namespace ReportButton.StartReportWorkflow
 			try
 			{
 				var curItem = SPContext.Current.ListItem;
+                rfcEntity = new RFCEntity(curItem);
 				string status = curItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName).ToLower().Trim();
 
-				SPUser manager = curItem.GetFieldValueUser(RFCFields.Manager.InternalName);
-				SPUser author = curItem.GetFieldValueUser(SPBuiltInFieldId.Author);
-				SPUser currentUser = SPContext.Current.Web.CurrentUser;
+				 manager = curItem.GetFieldValueUser(RFCFields.Manager.InternalName);
+				 author = curItem.GetFieldValueUser(SPBuiltInFieldId.Author);
+				 currentUser = SPContext.Current.Web.CurrentUser;
 				SPWeb currentWeb = SPContext.Current.Web;
 				if (null == curItem)
 				{
@@ -117,6 +124,7 @@ namespace ReportButton.StartReportWorkflow
 				ShowHomeButton();
 				ShowStartButton(status);
 				ShowCopyButton();
+                ShowApproveButton(status);
 
 				if (string.IsNullOrEmpty(StatusMoveToArchieve))
 				{
@@ -230,32 +238,7 @@ namespace ReportButton.StartReportWorkflow
 					Controls.Add(new LiteralControl("&nbsp"));
 				}
 
-				if (ShowApprovalListInExternalApp)
-				{
-					var statuses = ShowApprovalListInWordStatuses.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-					var curStatus = SPContext.Current.ListItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
-					if (statuses.Contains(curStatus))
-					{
-						var scr = new Literal();
-						scr.Text = "<script type='text/javascript' src='/_layouts/15/Ensol.WPButtonWP/SP15ModalDialog.js'></script>";
-						Controls.Add(scr);
-
-						var callMSWordButton = new SPLinkButton
-						{
-							ToolTip = Translate.OUTPUTINTTOMSWORD,
-							ImageUrl = "/_layouts/15/images/WP Button/PrintForm.png",
-							Width = 60,
-							Height = 60,
-							OnClientClick = "return confirm('Create printed form by template?');return false;"
-						};
-						//callMSWordButton.Click += new EventHandler(callMSWordButton_Click);
-						callMSWordButton.OnClientClick =
-							"openInDialog(300,270,false,true,false,'/_layouts/15/Ensol.WPButtonWP/DocTemplatePage.aspx?IsDlg=1&cid=" +
-							curItem.ID + "');return false;";
-						Controls.Add(callMSWordButton);
-						Controls.Add(new LiteralControl("&nbsp"));
-					}
-				}
+				
 			}
 			catch (Exception ex)
 			{
@@ -284,7 +267,30 @@ namespace ReportButton.StartReportWorkflow
 			}
 		}
 
-		private void onpreworkButton_Click(object sender, EventArgs e)
+        private void ShowApproveButton(string status)
+        {
+            if (ShowApproveWorkflow && _wf.InProgress && (!string.IsNullOrEmpty(status) && status == "На согласовнии") && (currentUser != null && manager != null   && currentUser.ID == manager.ID))
+            {
+                if (rfcEntity.GetTaskCount() == 0) return;
+                _superApproveButton = new SPLinkButton
+                {
+                    ImageUrl = "~/_layouts/15/images/ReportWP/approve.png",
+                    ToolTip="Принудительное согласование",
+                    OnClientClick = "return confirm('Вы уверены, что хотите принудительно');return false;"
+                };
+                _superApproveButton.Click += _superApproveButton_Click; ;
+                Controls.Add(_startButton);
+                Controls.Add(new LiteralControl("&nbsp"));
+                Controls.Add(new LiteralControl("&nbsp"));
+            }
+        }
+
+        private void _superApproveButton_Click(object sender, EventArgs e)
+        {
+            rfcEntity.Tasks.Approve(currentUser.Name);
+        }
+
+        private void onpreworkButton_Click(object sender, EventArgs e)
 		{
 			SPSecurity.RunWithElevatedPrivileges(delegate
 			{
@@ -1249,9 +1255,15 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 		 WebDescription("Отображать кнопку OnRework")]
 		public bool ShowOnRework { get; set; }
 
+        [WebBrowsable(true),
+         Personalizable(PersonalizationScope.Shared),
+         DefaultValue(false),
+         Category("Принудительное согласование"),
+         WebDisplayName("Отображать кнопку Принудительное согласование"),
+         WebDescription("Отображать кнопку Принудительное согласование")]
+        public bool ShowApproveWorkflow { get; set; }
 
-
-		[WebBrowsable(true),
+        [WebBrowsable(true),
 		 Personalizable(PersonalizationScope.Shared),
 		 DefaultValue(""),
 		 Category("OnRework"),

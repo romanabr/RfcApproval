@@ -41,11 +41,14 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SPMeta2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +56,22 @@
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KEApproveList\KEApproveList.ascx.cs">
+      <DependentUpon>KEApproveList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="KEApproveList\KEApproveList.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KEApproveList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="KEEffectListView\KEEffectListView.ascx.cs">
+      <DependentUpon>KEEffectListView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="KEEffectListView\KEEffectListView.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KEEffectListView.ascx</DependentUpon>
+    </Compile>
     <Compile Include="KEListView\KEListView.cs" />
     <Compile Include="KEListView\KEListViewUserControl.ascx.cs">
       <DependentUpon>KEListViewUserControl.ascx</DependentUpon>
@@ -64,8 +83,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Feature1\Feature1.feature">
+    <None Include="Features\Webparts\Webparts.feature">
       <FeatureId>{727f89f7-3e32-4c41-a4de-847e06aa5f7e}</FeatureId>
+    </None>
+    <None Include="KEApproveList\KEApproveList.webpart" />
+    <None Include="KEApproveList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c3ef1718-7145-4308-8286-2477fe3f1154}</SharePointProjectItemId>
+    </None>
+    <None Include="KEEffectListView\KEEffectListView.webpart" />
+    <None Include="KEEffectListView\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3a099354-0e04-4993-a5de-c4dabb4ebf8a}</SharePointProjectItemId>
     </None>
     <None Include="KEListView\KEListView.webpart" />
     <None Include="KEListView\SharePointProjectItem.spdata">
@@ -84,10 +111,24 @@
       <Project>{9d45b3b0-171c-4375-a598-993d89a33618}</Project>
       <Name>RedSys.RFC.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RedSys.RFC.Data\RedSys.RFC.Data.csproj">
+      <Project>{b1038681-7c0d-42dc-a5de-a01d18320e6d}</Project>
+      <Name>RedSys.RFC.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <Content Include="Features\Webparts\Webparts.Template.xml">
+      <DependentUpon>Webparts.feature</DependentUpon>
+    </Content>
+    <Content Include="KEApproveList\Elements.xml" />
+    <Content Include="KEApproveList\KEApproveList.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>KEApproveList.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="KEEffectListView\Elements.xml" />
+    <Content Include="KEEffectListView\KEEffectListView.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>KEEffectListView.ascx.g.cs</LastGenOutput>
     </Content>
     <Content Include="KEListView\Elements.xml" />
     <Content Include="KEListView\KEListViewUserControl.ascx" />

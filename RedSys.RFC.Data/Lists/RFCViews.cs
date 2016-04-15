@@ -68,6 +68,7 @@ namespace RedSys.RFC.Data.Lists
 						RFCFields.RfcToKeLink.InternalName,
 						RFCFields.KeToKeLink.InternalName,
 						RFCFields.InteraptionFlag.InternalName,
+						RFCFields.KeType.InternalName,
 						BuiltInInternalFieldNames.Author,
 						BuiltInInternalFieldNames.Created
 			};
@@ -138,12 +139,11 @@ namespace RedSys.RFC.Data.Lists
 				listView.Fields = new Collection<string> {
 					BuiltInInternalFieldNames.LinkTitle,
 					RFCFields.RfcToKeLink.InternalName,
-						RFCFields.KeToKeLink.InternalName,
-						RFCFields.KeType.InternalName,
+					RFCFields.KeToKeLink.InternalName,
+						RFCFields.RFCUserType.InternalName,
 						RFCFields.KeManager.InternalName,
 					RFCFields.RFCKeApprove.InternalName,
 					RFCFields.RFCKeApproveDate.InternalName,
-					RFCFields.RFCKeComment.InternalName,
 					RFCFields.RFCKeComment.InternalName,
 				BuiltInInternalFieldNames.Author,
 				BuiltInInternalFieldNames.Created
@@ -154,6 +154,7 @@ namespace RedSys.RFC.Data.Lists
 		{
 			Title = "Файлы RFC",
 			RowLimit = 30,
+			ViewStyleId = BuiltInViewStyleId.BasicTable,
 			Url = "rfcfiles.aspx",
 			Fields = new Collection<string>
 			{
@@ -165,6 +166,26 @@ namespace RedSys.RFC.Data.Lists
 				BuiltInInternalFieldNames.ContentType
 			}
 		};
-	}
+
+        public static ListViewDefinition MainView = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView =>
+        {
+            listView.ViewStyleId = BuiltInViewStyleId.BasicTable;
+            listView.Fields = new Collection<string>
+            {
+                        BuiltInInternalFieldNames.LinkFilename,
+                        RFCFields.Status.InternalName,
+                        RFCFields.Category.InternalName,
+                        RFCFields.Type.InternalName,
+                        RFCFields.Description.InternalName,
+                        RFCFields.InteraptionFlag.InternalName,
+                        BuiltInInternalFieldNames.Created,
+                        BuiltInInternalFieldNames.Author,
+                        RFCFields.StartDatePlan.InternalName,
+                       RFCFields.StartDateFact.InternalName,
+                        RFCFields.EndDatePlan.InternalName,
+                         RFCFields.EndDateFact.InternalName
+            };
+        });
+    }
 
 }

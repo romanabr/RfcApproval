@@ -413,7 +413,7 @@ namespace CustomDispFormWebPart.CustomDispWebPart
 
 
                     if (OpenInNewWindow)
-                        editLink.OnClientClick = "javascript:OpenDialog('" + editLinkText + "');return false;";
+                        editLink.OnClientClick = "javascript:OpenPopUpPage('" + editLinkText + "',RefreshOnDialogClose,700,900);return false;";
                     else
                         editLink.NavigateUrl = editLinkText;
 

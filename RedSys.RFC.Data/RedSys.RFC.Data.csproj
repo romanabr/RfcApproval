@@ -68,17 +68,35 @@
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\RFCEntity.cs" />
     <Compile Include="Code\RFCEventReceiver.cs" />
+    <Compile Include="Code\RFCKeEventReceiver.cs" />
+    <Compile Include="Code\RFCTasks.cs" />
     <Compile Include="Const\MailType.cs" />
     <Compile Include="Const\RFCConst.cs" />
     <Compile Include="Const\RFCStatus.cs" />
+    <Compile Include="Const\RFCTaskStatus.cs" />
     <Compile Include="Const\RFCUserType.cs" />
     <Compile Include="ContentTypes\RFCContentType.cs" />
+    <Compile Include="Features\ContentTypes\ContentTypes.EventReceiver.cs">
+      <DependentUpon>ContentTypes.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ListViewCustomize\ListViewCustomize.EventReceiver.cs">
+      <DependentUpon>ListViewCustomize.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\VariablesCustomize\VariablesCustomize.EventReceiver.cs">
+      <DependentUpon>VariablesCustomize.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\WebCustomise\WebCustomise.EventReceiver.cs">
+      <DependentUpon>WebCustomise.feature</DependentUpon>
+    </Compile>
     <Compile Include="Fields\RFCFields.cs" />
     <Compile Include="Fields\RFCFieldsCollection.cs" />
     <Compile Include="Fields\WorkflowFields.cs" />
     <Compile Include="Lists\RFCLists.cs" />
     <Compile Include="Lists\RFCViews.cs" />
+    <Compile Include="Models\RFCListViewModel.cs" />
+    <Compile Include="Models\VariablesModel.cs" />
     <Compile Include="Models\RFCModel.cs" />
     <Compile Include="Models\RFCWebModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +112,18 @@
     </None>
     <None Include="Features\Data\Data.feature">
       <FeatureId>{041ab28e-ea5b-45e9-ae69-2aa1abb6753a}</FeatureId>
+    </None>
+    <None Include="Features\ContentTypes\ContentTypes.feature">
+      <FeatureId>{970a37ec-7feb-4659-a01e-789d1eb259dd}</FeatureId>
+    </None>
+    <None Include="Features\VariablesCustomize\VariablesCustomize.feature">
+      <FeatureId>{6c4eeafa-12fb-4509-b198-3d2cfa6e3d2b}</FeatureId>
+    </None>
+    <None Include="Features\ListViewCustomize\ListViewCustomize.feature">
+      <FeatureId>{a00c5a94-2f5a-4200-899f-c68738bab802}</FeatureId>
+    </None>
+    <None Include="Features\WebCustomise\WebCustomise.feature">
+      <FeatureId>{f2625283-c41f-4238-bb7d-736af2541d5e}</FeatureId>
     </None>
     <None Include="JSLink\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b162d6c2-a1f4-47a8-9d35-83115f858a60}</SharePointProjectItemId>
@@ -159,6 +189,19 @@
     <Content Include="Features\Data\Data.Template.xml">
       <DependentUpon>Data.feature</DependentUpon>
     </Content>
+    <Content Include="Features\ContentTypes\ContentTypes.Template.xml">
+      <DependentUpon>ContentTypes.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\VariablesCustomize\VariablesCustomize.Template.xml">
+      <DependentUpon>VariablesCustomize.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\ListViewCustomize\ListViewCustomize.Template.xml">
+      <DependentUpon>ListViewCustomize.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\WebCustomise\WebCustomise.Template.xml">
+      <DependentUpon>WebCustomise.feature</DependentUpon>
+    </Content>
+    <Content Include="JSLink\angular.js" />
     <Content Include="JSLink\Elements.xml" />
     <Content Include="JSLink\jquery-1.12.2.intellisense.js" />
     <Content Include="JSLink\jquery-1.12.2.js" />

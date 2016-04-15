@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d2b8d118-32bf-423a-99a4-2dba6ecdb9a3" solutionId="d2b8d118-32bf-423a-99a4-2dba6ecdb9a3" resetWebServer="false" sharePointProductVersion="15.0" name="PSE.CustomUpload" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="Camlex.NET.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="bin\Debug\Camlex.NET.dll" />
+  </assemblies>
+  <features>
+    <featureReference itemId="8a775a34-75ee-428e-975b-dacc6e726fec" />
+    <featureReference itemId="06db13f2-f5f0-4c07-83fe-eaedcbd94900" />
+  </features>
+  <projectItems>
+    <projectItemReference itemId="b1d81da4-eec9-4611-aeab-dbca5a78475b" />
+  </projectItems>
+</package>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[Ensol] Core.WorkflowListsTemplates" Description="Создает списки/поля для процесса, разворачивает WF DLLS" Id="1b6a2bdc-abd6-44f0-92c4-595ba4766418" ImageUrl="Ensol/Ensol.png" ReceiverAssembly="WorkflowListsTemplates, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e74684b3056e2b87" ReceiverClass="WorkflowListsTemplates.Features.Feature1.Feature1EventReceiver" Scope="Web">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="1b6a2bdc-abd6-44f0-92c4-595ba4766418" ImageUrl="Ensol/Ensol.png" ReceiverAssembly="WorkflowListsTemplates, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e74684b3056e2b87" ReceiverClass="WorkflowListsTemplates.Features.Feature1.Feature1EventReceiver" Scope="Web" Title="[PSE] Базовые списки для процесса">
   <ElementManifests>
     <ElementManifest Location="Fields\Elements.xml" />
   </ElementManifests>

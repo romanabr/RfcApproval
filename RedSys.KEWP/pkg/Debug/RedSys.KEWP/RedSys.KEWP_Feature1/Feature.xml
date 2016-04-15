@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="ff32f403-b305-475d-b30b-cb7060dac389" Scope="Site" Title="RedSys.KEWP Feature1">
-  <ElementManifests>
-    <ElementManifest Location="KEListView\Elements.xml" />
-    <ElementFile Location="KEListView\KEListView.webpart" />
-  </ElementManifests>
-</Feature>

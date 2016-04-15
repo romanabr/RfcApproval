@@ -28,6 +28,6 @@ namespace RedSys.RFC.Data.Const
 		/// </summary>
 		public const string MANAGER = "Менеджер";
 
-
-	}
+        public const string PARTISIPATION = "Участник";
+    }
 }

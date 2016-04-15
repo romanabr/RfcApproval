@@ -11,7 +11,19 @@ namespace RedSys.RFC.Data.Lists
 {
 	public  class RFCLists
 	{
-		public static ListDefinition RFCManagerList = new ListDefinition
+        public static ListDefinition VariablesList = new ListDefinition
+        {
+            Title = "Variables",
+            CustomUrl = "Lists/Variables",
+            ContentTypesEnabled = false,
+            EnableVersioning = true,
+            TemplateType = BuiltInListTemplateTypeId.GenericList,
+        };
+
+
+
+
+        public static ListDefinition RFCManagerList = new ListDefinition
 		{
 			Title = "Менеджеры RFC",
 			CustomUrl = "Lists/RFCManagerList",

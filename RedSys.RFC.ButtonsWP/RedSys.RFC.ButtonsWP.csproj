@@ -130,6 +130,7 @@
     <Content Include="Features\Start Report Workflow WebPart\Start Report Workflow WebPart.Template.xml">
       <DependentUpon>Start Report Workflow WebPart.feature</DependentUpon>
     </Content>
+    <Content Include="Images\ReportWP\approve.png" />
     <Content Include="Images\ReportWP\changeEng.png" />
     <Content Include="Images\ReportWP\icbreakEng.png" />
     <Content Include="Images\ReportWP\icrecallEng.png" />

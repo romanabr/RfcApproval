@@ -20,6 +20,5 @@
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="RedSys.RFC.ButtonsWP_Start Report Workflow WebPart\Feature.xml" />
-    <FeatureManifest Location="RedSys.RFC.ButtonsWP_HideCustomAction\Feature.xml" />
   </FeatureManifests>
 </Solution>

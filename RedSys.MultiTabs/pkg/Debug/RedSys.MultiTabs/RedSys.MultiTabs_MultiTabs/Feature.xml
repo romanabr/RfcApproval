@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[PSE] Веб-часть Вкладки" Id="11820c9c-b67a-41de-92ad-b46c211fde1c" Scope="Site">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="11820c9c-b67a-41de-92ad-b46c211fde1c" Scope="Site" Title="[PSE] Веб-часть Вкладки">
   <ElementManifests>
     <ElementManifest Location="Assets\Elements.xml" />
     <ElementFile Location="Assets\tabs.css" />

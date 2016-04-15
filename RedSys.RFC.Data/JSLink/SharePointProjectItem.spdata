@@ -13,5 +13,6 @@
     <ProjectItemFile Source="jquery-migrate.js" Target="JSLink\" Type="ElementFile" />
     <ProjectItemFile Source="SPPlus.js" Target="JSLink\" Type="ElementFile" />
     <ProjectItemFile Source="camljs.js" Target="JSLink\" Type="ElementFile" />
+    <ProjectItemFile Source="angular.js" Target="JSLink\" Type="ElementFile" />
   </Files>
 </ProjectItem>

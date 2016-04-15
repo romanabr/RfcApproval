@@ -11,5 +11,6 @@ namespace RedSys.RFC.Data.Const
 		public const string NEW = "Черновик";
 		public const string RECALLED = "На доработке";
 		public const string CANCELLED = "Остановлено";
+        public const string ONWORK = "В работе";
 	}
 }

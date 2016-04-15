@@ -1,0 +1,35 @@
+<%@ Master Language="C#" %>
+
+<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> 
+<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> 
+<%@ Import Namespace="Microsoft.SharePoint" %> 
+<%@ Assembly Name="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:o="urn:schemas-microsoft-com:office:office" runat="server" lang="<%$Resources:wss,language_value%>" dir="<%$Resources:wss,multipages_direction_dir_value%>">
+<head runat="server">
+    <meta name="GENERATOR" content="Microsoft SharePoint" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8;FF=3;OtherUA=4" />
+    <meta http-equiv="Expires" content="0" />
+    <SharePoint:IEVersionMetaTag runat="server"/>
+    <meta name="ROBOTS" content="NOHTMLINDEX" />
+    <SharePoint:PageTitle runat="server">
+        <asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"/></SharePoint:PageTitle>
+    <SharePoint:CssLink runat="server" Alternate="false" Version="15"/>
+    <SharePoint:CssRegistration name="corev15.css" EnableCssTheming="false" runat="server" />
+    <SharePoint:CssRegistration name="error.css" EnableCssTheming="false" runat="server" />
+    <SharePoint:ULSClientConfig runat="server"/>
+    <SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" EnableCustomActions="false" Localizable="false" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server"/>
+    <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server"/>
+</head>
+<body id="ms-error-body" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();">
+    <form runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
+    <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+    <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server" />
+</form>
+</body>
+</html>

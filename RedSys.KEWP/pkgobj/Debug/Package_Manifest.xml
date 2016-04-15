@@ -5,6 +5,8 @@
     <Assembly Location="RedSys.KEWP.dll" DeploymentTarget="GlobalAssemblyCache">
       <SafeControls>
         <SafeControl Assembly="RedSys.KEWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3363b1b9c91f7cbe" Namespace="RedSys.KEWP.KEListView" TypeName="*" />
+        <SafeControl Assembly="RedSys.KEWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3363b1b9c91f7cbe" Namespace="RedSys.KEWP.KEEffectListView" TypeName="*" />
+        <SafeControl Assembly="RedSys.KEWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3363b1b9c91f7cbe" Namespace="RedSys.KEWP.KEApproveList" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
@@ -12,6 +14,6 @@
     <TemplateFile Location="CONTROLTEMPLATES\RedSys.KEWP\KEListView\KEListViewUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
-    <FeatureManifest Location="RedSys.KEWP_Feature1\Feature.xml" />
+    <FeatureManifest Location="RedSys.KEWP_Webparts\Feature.xml" />
   </FeatureManifests>
 </Solution>

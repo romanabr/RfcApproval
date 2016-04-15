@@ -228,6 +228,20 @@ namespace RedSys.RFC.Data.Models
 				Sequence = 1505
 			};
 
+			var AngularCustomAction = new UserCustomActionDefinition
+			{
+				Name = "AngularJS",
+				Location = "ScriptLink",
+				ScriptSrc = UrlUtility.CombineUrl(new string[]
+				{
+					"~sitecollection",
+					BuiltInListDefinitions.StyleLibrary.CustomUrl,
+					appScriptsFolder.Name,
+					"angular.js"
+				}),
+				Sequence = 1506
+			};
+
 			var siteModel = SPMeta2Model.NewSiteModel(site =>
 			{
 				site
@@ -236,7 +250,8 @@ namespace RedSys.RFC.Data.Models
 				  .AddUserCustomAction(jQueryUICustomAction)
 				  .AddUserCustomAction(SPUtilityCustomAction)
 				  .AddUserCustomAction(SPPlusCustomAction)
-				  .AddUserCustomAction(CamlJsCustomAction);
+				  .AddUserCustomAction(CamlJsCustomAction)
+				  .AddUserCustomAction(AngularCustomAction);
 			});
 
 			DeployModel(siteModel);

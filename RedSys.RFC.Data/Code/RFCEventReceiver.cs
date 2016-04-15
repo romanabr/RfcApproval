@@ -63,7 +63,8 @@ namespace RedSys.RFC.Data.Code
 				newMailGenerator.SendMail();
 
 
-
+                RFCEntity rfcEntity = new RFCEntity(listItem);
+                rfcEntity.SetDocSetPermissionMain();
 			}
 		}
 

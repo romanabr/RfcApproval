@@ -1,0 +1,6 @@
+﻿http://spcustomupload.codeplex.com/
+http://dotnetfollower.com/wordpress/2012/03/sharepoint-migration-of-custom-upload-page-derived-from-uploadpage-to-sp-2010/
+http://charliedigital.com/2010/01/26/simple-ajax-upload-for-asp-net/
+http://www.codeproject.com/script/Articles/ArticleVersion.aspx?aid=460142&av=669590
+http://geekswithblogs.net/mrsteve/archive/2011/04/06/httpmodule-to-redirect-a-user-request-when-uploaded-file-too-big.aspx
+http://rajendrashekhawat.blogspot.ru/2008/08/redirecting-to-custom-application-page.html

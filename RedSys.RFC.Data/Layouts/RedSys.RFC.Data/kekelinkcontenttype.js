@@ -17,10 +17,12 @@
 $(window).load(function () {
 	try {
 		var urlValue = urlParams['ItemID'];
-		var keType = urlParams['KeType'];
-		SPUtility.GetSPFieldByInternalName('RFCKeLink').SetValue(urlValue).MakeReadOnly();
-		SPUtility.GetSPFieldByInternalName('Title').SetValue('КЕ проведения по запросу на изменение' + urlValue).MakeReadOnly();
-		SPUtility.GetSPFieldByInternalName('KeType').SetValue(keType).MakeReadOnly();
+		var typeValue = urlParams["KeType"];
+		var rfcLink = SPUtility.GetSPFieldByInternalName('RFCKeLink').SetValue(parseInt(urlValue)).MakeReadOnly();
+		var title = SPUtility.GetSPFieldByInternalName('Title').SetValue(rfcLink.GetValue()).MakeReadOnly();
+		var keLink = SPUtility.GetSPFieldByInternalName('KeKeLink');
+		$(keLink.Dropdown).change(function () { title.SetValue(rfcLink.GetValue() + "-" + keLink.GetValue()); });
+		var keType = SPUtility.GetSPFieldByInternalName('RFCKeType').SetValue(typeValue).MakeReadOnly();
 	} catch (ex) {
 		alert(ex.toString());
 	}

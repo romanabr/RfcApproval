@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="40622de5-8fbd-4f60-abf9-80900689885f" alwaysForceInstall="true" featureId="40622de5-8fbd-4f60-abf9-80900689885f" imageUrl="Ensol/Ensol.png" solutionId="00000000-0000-0000-0000-000000000000" title="[PSE] Custom Upload" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel" />

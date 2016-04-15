@@ -7,7 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Отображение KE</property>
+        <property name="Title" type="string">[RedSys] KE Проведения</property>
         <property name="Description" type="string"></property>
       </properties>
     </data>

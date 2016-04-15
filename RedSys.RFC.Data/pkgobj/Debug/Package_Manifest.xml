@@ -12,5 +12,9 @@
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="RedSys.RFC.Data_Data\Feature.xml" />
+    <FeatureManifest Location="RedSys.RFC.Data_ContentTypes\Feature.xml" />
+    <FeatureManifest Location="RedSys.RFC.Data_WebCustomise\Feature.xml" />
+    <FeatureManifest Location="RedSys.RFC.Data_ListViewCustomize\Feature.xml" />
+    <FeatureManifest Location="RedSys.RFC.Data_VariablesCustomize\Feature.xml" />
   </FeatureManifests>
 </Solution>

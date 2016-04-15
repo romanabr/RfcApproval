@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -605,6 +606,80 @@ namespace RedSys.RFC.Core.Helper
 			catch { }
 			return resultItems;
 		}
-		#endregion
-	}
+        #endregion
+
+
+        public static void GracefulSPListItemUpdate(SPListItem curListItem, bool generateNewVersion)
+        {
+            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            /// http://shireefadel.blogspot.ru/2009/12/file-has-been-modified-by.html
+            var itemID = curListItem.ID;
+            bool tryAgain = false;
+            #region Prevent message "has been modified blah-blah-blah"
+            do
+            {
+                try
+                {
+                    if (generateNewVersion)
+                        curListItem.Update();
+                    else
+                        curListItem.SystemUpdate(false);
+
+                    tryAgain = false;
+                }
+                catch (SPException ex2)
+                {
+                    COMException ex = ex2.InnerException as COMException;
+                    // 0x81020037
+                    if (ex != null && (uint)ex.ErrorCode == 0x81020037)
+                    {
+                        curListItem = curListItem.ParentList.GetItemById(itemID);
+                        System.Threading.Thread.Sleep(1000 * 2);
+                        tryAgain = true;
+                    }
+                    else
+                        throw ex2;
+                }
+            } while (tryAgain == true);
+            #endregion
+        }
+
+        public static void GracefulSPListItemUpdate(SPListItem curListItem, bool generateNewVersion, System.Action<SPListItem> doUpdate)
+        {
+            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            /// http://shireefadel.blogspot.ru/2009/12/file-has-been-modified-by.html
+            var itemID = curListItem.ID;
+            bool tryAgain = false;
+            #region Prevent message "has been modified blah-blah-blah"
+            do
+            {
+                try
+                {
+                    doUpdate(curListItem);
+
+                    if (generateNewVersion)
+                        curListItem.Update();
+                    else
+                        curListItem.SystemUpdate(false);
+
+                    tryAgain = false;
+                }
+                catch (SPException ex2)
+                {
+                    ExceptionHelper.DUmpException(ex2);
+                    COMException ex = ex2.InnerException as COMException;
+                    // 0x81020037
+                    //if (ex != null && (uint)ex.ErrorCode == 0x81020037)
+                    //{
+                    curListItem = curListItem.ParentList.GetItemById(itemID);
+                    System.Threading.Thread.Sleep(1000);
+                    tryAgain = true;
+                    //}
+                    //else
+                    //    throw ex2;
+                }
+            } while (tryAgain == true);
+            #endregion
+        }
+    }
 }

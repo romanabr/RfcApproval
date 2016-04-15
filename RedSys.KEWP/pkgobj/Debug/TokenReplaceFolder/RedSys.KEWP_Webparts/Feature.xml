@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="ff32f403-b305-475d-b30b-cb7060dac389" Scope="Site" Title="[RedSys] Веб-части для работы с KE">
+  <ElementManifests>
+    <ElementManifest Location="KEListView\Elements.xml" />
+    <ElementFile Location="KEListView\KEListView.webpart" />
+    <ElementManifest Location="KEEffectListView\Elements.xml" />
+    <ElementFile Location="KEEffectListView\KEEffectListView.webpart" />
+    <ElementManifest Location="KEApproveList\Elements.xml" />
+    <ElementFile Location="KEApproveList\KEApproveList.webpart" />
+  </ElementManifests>
+</Feature>

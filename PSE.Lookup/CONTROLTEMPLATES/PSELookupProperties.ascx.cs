@@ -84,7 +84,7 @@ namespace PSELookup.CONTROLTEMPLATES
                     }
                     else
                         selectedList = selectedWeb.Lists[new Guid(ListOfListsComboBox.SelectedItem.Value)];
-
+                    if(selectedList != null)
                     foreach (SPField listField in selectedList.Fields)
                     {
                         if (CanFieldBeDisplayed(listField))
@@ -153,7 +153,7 @@ namespace PSELookup.CONTROLTEMPLATES
                 if (lookupField == null) return;
 
                 #region - Select Lists -
-                if (lookupField.LookupList != "")
+                if (!string.IsNullOrEmpty(lookupField.LookupList))
                 {
                     ListOfListsComboBox.Visible = false;
                     ListOfListsLabel.Visible = true;

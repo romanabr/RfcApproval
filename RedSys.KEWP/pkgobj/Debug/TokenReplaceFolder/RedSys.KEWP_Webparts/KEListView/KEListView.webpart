@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="RedSys.KEWP.KEListView.KEListView, RedSys.KEWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3363b1b9c91f7cbe" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[RedSys] KE Проведения</property>
+        <property name="Description" type="string"></property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

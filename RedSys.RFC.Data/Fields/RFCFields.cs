@@ -188,9 +188,11 @@ namespace RedSys.RFC.Data
 		{
 			Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C26}"),
 			Title = "Тип",
+			Description="Проведения - W, Влияния - I",
 			InternalName = "RFCKeType",
 			Group = RFCConst.RFCGroup,
-			Required = true
+			Required = true,
+			DefaultValue = "W"
 		};
 
 		///<summary>
@@ -235,19 +237,18 @@ namespace RedSys.RFC.Data
 		};
 
 
-		public static ChoiceFieldDefinition RFCKeApprove = new ChoiceFieldDefinition
-		{
-			Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C33}"),
-			Title = "Статус согласования",
-			InternalName = "RFCKeApprove",
-			Group = RFCConst.RFCGroup,
-			Required = false,
-			Choices = new Collection<string>
-			{
-			   "Согласовано",
-			   "Отклонено",
-			   "В работе"
-			}
+        public static ChoiceFieldDefinition RFCKeApprove = new ChoiceFieldDefinition
+        {
+            Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C33}"),
+            Title = "Статус согласования",
+            InternalName = "RFCKeApprove",
+            Group = RFCConst.RFCGroup,
+            Required = false,
+            Choices = new Collection<string>
+            {
+               RFCTaskStatus.APPROVE,RFCTaskStatus.APPROVEMANAGER,RFCTaskStatus.DECLINE,RFCTaskStatus.ONWORK
+            },
+            DefaultValue = RFCTaskStatus.ONWORK
 		};
 
 
@@ -291,7 +292,7 @@ namespace RedSys.RFC.Data
 			Required = true,
 			Choices	= new Collection<string>
 			{
-				RFCUserTypeConst.INITIATOR, RFCUserTypeConst.APPROVER, RFCUserTypeConst.ASSIGNTO, RFCUserTypeConst.MANAGER
+				RFCUserTypeConst.INITIATOR, RFCUserTypeConst.APPROVER, RFCUserTypeConst.ASSIGNTO, RFCUserTypeConst.MANAGER, RFCUserTypeConst.PARTISIPATION
 			}
 		};
 

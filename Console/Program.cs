@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.SharePoint;
 using RedSys.RFC.Data.Models;
 using RedSys.RFC.Data.Lists;
+using RedSys.RFC.Data.ContentTypes;
+using Microsoft.Office.DocumentManagement.DocumentSets;
+using RedSys.RFC.Data;
+using RedSys.RFC.Core.Helper;
 
 namespace Console
 {
@@ -17,11 +21,15 @@ namespace Console
 			{
 				using (SPWeb web = site.OpenWeb())
 				{
-					RFCModel rfcModel = new RFCModel(web);
-					rfcModel.Deploy();
-					RFCWebModel rfcWebModel = new RFCWebModel(web);
-					rfcWebModel.Deploy();
 
+                    RFCModel rfcModel = new RFCModel(web);
+                    rfcModel.Deploy();
+                    RFCWebModel rfcWebModel = new RFCWebModel(web);
+                    rfcWebModel.Deploy();
+                    RFCListViewModel rlv = new RFCListViewModel(web);
+                    rlv.Deploy();
+                    VariablesModel vm = new VariablesModel(web);
+                    vm.Deploy();
 					//SPWeb web = (SPWeb)properties.Feature.Parent;
 					//RFCModel rfcModel = new RFCModel(web);
 					//rfcModel.Deploy();

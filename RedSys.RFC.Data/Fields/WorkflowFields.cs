@@ -26,10 +26,17 @@ namespace RedSys.RFC.Data.Fields
 			FieldInternalName = "Stage"
 		};
 
+        public static NoteFieldDefinition WorkflowValue = new NoteFieldDefinition
+        {
+            Id = new Guid("8b6f91a6-e376-43a6-9dc3-b23f98b4d132"),
+            Title = "Value",
+            InternalName = "Value",
+            Group = "PSE.Common",
+            Required = true
+        };
 
 
-
-		public static ContentTypeFieldLinkDefinition WorkflowCurrentUser = new ContentTypeFieldLinkDefinition
+        public static ContentTypeFieldLinkDefinition WorkflowCurrentUser = new ContentTypeFieldLinkDefinition
 		{
 			FieldId = new Guid("8B6F91A6-E376-43A6-9DC3-B23F98B4D132"),
 			DisplayName = "Текущий исполнитель",

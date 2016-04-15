@@ -60,7 +60,8 @@ namespace RedSys.RFC.Data.ContentTypes
 			Name = "Связь KE и RFC",
 			Id = new Guid("AAC93B98-F776-4D5C-9E6E-66F2DC45A407"),
 			ParentContentTypeId = BuiltInContentTypeId.Item,
-			Group = RFCConst.RFCGroup
+			Group = RFCConst.RFCGroup,
+			JSLink = "~sitecollection/_layouts/15/RedSys.RFC.Data/kekelinkcontenttype.js"
 		};
 
 		public static ContentTypeDefinition RfcUser = new ContentTypeDefinition

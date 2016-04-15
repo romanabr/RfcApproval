@@ -12,5 +12,6 @@
     <File Path="JSLink\jquery-migrate.js" Url="JSLink/jquery-migrate.js" Type="GhostableInLibrary" />
     <File Path="JSLink\SPPlus.js" Url="JSLink/SPPlus.js" Type="GhostableInLibrary" />
     <File Path="JSLink\camljs.js" Url="JSLink/camljs.js" Type="GhostableInLibrary" />
+    <File Path="JSLink\angular.js" Url="JSLink/angular.js" Type="GhostableInLibrary"  />
   </Module>
 </Elements>

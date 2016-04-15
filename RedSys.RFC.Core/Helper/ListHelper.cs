@@ -70,5 +70,7 @@ namespace RedSys.RFC.Core.Helper
 				throw new SPException(string.Format("The folder '{0}' could not be found.", folderUrl));
 			return folder;
 		}
+
+
 	}
 }

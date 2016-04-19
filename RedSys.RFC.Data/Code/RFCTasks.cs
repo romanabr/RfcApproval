@@ -31,7 +31,7 @@ namespace RedSys.RFC.Data.Code
             SPList list = currentWeb.GetListExt(RFCLists.KeApproveTaskList.CustomUrl);
             SPQuery query = new SPQuery();
             query.ViewFields = "<FieldRef Name='ID' />";
-            query.Query = string.Format("<Where><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><Eq><FieldRef Name='RFCKeType' /><Value Type='Text'>{1}</Value></Eq></And></Where>", currentListItem.ID, RFCUserTypeConst.APPROVER);
+            query.Query = string.Format("<Where><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><Eq><FieldRef Name='RFCUserType' /><Value Type='Text'>{1}</Value></Eq></And></Where>", currentListItem.ID, RFCUserTypeConst.APPROVER);
             SPListItemCollection lic = list.GetItems(query);
             if (lic != null)
                 retInt = lic.Count;
@@ -82,7 +82,7 @@ namespace RedSys.RFC.Data.Code
             currentListItem = rfcListItem;
         }
 
-        private void CreateTasks()
+        public void CreateTasks()
         {
             SPList rfcKEList = currentWeb.GetListExt(RFCLists.RfcKeList.CustomUrl);
             SPQuery query = new SPQuery();
@@ -91,12 +91,13 @@ namespace RedSys.RFC.Data.Code
             if (rfKEListItems != null && rfKEListItems.Count > 0)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("<Where><In><FieldRef Name='{0}' LookupId='True' /><Values>", RFCFields.KeToKeLink);
-                Dictionary<int, List<SPUser>> userDict = new Dictionary<int, List<SPUser>>();
+                sb.AppendFormat("<Where><In><FieldRef Name='{0}' LookupId='True' /><Values>", RFCFields.KeToKeLink.InternalName);
+                Dictionary<string, List<SPUser>> userDict = new Dictionary<string, List<SPUser>>();
                 foreach (SPListItem keItems in rfKEListItems)
                 {
-                    sb.AppendFormat("<Value Type='Integer'>{0}</Value>", keItems.ID);
-                    userDict.Add(keItems.ID, new List<SPUser>());
+                   SPFieldLookupValue kekeID = keItems.GetFieldValueLookup(RFCFields.KeToKeLink.InternalName);
+                    sb.AppendFormat("<Value Type='Integer'>{0}</Value>", kekeID.LookupId);
+                    userDict.Add(kekeID.ToString(), new List<SPUser>());
                 }
                 sb.Append("</Values></In></Where>");
 
@@ -112,7 +113,7 @@ namespace RedSys.RFC.Data.Code
                         if (user != null)
                         {
                             Users.Add(user);
-                            userDict[keLookup.LookupId].Add(user);
+                            userDict[keLookup.ToString()].Add(user);
                         }
                     }
                     foreach(var x in userDict)
@@ -140,21 +141,23 @@ namespace RedSys.RFC.Data.Code
             return retList;
         }
 
-        private void CreateRFCUsers(KeyValuePair<int,List<SPUser>> keusers)
+        private void CreateRFCUsers(KeyValuePair<string,List<SPUser>> keusers)
         {
-            SPList list = currentWeb.GetListExt(RFCLists.RfcUserList.CustomUrl);
+            SPList taskList = currentWeb.GetListExt(RFCLists.KeApproveTaskList.CustomUrl);
+            SPFieldLookupValue keyLookupValue = new SPFieldLookupValue(keusers.Key  );
             foreach (SPUser user in keusers.Value)
             {
                 SPQuery query = new SPQuery();
-                query.Query = string.Format("<Where><And><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><Eq><FieldRef Name='RFCUser' LookupId='True' /><Value Type='Integer'>{1}</Value></Eq></And><FieldRef Name='KeToKeLink' LookupId='True' /><Value Type='Integer'>{2}</Value></Eq></And></Where>", currentListItem.ID, user.ID,keusers.Key);
-                SPListItemCollection existUser = list.GetItems(query);
+                query.Query = string.Format("<Where><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><And><Eq><FieldRef Name='KeManager' LookupId='True' /><Value Type='Integer'>{1}</Value></Eq><Eq><FieldRef Name='KeKeLink' LookupId='True' /><Value Type='Integer'>{2}</Value></Eq></And></And></Where>", currentListItem.ID, user.ID,keyLookupValue.LookupId);
+                SPListItemCollection existUser = taskList.GetItems(query);
                 if (existUser == null || existUser.Count == 0)
                 {
-                    SPListItem createUser = list.AddItem();
+                    SPListItem createUser = taskList.AddItem();
                     createUser[SPBuiltInFieldId.Title] = currentListItem.ID + "-" + user.ID;
-                    createUser[RFCFields.RFCUser.InternalName] = new SPFieldUserValue(currentWeb, user.ID, user.Name);
-                    createUser[RFCFields.RFCUserType.InternalName] = UserType;
+                    createUser[RFCFields.KeManager.InternalName] = new SPFieldUserValue(currentWeb, user.ID, user.Name);
+                    createUser[RFCFields.RFCUserType.InternalName] = RFCUserTypeConst.APPROVER;
                     createUser[RFCFields.RfcToKeLink.InternalName] = new SPFieldLookupValue(currentListItem.ID, currentListItem.Title);
+                    createUser[RFCFields.KeToKeLink.InternalName] =keyLookupValue;
                     createUser.Update();
                 }
             }
@@ -177,6 +180,31 @@ namespace RedSys.RFC.Data.Code
                     }
                 }
             }
+        }
+
+       
+        public void CompleteCurrentUserTask(SPUser currentUser,bool result, string comment)
+        {
+            if (currentUser == null) return;
+
+            SPList taskList = currentWeb.GetListExt(RFCLists.KeApproveTaskList.CustomUrl);
+           
+                SPQuery query = new SPQuery();
+                query.Query = string.Format("<Where><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><Eq><FieldRef Name='KeManager' LookupId='True' /><Value Type='Integer'>{1}</Value></Eq></And></Where>", currentListItem.ID, currentUser.ID);
+                SPListItemCollection existUser = taskList.GetItems(query);
+                if (existUser != null && existUser.Count != 0)
+                {
+                foreach (SPListItem listItem in existUser)
+                {
+
+                    listItem[RFCFields.RFCKeApprove.InternalName] = result == true ? RFCTaskStatus.APPROVE : RFCTaskStatus.DECLINE;
+                    listItem[RFCFields.RFCKeComment.InternalName] = comment;
+                    listItem[RFCFields.RFCKeApproveDate.InternalName] = DateTime.Now;
+                    
+                    listItem.Update();
+                }
+                }
+            
         }
     }
 }

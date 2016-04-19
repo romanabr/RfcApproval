@@ -99,7 +99,6 @@ C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Micro
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.SharePoint.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.SharePoint.Security.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.SharePoint.WorkflowActions.dll
-C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.Common.Workflow.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.RFC.Core.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\SPMeta2.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\SPMeta2.SSOM.dll
@@ -131,7 +130,6 @@ C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Micro
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.Office.Excel.Server.WebServices.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.Office.Policy.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.Office.Excel.Server.Udf.dll
-C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.Common.Workflow.pdb
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.RFC.Core.pdb
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.Office.DocumentManagement.xml
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\Microsoft.SharePoint.WorkflowActions.xml
@@ -184,3 +182,7 @@ C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\zh-Ha
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\obj\Debug\PSE.CustomDispFormWP.csprojResolveAssemblyReference.cache
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\obj\Debug\PSE.CustomDispFormWP.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\obj\Debug\PSE.CustomDispFormWP.pdb
+C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.Common.Workflow.dll
+C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.Common.Workflow.pdb
+C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.RFC.Data.dll
+C:\Users\pushkinse\Source\Repos\RfcApproval\PSE.CustomDispFormWP\bin\Debug\RedSys.RFC.Data.pdb

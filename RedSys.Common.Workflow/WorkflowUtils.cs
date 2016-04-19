@@ -139,6 +139,19 @@ namespace RedSys.Common.Workflow
             return curs;
         }
 
+        internal static SPFieldUserValueCollection RemoveUsersField(SPFieldUserValueCollection cusers, int iD, SPWeb web)
+        {
+
+            for (int i = cusers.Count - 1; i >= 0; i--)
+            {
+                SPFieldUserValue val = cusers[i];
+                if (val.User.ID == iD)
+                    cusers.Remove(val);
+               
+            }
+            return cusers;
+        }
+
         public static SPFieldUserValueCollection AddUsersField(BranchInfo Current, SPWeb web)
         {
             SPFieldUserValueCollection curs = new SPFieldUserValueCollection();

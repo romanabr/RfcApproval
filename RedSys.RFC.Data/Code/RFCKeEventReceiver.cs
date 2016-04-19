@@ -72,12 +72,14 @@ namespace RedSys.RFC.Data.Code
 			}
 			
 			SPQuery deleteQuery = new SPQuery();
-			deleteQuery.Query=string.Format("<Where><And><Eq><FieldRef Name='RFCKeType' /><Value Type='Text'>I</Value></Eq><And><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq><In><FieldRef Name='KeKeLink' LookupId='True' /><Values>{1}</Values></In></And></And></Where>",lookupId, sb.ToString());
+            SPFieldLookupValue parentItem = listItem.GetFieldValueLookup(RFCFields.RfcToKeLink.InternalName);
+			deleteQuery.Query=string.Format("<Where><And><And><Eq><FieldRef Name='RFCKeType' /><Value Type='Text'>I</Value></Eq><Eq><FieldRef Name='RFCKeLink' LookupId='True' /><Value Type='Integer'>{0}</Value></Eq></And><In><FieldRef Name='KeKeLink' LookupId='True' /><Values>{1}</Values></In></And></Where>",parentItem.LookupId, sb.ToString());
 			SPListItemCollection deleteDedendListItems = list.GetItems(deleteQuery);
-			foreach(SPListItem delItem in deleteDedendListItems)
-			{
-				delItem.Delete();
-			}
+            int j = deleteDedendListItems.Count;
+            for (int i = 0; i < j; i++)
+            {
+                deleteDedendListItems[0].Delete();
+            }
 		}
 
 		public static List<EventReceiverDefinition> Receiver = new List<EventReceiverDefinition> {

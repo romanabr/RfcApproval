@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="ff32f403-b305-475d-b30b-cb7060dac389" Scope="Site" Title="[RedSys] Веб-части для работы с KE">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RedSys] Веб-части для работы с KE" Id="ff32f403-b305-475d-b30b-cb7060dac389" Scope="Site">
   <ElementManifests>
     <ElementManifest Location="KEListView\Elements.xml" />
     <ElementFile Location="KEListView\KEListView.webpart" />

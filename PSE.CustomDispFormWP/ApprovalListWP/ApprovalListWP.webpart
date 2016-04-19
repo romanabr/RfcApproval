@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="PSE.CustomDispFormWP.ApprovalListWP.ApprovalListWP, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">[PSE] Лист согласования</property>
+        <property name="Description" type="string"></property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

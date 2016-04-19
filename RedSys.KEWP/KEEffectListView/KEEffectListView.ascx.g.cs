@@ -92,8 +92,8 @@ namespace RedSys.KEWP.KEEffectListView {
     ang1.controller('spkeitemController1', function ($scope, $http) {
         $http({
             method: 'GET',
-            url: _spPageContextInfo.webAbsoluteUrl + ""/_api/web/lists/getByTitle('KE%20по%20RFC')/items?$select=Title,RFCInteraptionFlag,KeKeLink/Title,RFCKeLink/Id,RFCKeType&$expand=RFCKeLink,KeKeLink&$filter=((RFCKeLink/Id eq ");
-                                                                                                                                                                                                                            @__w.Write(ItemId);
+            url: _spPageContextInfo.webAbsoluteUrl + ""/_api/web/lists/getByTitle('KE%20по%20RFC')/items?$select=Title,RFCInteraptionFlag,KeKeLink/Title,RFCKeLink/Id,KeKeLink/RFCKeMnemonica,RFCKeType&$expand=RFCKeLink,KeKeLink&$filter=((RFCKeLink/Id eq ");
+                                                                                                                                                                                                                                                    @__w.Write(ItemId);
 
             @__w.Write(@") and (RFCKeType eq 'I'))"",
             headers: { ""Accept"": ""application/json;odata=verbose"" }
@@ -113,10 +113,12 @@ namespace RedSys.KEWP.KEEffectListView {
         <table class=""table table-striped table-hover"">
             <tr>
                 <th>Название КЕ</th>
-                 <th>Флаг прерывания</th
+                <th>Мнемоника</th>
+                 <th>Флаг прерывания</th>
             </tr>
             <tr ng-repeat=""keitem in keitems"">
                 <td>{{keitem.KeKeLink.Title}}</td>
+                 <td>{{keitem.KeKeLink.RFCKeMnemonica}}</td>
                  <td><input type=""checkbox"" disabled=""disabled"" checked=""{{keitem.RFCInteraptionFlag}}"" /></td>
                 </tr>
         </table>

@@ -24,12 +24,12 @@ namespace Console
 
                     RFCModel rfcModel = new RFCModel(web);
                     rfcModel.Deploy();
-                    RFCWebModel rfcWebModel = new RFCWebModel(web);
-                    rfcWebModel.Deploy();
-                    RFCListViewModel rlv = new RFCListViewModel(web);
-                    rlv.Deploy();
-                    VariablesModel vm = new VariablesModel(web);
-                    vm.Deploy();
+                    //RFCWebModel rfcWebModel = new RFCWebModel(web);
+                    //rfcWebModel.Deploy();
+                    //RFCListViewModel rlv = new RFCListViewModel(web);
+                    //rlv.Deploy();
+                    //VariablesModel vm = new VariablesModel(web);
+                    //vm.Deploy();
 					//SPWeb web = (SPWeb)properties.Feature.Parent;
 					//RFCModel rfcModel = new RFCModel(web);
 					//rfcModel.Deploy();

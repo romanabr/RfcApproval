@@ -25,7 +25,7 @@
     approve.controller('approve1', function ($scope, $http) {
         $http({
             method: 'GET',
-            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('Задачи%20согласования%20KE')/items?$select=Title,RFCKeLink/Title,KeKeLink/Title,RFCKeLink/Id,RFCKeType,KeManager/Title,RFCKeApprove,RFCKeApproveDate,RFCKeComment&$expand=RFCKeLink,KeKeLink,KeManager&$filter=RFCKeLink/Id eq <%=ItemId%>",
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('Задачи%20согласования%20KE')/items?$select=Title,RFCKeLink/Title,KeKeLink/Title,RFCKeLink/Id,RFCUserType,KeManager/Title,RFCKeApprove,RFCKeApproveDate,RFCKeComment&$expand=RFCKeLink,KeKeLink,KeManager&$filter=RFCKeLink/Id eq <%=ItemId%>",
             headers: { "Accept": "application/json;odata=verbose" }
         }).success(function (taskitemsData, status, headers, config) {
             $scope.taskitems = taskitemsData.d.results;

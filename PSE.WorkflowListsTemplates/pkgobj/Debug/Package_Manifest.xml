@@ -5,6 +5,6 @@
     <Assembly Location="WorkflowListsTemplates.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
-    <FeatureManifest Location="Core.PSE.WorkflowListsTemplates_Feature1\Feature.xml" />
+    <FeatureManifest Location="PSE.WorkflowListsTemplates_Feature1\Feature.xml" />
   </FeatureManifests>
 </Solution>

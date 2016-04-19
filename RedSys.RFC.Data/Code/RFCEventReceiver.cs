@@ -47,9 +47,15 @@ namespace RedSys.RFC.Data.Code
 				{
 					listItem[RFCFields.Manager.InternalName] = new SPFieldUserValue(web, userManager.ID, userManager.Name);
 				}
-				listItem.Update();
+                using (EventReceiverManager erm = new EventReceiverManager(true))
+                {
+                    listItem.Update();
+                }
 
-				MailGenerator newMailGenerator = new MailGenerator(listItem, MailType.NEWRFC);
+                RFCEntity rfcEntity = new RFCEntity(listItem);
+                rfcEntity.SetDocSetPermissionMain();
+
+                MailGenerator newMailGenerator = new MailGenerator(listItem, MailType.NEWRFC);
 				
 				if (userManager != null)
 				{
@@ -63,8 +69,7 @@ namespace RedSys.RFC.Data.Code
 				newMailGenerator.SendMail();
 
 
-                RFCEntity rfcEntity = new RFCEntity(listItem);
-                rfcEntity.SetDocSetPermissionMain();
+                
 			}
 		}
 

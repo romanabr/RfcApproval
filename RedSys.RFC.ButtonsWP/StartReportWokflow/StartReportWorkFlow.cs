@@ -45,6 +45,7 @@ namespace ReportButton.StartReportWorkflow
         private SPUser manager;
         private SPUser author;
         private SPUser currentUser;
+	    private SPWeb currentWeb;
 
 		public StartReportWorkflow()
 		{
@@ -53,7 +54,6 @@ namespace ReportButton.StartReportWorkflow
 				ForeColor = Color.Green,
 				Visible = false
 			};
-			TemplatesListName = "Шаблоны документов";
 		}
 
 		private string EnsureParentFolder(SPWeb parentWeb, string destinUrl)
@@ -111,7 +111,7 @@ namespace ReportButton.StartReportWorkflow
 				 manager = curItem.GetFieldValueUser(RFCFields.Manager.InternalName);
 				 author = curItem.GetFieldValueUser(SPBuiltInFieldId.Author);
 				 currentUser = SPContext.Current.Web.CurrentUser;
-				SPWeb currentWeb = SPContext.Current.Web;
+				 currentWeb = SPContext.Current.Web;
 				if (null == curItem)
 				{
 					Controls.Add(new Label
@@ -138,7 +138,7 @@ namespace ReportButton.StartReportWorkflow
 				{
 					_toArchieveButton = new SPLinkButton
 					{
-						ImageUrl = "~/_layouts/15/images/WP Button/icToArchieve1.png",
+						ImageUrl = "~/_layouts/15/images/ReportWP/notify.png",
 						OnClientClick = "return confirm('Вы уверены что хотите отправить запрос в архив?');"
 					};
 					_toArchieveButton.Click += toArchieveButton_Click;
@@ -165,8 +165,9 @@ namespace ReportButton.StartReportWorkflow
 					{
 						_stopButton = new SPLinkButton
 						{
-							ImageUrl = "~/_layouts/15/images/ReportWP/icbreakEng.png",
-							OnClientClick = "return confirm('Вы уверены что хотите отменить процесс?');return false;"
+							ImageUrl = "~/_layouts/15/images/ReportWP/cancel.png",
+							OnClientClick = "return confirm('Вы уверены что хотите отменить процесс?');return false;",
+                            ToolTip = "Отмена процесса"
 						};
 
 						_stopButton.Click += stopButton_Click;
@@ -189,9 +190,9 @@ namespace ReportButton.StartReportWorkflow
 						{
 							_onpreworkButton = new SPLinkButton
 							{
-								ImageUrl = "~/_layouts/15/images/ReportWP/icrecallEng.png",
+								ImageUrl = "~/_layouts/15/images/ReportWP/stop.png",
 								OnClientClick = "return confirm('Вы уверены что хотите отправить запрос на доработку?');return false;",
-								ToolTip ="On rework"
+								ToolTip ="На доработку"
 							};
 							_onpreworkButton.Click += onpreworkButton_Click;
 							Controls.Add(_onpreworkButton);
@@ -209,9 +210,8 @@ namespace ReportButton.StartReportWorkflow
 				{
 					var editLink = new SPLinkButton
 					{
-						ImageUrl = "/_layouts/15/images/ReportWP/changeEng.png",
-						Width = 60,
-						Height = 60
+						ImageUrl = "/_layouts/15/images/ReportWP/edit.png",
+						ToolTip =  "Изменить"
 					};
 					var editLinkText = SPContext.Current.List.DefaultEditFormUrl + "?ID=" + SPContext.Current.ListItem.ID +
 									   "&ContentTypeId=" + SPContext.Current.ListItem.ContentTypeId + "&Source=" +
@@ -248,38 +248,70 @@ namespace ReportButton.StartReportWorkflow
 				lbl.Text += ex.Message;
 				Controls.Add(lbl);
 			}
-
-			if (ShowLinkButton)
-			{
-				var curStatus = SPContext.Current.ListItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
-				if (string.IsNullOrEmpty(LinkButtonStatuses) || LinkButtonStatuses.Contains(curStatus))
-				{
-					var qs = new QueryString(LinkButtonURL);
-					qs["DocID"] = SPContext.Current.ListItem.ID.ToString();
-					var linkb = new SPLinkButton();
-					//linkb.NavigateUrl = QueryString.ForceUrlToBeReloaded(qs.ToString());
-					linkb.ImageUrl = "~/_layouts/15/images/WP Button/Actions-insert-link.png";
-					linkb.OnClientClick = "javascript:openDialog2(GetBaseOptions('Create link','" +
-										  QueryString.ForceUrlToBeReloaded(qs.ToString()) + "&IsDlg=1',700, 700));return false;";
-					Controls.Add(linkb);
-					Controls.Add(new LiteralControl("&nbsp"));
-				}
-			}
 		}
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            SPSecurity.RunWithElevatedPrivileges(delegate
+            {
+                using (var oSite = new SPSite(SPContext.Current.Web.Url))
+                {
+                    using (var oWeb = oSite.OpenWeb())
+                    {
+                        try
+                        {
+                            oWeb.AllowUnsafeUpdates = true;
+                            var oLst = oWeb.GetListExt(SPContext.Current.List.RootFolder.Url);
+                            if (Page.Request.QueryString["ID"] != null)
+                            {
+                                var curItem = oLst.GetItemById(int.Parse(Page.Request.QueryString["ID"]));
+                                _oldstatus = curItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
+                                _wf = new Workflow(curItem);
+                                _wf.Stop(SPContext.Current.Web.CurrentUser);
+
+                                //List<SPUser> owners = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyOwners.InternalName);
+                                //List<SPUser> approvers = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyApprovers.InternalName);
+                                List<SPUser> currentApprover = curItem.GetFieldValueUserCollection(WorkflowFields.WorkflowCurrentUser.FieldInternalName);
+                                //MailSender.SendMail(curItem, MailType.RECALLED, owners );
+                                
+
+                                curItem[WorkflowFields.WorkflowCurrentUser.FieldInternalName] = string.Empty;
+                                curItem[WorkflowFields.WorkflowStage.FieldInternalName] = RFCStatus.RECALLED;
+                                curItem.SystemUpdate(false);
+
+                                if (ChangeChild)
+                                {
+                                    LogData(curItem, RFCStatus.RECALLED);
+                                }
+                            }
+                        }
+                        catch (ThreadAbortException)
+                        {
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHelper.DUmpException(ex);
+                            throw;
+                        }
+                    }
+                }
+            });
+            Page.Response.Redirect(Page.Request.Url.AbsoluteUri);
+        }
 
         private void ShowApproveButton(string status)
         {
-            if (ShowApproveWorkflow && _wf.InProgress && (!string.IsNullOrEmpty(status) && status == "На согласовнии") && (currentUser != null && manager != null   && currentUser.ID == manager.ID))
+            if (ShowApproveWorkflow && _wf.InProgress && (currentUser != null && manager != null   && currentUser.ID == manager.ID))
             {
                 if (rfcEntity.GetTaskCount() == 0) return;
                 _superApproveButton = new SPLinkButton
                 {
-                    ImageUrl = "~/_layouts/15/images/ReportWP/approve.png",
+                    ImageUrl = "~/_layouts/15/images/ReportWP/visa.png",
                     ToolTip="Принудительное согласование",
                     OnClientClick = "return confirm('Вы уверены, что хотите принудительно');return false;"
                 };
                 _superApproveButton.Click += _superApproveButton_Click; ;
-                Controls.Add(_startButton);
+                Controls.Add(_superApproveButton);
                 Controls.Add(new LiteralControl("&nbsp"));
                 Controls.Add(new LiteralControl("&nbsp"));
             }
@@ -336,13 +368,13 @@ namespace ReportButton.StartReportWorkflow
 
 		private void ShowCopyButton()
 		{
-			if (ShowCopy && CopyField != "" && SPContext.Current.Web.SiteGroups[CopyField] != null &&
-								SPContext.Current.Web.SiteGroups[CopyField].ContainsCurrentUser)
+            
+			if (ShowCopy && (currentWeb.IsCurrentUserMemberOfGroup(currentWeb.AssociatedOwnerGroup.ID) || currentUser.ID == currentWeb.Site.SystemAccount.ID || currentUser.ID == manager.ID || currentUser.ID == author.ID) )
 			{
 				_copyButton = new SPLinkButton
 				{
-					ImageUrl = "~/_layouts/15/images/WP Button/iccopy.png",
-					ToolTip = "Copy docset",
+					ImageUrl = "~/_layouts/15/images/ReportWP/CopyDocumentType.png",
+					ToolTip = "Создать дубликат запроса на изменение",
 					OnClientClick = "return confirm('Создать дубликат запроса?');return false;"
 				};
 				
@@ -361,8 +393,9 @@ namespace ReportButton.StartReportWorkflow
 			{
 				_startButton = new SPLinkButton
 				{
-					ImageUrl = "~/_layouts/15/images/ReportWP/icStartApproveEng.png",
-					OnClientClick = "return confirm('Do you want to submit the report? The approval process will start automatically if approvers are specified for this report.');return false;"
+					ImageUrl = "~/_layouts/15/images/ReportWP/start.png",
+                    ToolTip="Запуск процесса",
+					OnClientClick = "return confirm('Вы действительно хотите запустить процесс согласования?');return false;"
 				};
 				_startButton.Click += startButton_Click;
 				Controls.Add(_startButton);
@@ -391,45 +424,6 @@ namespace ReportButton.StartReportWorkflow
 
 
 
-		private void exportButton_Click(object sender, EventArgs e)
-		{
-			Controls.Add(new LiteralControl("<br/>"));
-			var lbl = new Label();
-			var curItem = SPContext.Current.ListItem;
-			var emptyFields = CheckExportFields(curItem, RequieredFields1C);
-			if (!string.IsNullOrEmpty(emptyFields))
-			{
-				lbl.Text = string.Format("Fields {0} must be filled.", emptyFields);
-				lbl.ForeColor = Color.Red;
-			}
-			else
-				SPSecurity.RunWithElevatedPrivileges(delegate
-				{
-					using (var site = new SPSite(curItem.Web.Site.ID))
-					{
-						using (var web = site.OpenWeb(curItem.Web.ID))
-						{
-							try
-							{
-								web.AllowUnsafeUpdates = true;
-								curItem = web.Lists[curItem.ParentList.ID].GetItemById(curItem.ID);
-								//Common.ExportData(curItem, "Входящие документы", "Ensol.DocExportInc.SQLConnectionString","Ensol.DocExportInc.DBTableName", false);
-								curItem.Update();
-								lbl.Text = Translate.DOCSUCCESFULEXPORTED;
-								lbl.ForeColor = Color.Green;
-							}
-							catch (Exception ex)
-							{
-								ExceptionHelper.DUmpException(ex);
-								lbl.Text = "Ошибка: " + ex.Message;
-								lbl.ForeColor = Color.Red;
-							}
-						}
-					}
-				});
-			Controls.Add(lbl);
-		}
-
 		private string CheckExportFields(SPListItem spli, string requieredFields)
 		{
 			var emtyFields = string.Empty;
@@ -442,284 +436,10 @@ namespace ReportButton.StartReportWorkflow
 
 		private void toArchieveButton_Click(object sender, EventArgs e)
 		{
-			var haserror = false;
-			SPSecurity.RunWithElevatedPrivileges(delegate
-			{
-				var curItem = SPContext.Current.ListItem;
-				var startFlag = false;
-				using (var site = new SPSite(curItem.Web.Site.ID))
-				{
-					using (var web = site.OpenWeb(curItem.Web.ID))
-					{
-						try
-						{
-							// for security purposes get SPListItem again
-							curItem = web.Lists[curItem.ParentList.ID].GetItemById(curItem.ID);
-
-							var routs = Helper.GetItemsByValue(web, "Маршруты", "Тип контента=" + curItem.ContentType.Name);
-
-
-							if (!string.IsNullOrEmpty(ToArchieveStatusField) && string.IsNullOrEmpty(ToArchieveStatus))
-							{
-								var statuses = ToArchieveStatus.Split(';');
-
-								foreach (var status in statuses)
-								{
-									if (curItem[ToArchieveStatusField].ToString() == status)
-									{
-										startFlag = true;
-									}
-								}
-							}
-							else
-								startFlag = true;
-
-							if (!MoveParent && !MoveChild)
-							{
-								Controls.Add(new LiteralControl("<br/>"));
-								var lbl = new Label();
-								lbl.Text = Translate.MOVINGISDISABLE;
-								lbl.ForeColor = Color.Red;
-								Controls.Add(lbl);
-
-								return;
-							}
-
-							if (routs == null || routs.Count == 0)
-							{
-								Controls.Add(new LiteralControl("<br/>"));
-								var lbl = new Label();
-								lbl.Text = Translate.UNSPECIFYPATH;
-								lbl.ForeColor = Color.Red;
-								Controls.Add(lbl);
-
-								return;
-							}
-
-							if (!startFlag)
-							{
-								Controls.Add(new LiteralControl("<br/>"));
-								var lbl = new Label();
-								lbl.Text = "Document Set cann't be moved: " + ToArchieveStatusField + "=" + curItem[ToArchieveStatusField];
-								lbl.ForeColor = Color.Red;
-								Controls.Add(lbl);
-
-								return;
-							}
-
-							using (var eventReceiverManager = new EventReceiverManager(true))
-							{
-								if (MoveParent)
-								{
-									curItem[WorkflowFields.WorkflowStage.FieldInternalName] = "Архивный";
-									curItem.Web.AllowUnsafeUpdates = true;
-									curItem.Update();
-									Helper.ToArchive(curItem, false, false, null);
-								}
-
-								if (MoveChild)
-								{
-									if (!string.IsNullOrEmpty(ChildLib))
-									{
-										var viewLists = string.Empty;
-										var viewFields = string.Empty;
-
-										SPList childList = null;
-										foreach (var str in ChildLib.Split(';'))
-										{
-											childList = curItem.Web.Lists[str];
-											viewLists += "<List ID='" + childList.ID + "'/>";
-										}
-
-										if (childList != null)
-										{
-											var camlexSt = "<Where><And>><Eq><FieldRef Name='IsDocumentSet'/><Value Type='Boolean'>1</Value></Eq>" +
-											               "<Contains><FieldRef Name='" + childList.Fields[KeyField].InternalName +
-											               "'/><Value Type='Text'>" + curItem[ChildKeyField] + "</Value></Contains>" +
-											               "</And></Where><OrderBy><FieldRef Name='ID' /></OrderBy>";
-											viewLists = "<Lists>" + viewLists + "</Lists>";
-											viewFields += "<FieldRef Name='Title' Nullable='TRUE'/>";
-
-											var sdq = new SPSiteDataQuery
-											{
-												Lists = viewLists,
-												Query = camlexSt,
-												ViewFields = viewFields,
-												Webs = "<Webs Scope='SiteCollection'/>"
-											};
-
-											var dt = curItem.Web.GetSiteData(sdq);
-											foreach (DataRow dr in dt.Rows)
-											{
-												try
-												{
-													var addlist = curItem.Web.Lists[new Guid(dr["ListId"].ToString())];
-													var additem = addlist.GetItemById(int.Parse(dr["ID"].ToString()));
-													Helper.ToArchive(additem, false, false, null);
-												}
-												catch (Exception ex)
-												{
-													ExceptionHelper.DUmpException(ex);
-													throw ex;
-												}
-											}
-										}
-									}
-								}
-
-								eventReceiverManager.StartEventReceiver();
-							}
-						}
-						catch (ThreadAbortException ex)
-						{
-							haserror = true;
-							var lbl = new Label {Text = "Ошибка: " + ex.Message};
-							Controls.Add(lbl);
-						}
-						catch (Exception ex)
-						{
-							haserror = true;
-							ExceptionHelper.DUmpException(ex);
-							var lbl = new Label {Text = "Ошибка: " + ex.Message};
-							Controls.Add(lbl);
-						}
-					}
-				}
-			});
-
-			if (!haserror)
-			{
-				var url = "/" + SPContext.Current.ListItem.ParentList.RootFolder.Name;
-				SPUtility.Redirect(url, SPRedirectFlags.Default, HttpContext.Current);
-			}
+			ExceptionHelper.DUmpExceptionWithJsDependentAndNoRedirect( new Exception("Не реализовано"),"Не реализовано",this, "jquery.easytabs.min.js");
 		}
 
-		private void CheckUnique()
-		{
-			var result = "";
-			var curItem = SPContext.Current.ListItem;
-			var oList = SPContext.Current.List;
-
-			var IDs = new List<int> {SPContext.Current.Item.ID};
-			var checkQuery = new SPQuery
-			{
-				Query = "<Where><Eq><FieldRef Name=\"Title\" /><Value Type=\"Text\">" + curItem.Title +
-				        "</Value></Eq></Where>",
-				ViewAttributes = "Scope=\"RecursiveAll\""
-			};
-			var otherItems = oList.GetItems(checkQuery);
-			var localresult = string.Empty;
-			foreach (SPListItem oitem in otherItems)
-			{
-				if (!IDs.Contains(oitem.ID))
-				{
-					IDs.Add(oitem.ID);
-					localresult += "<a href='" + oList.DefaultDisplayFormUrl + "?ID=" + oitem.ID + "'>" + oitem.Title + "</a><br/>";
-				}
-			}
-			if (localresult != "")
-			{
-				result += "Title:<br/>" + localresult;
-			}
-
-			checkQuery = new SPQuery
-			{
-				ViewAttributes = "Scope=\"RecursiveAll\"",
-				Query = "<Where><Eq><FieldRef Name=\"INN\" /><Value Type=\"Text\">" + curItem["ИНН"] +
-				        "</Value></Eq></Where>"
-			};
-			otherItems = oList.GetItems(checkQuery);
-			localresult = string.Empty;
-			foreach (SPListItem oitem in otherItems)
-			{
-				if (IDs.Contains(oitem.ID)) continue;
-				IDs.Add(oitem.ID);
-				localresult += "<a href='" + oList.DefaultDisplayFormUrl + "?ID=" + oitem.ID + "'>" + oitem.Title + "</a><br/>";
-			}
-			if (!string.IsNullOrEmpty((localresult)))
-			{
-				result += "ИНН:<br/>" + localresult;
-			}
-
-			checkQuery = new SPQuery
-			{
-				ViewAttributes = "Scope=\"RecursiveAll\"",
-				Query = "<Where><Eq><FieldRef Name=\"KPP\" /><Value Type=\"Text\">" + curItem["КПП"] +
-				        "</Value></Eq></Where>"
-			};
-			otherItems = oList.GetItems(checkQuery);
-			localresult = string.Empty;
-			foreach (SPListItem oitem in otherItems)
-			{
-				if (IDs.Contains(oitem.ID)) continue;
-				IDs.Add(oitem.ID);
-				localresult += "<a href='" + oList.DefaultDisplayFormUrl + "?ID=" + oitem.ID + "'>" + oitem.Title + "</a><br/>";
-			}
-			if (localresult != "")
-			{
-				result += "КПП:<br/>" + localresult;
-			}
-
-			if (result.Trim() == "")
-				result = Translate.ITEMISUNIQUE;
-			else
-			{
-				result = Translate.ITEMSWITHSIMILARPARAMETR + ":<br/>" + result;
-			}
-			result = "<br/>" + result;
-			Controls.Add(new LiteralControl(result));
-			Controls.Add(new
-				LiteralControl(@"&nbsp<script>
-function EnableSave()
-{$('#ctl00_m_g_a310a596_0d47_4922_8362_b11650f8ffd1_ctl00_toolBarTbl_RightRptControls_ctl00_ctl00_diidIOSaveItem').removeAttr('disabled');}
-ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
-</script>"));
-		}
-
-		private void stopButton_Click(object sender, EventArgs e)
-		{
-			SPSecurity.RunWithElevatedPrivileges(delegate
-			{
-				using (var oSite = new SPSite(SPContext.Current.Web.Url))
-				{
-					using (var oWeb = oSite.OpenWeb())
-					{
-						try
-						{
-							oWeb.AllowUnsafeUpdates = true;
-							var oLst = oWeb.GetListExt(SPContext.Current.List.RootFolder.Url);
-							if (Page.Request.QueryString["ID"] != null)
-							{
-								var curItem = oLst.GetItemById(int.Parse(Page.Request.QueryString["ID"]));
-								_oldstatus = curItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
-								_wf = new Workflow(curItem);
-								_wf.Stop(SPContext.Current.Web.CurrentUser);
-
-								List<SPUser> currentApprover = curItem.GetFieldValueUserCollection(WorkflowFields.WorkflowCurrentUser.FieldInternalName);
-								
-								curItem[WorkflowFields.WorkflowCurrentUser.FieldInternalName] = string.Empty;
-								curItem[WorkflowFields.WorkflowStage.FieldInternalName] = RFCStatus.RECALLED;
-								curItem.SystemUpdate(false);
-
-								if (ChangeChild)
-								{
-									LogData(curItem,RFCStatus.CANCELLED);
-								}
-							}
-						}
-						catch (ThreadAbortException)
-						{
-						}
-						catch (Exception ex)
-						{
-							ExceptionHelper.DUmpException(ex);
-							throw;
-						}
-					}
-				}
-			});
-			Page.Response.Redirect(Page.Request.Url.AbsoluteUri);
-		}
+		
 
 		private void startButton_Click(object sender, EventArgs e)
 		{
@@ -741,21 +461,17 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 			}
 			if (CountFiles)
 			{
-				if (curItem.Folder.ItemCount == 0)
+				if (rfcEntity.GetKECount() == 0)
 				{
 					ExceptionHelper.DUmpExceptionWithJsDependentAndNoRedirect(null,
-						"The report can’t be submitted. Please upload the reporting files or links and click “Submit” button again.", this, "jquery.easytabs.min.js");
-					//this.Controls.Add(new LiteralControl("<br/>"));
-					//Label lbl = new Label();
-					//lbl.Text = "Процесс согласования не может быть запущен! В согласуемом наборе документов нет ни одного документа!";
-					//lbl.ForeColor = System.Drawing.Color.Red;
-					//this.Controls.Add(lbl);
+						"Запрос нельзя запустить на согласование, необходимо привязать КЕ проведения", this, "jquery.easytabs.min.js");
+					
 					return;
 				}
 			}
 
 			#endregion
-
+            
 			SPUtility.ValidateFormDigest();
 
 			SPSecurity.RunWithElevatedPrivileges(delegate
@@ -779,6 +495,7 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 								eventReceiverManager.StartEventReceiver();
 							}
 
+                            rfcEntity.Tasks.CreateTasks();
 							_wf = new Workflow(wfItem);
 							_wf.StartNew(SPContext.Current.Web.CurrentUser);
 
@@ -1019,14 +736,6 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 
 		[WebBrowsable(true),
 		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Копирование"),
-		 WebDisplayName("Группа, имеющая право на использование"),
-		 WebDescription("Группа, имеющая право на использование")]
-		public string CopyField { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
 		 DefaultValue(false),
 		 Category("Копирование"),
 		 WebDisplayName("Отображать кнопку"),
@@ -1097,49 +806,7 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 
 		#endregion
 
-		#region Экспорт в Xml
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(false),
-		 Category("Экспорт в Xml"),
-		 WebDisplayName("Разрешить экспорт в Xml"),
-		 WebDescription("Разрешить экспорт в Xml")]
-		public bool ShowExport1C { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Экспорт в Xml"),
-		 WebDisplayName("Поля для копирования в документы пакета"),
-		 WebDescription("Поля для копирования в документы пакета")]
-		public string CopyFields1C { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Экспорт в Xml"),
-		 WebDisplayName("Необходимые поля для выгрузки"),
-		 WebDescription("Необходимые поля для выгрузки")]
-		public string RequieredFields1C { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Экспорт в Xml"),
-		 WebDisplayName("Статусы в которых отображать"),
-		 WebDescription("Статусы в которых отображать")]
-		public string Show1CStatuses { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Экспорт в Xml"),
-		 WebDisplayName("Группа, имеющая право на использование"),
-		 WebDescription("Группа, имеющая право на использование")]
-		public string XMLField { get; set; }
-
-		#endregion
+	
 
 		#region Печатная форма
 
@@ -1158,44 +825,11 @@ ExecuteOrDelayUntilScriptLoaded(EnableSave,'SP.js');
 		 WebDisplayName("Отображать печатную форму"),
 		 WebDescription("Отображать печатную форму (броузер, PDF или Word)")]
 		public bool ShowApprovalListInExternalApp { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue("Шаблоны документов"),
-		 Category("Печатная форма"),
-		 WebDisplayName("Список шаблонов"),
-		 WebDescription("Список шаблонов")]
-		public string TemplatesListName { get; set; }
+        
 
 		#endregion
 
-		#region Связывание пакета
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(false),
-		 Category("Связывание пакета"),
-		 WebDisplayName("Показывать кнопку связывания"),
-		 WebDescription("Показывать кнопку связывания")]
-		public bool ShowLinkButton { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Связывание пакета"),
-		 WebDisplayName("Cсылка на связывание"),
-		 WebDescription("Cсылка на связывание")]
-		public string LinkButtonURL { get; set; }
-
-		[WebBrowsable(true),
-		 Personalizable(PersonalizationScope.Shared),
-		 DefaultValue(""),
-		 Category("Связывание пакета"),
-		 WebDisplayName("Статусы в которых отображать"),
-		 WebDescription("Статусы в которых отображать")]
-		public string LinkButtonStatuses { get; set; }
-
-		#endregion
+		
 
 		#region Маршрут согласования
 

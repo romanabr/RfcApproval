@@ -4,6 +4,8 @@
     <Assembly Location="PSE.CustomDispFormWP.dll" DeploymentTarget="GlobalAssemblyCache">
       <SafeControls>
         <SafeControl Assembly="PSE.CustomDispFormWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4d459427013a989" Namespace="CustomDispFormWebPart.CustomDispWebPart" TypeName="*" />
+        <SafeControl Assembly="PSE.CustomDispFormWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4d459427013a989" Namespace="PSE.CustomDispFormWP.ApprovalListWP" TypeName="*" />
+        <SafeControl Assembly="PSE.CustomDispFormWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4d459427013a989" Namespace="PSE.CustomDispFormWP.ApprovalTaskWP" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>

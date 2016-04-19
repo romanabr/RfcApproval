@@ -136,6 +136,25 @@ namespace RedSys.Common.Workflow
                     userinfo.User.RealUserName = string.Empty;
                 }
             }
+            else if (role.LookupValue == "Из списка задач")
+            {
+                SPList list = item.Web.GetListExt("/Lists/RfcKEApproveTaskList");
+                SPQuery query = new SPQuery();
+                query.Query =
+                    string.Format(
+                        "<Where><And><Eq><FieldRef Name='RFCUserType' /><Value Type='Choice'>Cогласующий</Value></Eq><Eq><FieldRef Name='RFCKeLink'  LookupId='True' /><Value Type='Integer'>{0}</Value></Eq></And></Where>",
+                        item.ID);
+                SPListItemCollection lic = list.GetItems(query);
+                if(lic!=null && lic.Count>0)
+                    foreach (SPListItem listItem in lic)
+                    { 
+                        SPUser keManager = listItem.GetFieldValueUser("KeManager");
+                        if(keManager != null)
+                        
+                            hasUsers = ParseUserField(web, string.Format("{0};#{1}", keManager.ID, keManager.Name), userinfo, cStep, hasUsers, AllUsersList, CurrentUsers);
+                        }
+                   
+            }
             else if (role.LookupValue == "Руководитель ответственного")
             {
                 user = item.GetFieldValueUser(cStep.CardField);

@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Drawing;
-using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.Office.DocumentManagement.DocumentSets;
-using Microsoft.SharePoint.Workflow;
-
-using CamlexNET;
 using RedSys.RFC.Core.Helper;
+using System.Linq;
 
 namespace CustomDispFormWebPart.CustomDispWebPart
 {
@@ -88,26 +81,15 @@ namespace CustomDispFormWebPart.CustomDispWebPart
             get { return _wpShowContentTypeAndDate; }
             set { _wpShowContentTypeAndDate = value; }
         }
-
-        [WebBrowsable(true),
-        Personalizable(PersonalizationScope.Shared),
-        DefaultValue(true),
-        Category("Отображение"),
-        WebDisplayName("Показывать статус Рабочего процесса"),
-        WebDescription("Показывать статус Рабочего процесса")]
-        public bool ShowWorkflowStatus
-        {
-            get { return _wpShowWorkflowStatus; }
-            set { _wpShowWorkflowStatus = value; }
-        }
+        
 
 
         [WebBrowsable(true),
         Personalizable(PersonalizationScope.Shared),
         DefaultValue(true),
         Category("Отображение"),
-        WebDisplayName("Список полей (разделитель ;)"),
-        WebDescription("Оставить пустым если по умолчанию")]
+        WebDisplayName("Список групп и полей (разделитель групп |, разделитель полей ;)"),
+        WebDescription("Оставить пустым если по умолчанию, пример заполнения ##groupname;field1;field2;field3|##groupname1;field4;field5")]
         public string DisplayFieldList
         {
             get { return _wpDisplayFieldList; }
@@ -116,68 +98,11 @@ namespace CustomDispFormWebPart.CustomDispWebPart
         #endregion
 
 
-        public string GetWFStatus(int intStatus)
-        {
-            string stStatus = null;
-            switch (intStatus)
-            {
-                case 0: stStatus = "Не запущен"; break;
-                case 1: stStatus = "Ошибка при запуске"; break;
-                case 2: stStatus = "В процессе"; break;
-                case 3: stStatus = "Ошибка"; break;
-                case 4: stStatus = "Остановлен пользователем"; break;
-                case 5: stStatus = "Завершен"; break;
-                case 6: stStatus = "Ошибка при запуске. Попытка перезапуска..."; break;
-                case 7: stStatus = "Ошибка. Попытка перезапуска..."; break;
-                case 8: stStatus = "ViewQueryOverflow"; break;
-                case 15: stStatus = "Max"; break;
-                default: stStatus = "n/a"; break;
-            }
-
-            return stStatus;
-        }
-        public SPListItemCollection GetItemsByFilterExpression(SPWeb web, string listName, string filterString)
-        {
-            var expressions = new List<Expression<Func<SPListItem, bool>>>();
-
-            SPQuery search = new SPQuery();
-            search.ViewAttributes = "Scope=\"RecursiveAll\"";
-            SPListItemCollection resultItems = null;
-            SPList tList = web.Lists[listName];
-
-            string[] filterPairs = filterString.Split(',');
-
-            try
-            {
-                foreach (string pair in filterPairs)
-                {
-                    string fieldName = pair.Split('=')[0];
-                    string fieldValue = pair.Split('=')[1];
-                    if (fieldValue.IndexOf(";#") > -1)
-                        fieldValue = fieldValue.Split('#')[1];
-
-                    switch (fieldValue)
-                    {
-                        case "null": expressions.Add(f => ((string)f[tList.Fields[fieldName].InternalName]) == null); break;
-                        case "notnull": expressions.Add(f => ((string)f[tList.Fields[fieldName].InternalName]) != null); break;
-                        default: expressions.Add(f => ((string)f[tList.Fields[fieldName].InternalName]).Contains(fieldValue)); break;
-                    }
-                }
-
-                search.Query = Camlex.Query().WhereAll(expressions).ToString();
-                resultItems = tList.GetItems(search);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.DUmpException(ex);
-            }
-
-            return resultItems;
-        }
+        
 
         protected override void CreateChildControls()
         {
-            this.Style.Add("padding", "0px");
+            this.Style.Add("width","100%");
             try
             {
                 Table tbl = new Table();
@@ -187,6 +112,8 @@ namespace CustomDispFormWebPart.CustomDispWebPart
                 DocumentSet curDocSet = DocumentSet.GetDocumentSet(idCurItem.Folder);
 				SPListItem curDocSetItem = curDocSet.Item;
 
+                LiteralControl css = new  LiteralControl("<style>fieldset {-moz-border-radius: 4px;border-radius: 4px;-webkit-border-radius: 4px;} legend {font-weight:bold}</style>");
+                this.Controls.Add(css);
 				if (ShowTitle)
                 {
                     Label titleLb = new Label();
@@ -225,179 +152,193 @@ namespace CustomDispFormWebPart.CustomDispWebPart
                     tbl.Rows.Add(ctrow);
                 }
 
-                List<SPField> fldsToDisp = new List<SPField>();
+                Dictionary<string, List<SPField>> fldsToDisp = new Dictionary<string, List<SPField>>();
 				SPFieldCollection curDocSetFieldCollection = curDocSetItem.Fields;
 
                 if (!string.IsNullOrEmpty(DisplayFieldList))
                 {
-                    string[] flds = DisplayFieldList.Trim().Split(new[] { ';' },StringSplitOptions.RemoveEmptyEntries);
+                    string[] groups = DisplayFieldList.Trim().Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string gr in groups)
+                    {
+                        string[] flds = gr.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (flds.Count() <= 1) continue;
+                        string groupname = flds[0].StartsWith("##") ? flds[0].Replace("##", "") : string.Empty;
+                        if (!fldsToDisp.ContainsKey(groupname))
+                            fldsToDisp.Add(groupname, new List<SPField>());
 
-                    foreach (string fld in flds)
-                        fldsToDisp.Add(curDocSetFieldCollection[fld]);
+                        for(int i=1; i<flds.Count();i++)
+                            fldsToDisp[groupname].Add(curDocSetFieldCollection.GetField(flds[i]));
+                    }
                 }
                 else
                 {
+                    fldsToDisp.Add(string.Empty, new List<SPField>());
                     foreach (SPField fld in curDocSet.ContentTypeTemplate.WelcomePageFields)
-                        fldsToDisp.Add(fld);
+                        fldsToDisp[string.Empty].Add(fld);
                 }
-
-                foreach (SPField fld in fldsToDisp)
+                foreach (KeyValuePair<string,List<SPField>> fieldsetTitle in fldsToDisp)
                 {
-                    try
+                    Panel fieldSet = new Panel();
+                    if(!string.IsNullOrEmpty(fieldsetTitle.Key))
+                    fieldSet.GroupingText = fieldsetTitle.Key;
+                    
+
+
+                    Table fieldSetTable = new Table();
+                    fieldSetTable.Style.Add("border-collapse", "collapse");
+                    fieldSetTable.CssClass = "ms-formtable";
+                    fieldSetTable.Width = new Unit(100, UnitType.Percentage);
+                    fieldSet.Controls.Add(fieldSetTable);
+                    for (int i = 0; i < fieldsetTitle.Value.Count; i++)
                     {
-                        TableRow row = new TableRow();
-                        row.Style.Add(" border-bottom", "1pt solid lightgray");
-
-                        TableCell cell1 = new TableCell();
-                        cell1.Style.Add("padding", "0px");
-                        Label fldCaption = new Label();
-                        fldCaption.Text = fld.Title;
-                        fldCaption.Font.Bold = true;
-                        cell1.Controls.Add(fldCaption);
-
-                        cell1.CssClass = "ms-formlabel";
-                        row.Cells.Add(cell1);
-
-                        TableCell spaceSell = new TableCell();
-                        spaceSell.Style.Add("padding", "0px");
-                        spaceSell.Width = System.Web.UI.WebControls.Unit.Pixel(20);
-                        row.Cells.Add(spaceSell);
-
-
-                        if (curDocSetItem[fld.Title] != null)
+                        SPField fld = fieldsetTitle.Value[i];
+                        try
                         {
-                            TableCell cell2 = new TableCell();
-                            cell2.Style.Add("padding", "0px");
+                            TableRow row = new TableRow();
+                            if(i != fieldsetTitle.Value.Count-1)
+                            row.Style.Add("border-bottom", "1pt solid lightgray");
 
-                            switch (fld.TypeAsString)
+                            TableCell cell1 = new TableCell();
+                            cell1.Style.Add("padding-bottom", "6px");
+                            Label fldCaption = new Label();
+                            fldCaption.Text = fld.Title;
+                            fldCaption.Font.Bold = true;
+                            cell1.Controls.Add(fldCaption);
+
+                            cell1.CssClass = "ms-formlabel";
+                            row.Cells.Add(cell1);
+
+                            TableCell spaceSell = new TableCell();
+                            spaceSell.Style.Add("padding", "0px");
+                            spaceSell.Width = System.Web.UI.WebControls.Unit.Pixel(20);
+                            row.Cells.Add(spaceSell);
+
+
+                            if (curDocSetItem[fld.Title] != null)
                             {
+                                TableCell cell2 = new TableCell();
+                                cell2.Style.Add("padding", "0px");
 
-                                case "Number": Label numLabel = new Label();
-                                    numLabel.Text = String.Format("{0:N}", curDocSetItem[fld.Title]);
-                                    cell2.Controls.Add(numLabel);
-                                    break;
+                                switch (fld.TypeAsString)
+                                {
+                                    case "Number":
+                                        Label numLabel = new Label();
+                                        numLabel.Text = String.Format("{0:N}", curDocSetItem[fld.Title]);
+                                        cell2.Controls.Add(numLabel);
+                                        break;
 
-                                case "Boolean": Label boolLabel = new Label();
-                                    boolLabel.Text = (bool)curDocSetItem[fld.Title] ? "Да" : "Нет";
-                                    cell2.Controls.Add(boolLabel);
-                                    break;
+                                    case "Boolean":
+                                        Label boolLabel = new Label();
+                                        boolLabel.Text = curDocSetItem.GetFieldValueBoolean(fld.Title) ? "Да" : "Нет";
+                                        cell2.Controls.Add(boolLabel);
+                                        break;
 
-                                case "DateTime": Label dateLabel = new Label();
-                                    dateLabel.Text = Convert.ToDateTime(curDocSetItem[fld.Title]).ToShortDateString();
-                                    cell2.Controls.Add(dateLabel);
-                                    break;
+                                    case "DateTime":
+                                        Label dateLabel = new Label();
+                                        DateTime? dt = curDocSetItem.GetFieldValueDateTime(fld.Title);
+                                        if (dt.HasValue)
+                                        {
+                                            dateLabel.Text = ((SPFieldDateTime)fld).DisplayFormat== SPDateTimeFieldFormatType.DateOnly? dt.Value.ToShortDateString() : dt.Value.ToString();
+                                        }
+                                        cell2.Controls.Add(dateLabel);
+                                        break;
 
-                                case "Lookup":
-                                    cell2.Controls.Add(new LiteralControl(curDocSetItem[fld.Title].ToString().Split('#')[1]));
-                                    break;
+                                    case "Lookup":
+                                        SPFieldLookupValue flv = curDocSetItem.GetFieldValueLookup(fld.Title);
+                                        cell2.Controls.Add(
+                                            new LiteralControl(flv.LookupValue));
+                                        break;
 
-                                case "PSELookup":
-                                case "LookupFieldWithPicker":
-                                    SPLinkButton lupLink = new SPLinkButton();
-                                    SPFieldLookup lupFld = (SPFieldLookup)fld;
+                                    case "PSELookup":
+                                    case "LookupFieldWithPicker":
+                                        SPLinkButton lupLink = new SPLinkButton();
+                                        SPFieldLookup lupFld = (SPFieldLookup) fld;
 
-                                    SPList lupList = SPContext.Current.Web.Lists[new Guid(lupFld.LookupList)];
-                                    SPFieldLookupValue lupvalue = (SPFieldLookupValue)curDocSetItem[fld.Title];
-                                    lupLink.Text = lupList.GetItemById(lupvalue.LookupId).Title;
-                                    if (lupList.GetItemById(lupvalue.LookupId).Fields.ContainsField("IsDocumentSet") && (bool)lupList.GetItemById(lupvalue.LookupId)["IsDocumentSet"] == true)
-                                        lupLink.NavigateUrl = "/" + lupList.GetItemById(lupvalue.LookupId).Url + "?Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
-                                    else
-                                        lupLink.NavigateUrl = lupList.DefaultDisplayFormUrl + "?ID=" + curDocSetItem[fld.Title].ToString().Split(';')[0] + "&Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
-                                    cell2.Controls.Add(lupLink);
-                                    break;
+                                        SPList lupList = SPContext.Current.Web.Lists[new Guid(lupFld.LookupList)];
+                                        SPFieldLookupValue lupvalue = curDocSetItem.GetFieldValueLookup(fld.Title);
+                                        lupLink.Text = lupList.GetItemById(lupvalue.LookupId).Title;
+                                        if (
+                                            lupList.GetItemById(lupvalue.LookupId).Fields.ContainsField("IsDocumentSet") &&
+                                            (bool) lupList.GetItemById(lupvalue.LookupId)["IsDocumentSet"] == true)
+                                            lupLink.NavigateUrl = "/" + lupList.GetItemById(lupvalue.LookupId).Url +
+                                                                  "?Source=" +
+                                                                  HttpUtility.UrlEncode(Context.Request.Url.ToString());
+                                        else
+                                            lupLink.NavigateUrl = lupList.DefaultDisplayFormUrl + "?ID=" +
+                                                                  curDocSetItem[fld.Title].ToString().Split(';')[0] +
+                                                                  "&Source=" +
+                                                                  HttpUtility.UrlEncode(Context.Request.Url.ToString());
+                                        cell2.Controls.Add(lupLink);
+                                        break;
 
-                                case "User":
-                                    SPLinkButton userLink = new SPLinkButton();
-                                    SPFieldUser userFld = (SPFieldUser)fld;
-                                    SPList userList = SPContext.Current.Web.Lists[new Guid(userFld.LookupList)];
-                                    userLink.Text = curDocSetItem[fld.Title].ToString().Split('#')[1];
-                                    userLink.NavigateUrl = userList.DefaultDisplayFormUrl + "?ID=" + curDocSetItem[fld.Title].ToString().Split(';')[0] + "&Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
-                                    cell2.Controls.Add(userLink);
-                                    break;
-                                case "UserMulti":
-                                    SPFieldUser userMultiFld = (SPFieldUser)fld;
-                                    userList = SPContext.Current.Web.Lists[new Guid(userMultiFld.LookupList)];
-                                    
-                                        SPFieldUserValueCollection uvalues = new SPFieldUserValueCollection(SPContext.Current.Web, curDocSetItem[fld.Title].ToString());
+                                    case "User":
+                                        SPLinkButton userLink = new SPLinkButton();
+                                        SPFieldUser userFld = (SPFieldUser) fld;
+                                        SPList userList = SPContext.Current.Web.Lists[new Guid(userFld.LookupList)];
+                                        userLink.Text = curDocSetItem[fld.Title].ToString().Split('#')[1];
+                                        userLink.NavigateUrl = userList.DefaultDisplayFormUrl + "?ID=" +
+                                                               curDocSetItem[fld.Title].ToString().Split(';')[0] +
+                                                               "&Source=" +
+                                                               HttpUtility.UrlEncode(Context.Request.Url.ToString());
+                                        cell2.Controls.Add(userLink);
+                                        break;
+                                    case "UserMulti":
+                                        SPFieldUser userMultiFld = (SPFieldUser) fld;
+                                        userList = SPContext.Current.Web.Lists[new Guid(userMultiFld.LookupList)];
+
+                                        SPFieldUserValueCollection uvalues =
+                                            new SPFieldUserValueCollection(SPContext.Current.Web,
+                                                curDocSetItem[fld.Title].ToString());
                                         foreach (SPFieldUserValue uvalue in uvalues)
                                         {
                                             userLink = new SPLinkButton();
                                             userLink.Text = uvalue.User.Name + " ";
-                                            userLink.NavigateUrl = userList.DefaultDisplayFormUrl + "?ID=" + uvalue.User.ID + "&Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
+                                            userLink.NavigateUrl = userList.DefaultDisplayFormUrl + "?ID=" +
+                                                                   uvalue.User.ID + "&Source=" +
+                                                                   HttpUtility.UrlEncode(Context.Request.Url.ToString());
                                             cell2.Controls.Add(userLink);
                                         }
-                                   
-                                    break;
-                                case "LookupFieldWithPickerMulti":
-                                    SPFieldLookup lupMultiFld = (SPFieldLookup)fld;
-                                    SPFieldLookupValueCollection values = (SPFieldLookupValueCollection)curDocSetItem[fld.Title];
-                                    SPList lupMultiList = SPContext.Current.Web.Lists[new Guid(lupMultiFld.LookupList)];
-                                    foreach (SPFieldLookupValue value in values)
-                                    {
-                                        SPLinkButton lupMultiLink = new SPLinkButton();
-                                        lupMultiLink.Text = value.LookupValue + " ";
-                                        lupMultiLink.NavigateUrl = lupMultiList.DefaultDisplayFormUrl + "?ID=" + value.LookupId.ToString() + "&Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
-                                        cell2.Controls.Add(lupMultiLink);
-                                        cell2.Controls.Add(new LiteralControl("; "));
-                                    }
-                                    break;
 
-                                default: cell2.Controls.Add(new LiteralControl(curDocSetItem[fld.Title].ToString()));
-                                    break;
+                                        break;
+                                    case "LookupFieldWithPickerMulti":
+                                        SPFieldLookup lupMultiFld = (SPFieldLookup) fld;
+                                        SPFieldLookupValueCollection values =
+                                            (SPFieldLookupValueCollection) curDocSetItem[fld.Title];
+                                        SPList lupMultiList =
+                                            SPContext.Current.Web.Lists[new Guid(lupMultiFld.LookupList)];
+                                        foreach (SPFieldLookupValue value in values)
+                                        {
+                                            SPLinkButton lupMultiLink = new SPLinkButton();
+                                            lupMultiLink.Text = value.LookupValue + " ";
+                                            lupMultiLink.NavigateUrl = lupMultiList.DefaultDisplayFormUrl + "?ID=" +
+                                                                       value.LookupId.ToString() + "&Source=" +
+                                                                       HttpUtility.UrlEncode(
+                                                                           Context.Request.Url.ToString());
+                                            cell2.Controls.Add(lupMultiLink);
+                                            cell2.Controls.Add(new LiteralControl("; "));
+                                        }
+                                        break;
+
+                                    default:
+                                        cell2.Controls.Add(new LiteralControl(curDocSetItem[fld.Title].ToString()));
+                                        break;
+                                }
+
+                                cell2.CssClass = "ms-formbody";
+                                row.Cells.Add(cell2);
                             }
 
-                            cell2.CssClass = "ms-formbody";
-                            row.Cells.Add(cell2);
+                            fieldSetTable.Rows.Add(row);
                         }
-
-                        tbl.Rows.Add(row);
+                        catch (Exception ex)
+                        {
+                            ExceptionHelper.DUmpException(new Exception("RETHROWS " + Page.Request.RawUrl, ex));
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        ExceptionHelper.DUmpException(new Exception ("RETHROWS " + Page.Request .RawUrl, ex));
-                    }
+                    this.Controls.Add(fieldSet);
                 }
                 
-                if (ShowWorkflowStatus)
-                {
-                    foreach (SPWorkflow wf in curDocSetItem.Workflows)
-                    {
-                        TableCell wf_cell = new TableCell();
-                        TableRow wfrow = new TableRow();
-
-                        wfrow.Style.Add(" border-bottom", "1pt solid lightgray");
-                        wf_cell.Style.Add("padding", "0px");
-
-                        Label wf_Caption = new Label();
-                        wf_Caption.Text = wf.ParentAssociation.Name;
-                        wf_Caption.Font.Bold = true;
-                        wf_cell.Controls.Add(wf_Caption);
-
-                        wf_cell.CssClass = "ms-formlabel";
-                        wfrow.Cells.Add(wf_cell);
-
-                        TableCell wfspaceCell = new TableCell();
-                        wfspaceCell.Width = Unit.Pixel(20);
-                        wfspaceCell.Style.Add("padding", "0px");
-
-                        wfrow.Cells.Add(wfspaceCell);
-
-                        TableCell wfLinkCell = new TableCell();
-                        SPLinkButton wfLink = new SPLinkButton();
-                        int statusIndex = Convert.ToInt16(curDocSetItem[wf.ParentAssociation.Name]);
-                        wfLink.Text = GetWFStatus(statusIndex);
-                        wfLinkCell.Style.Add("padding", "0px");
-                        wfLink.NavigateUrl = "/_layouts/15/WrkStat.aspx?List=" + curDocSet.ParentList.ID.ToString() + "&WorkflowInstanceID=" + wf.InstanceId.ToString() + "&Source=" + HttpUtility.UrlEncode(Context.Request.Url.ToString());
-                        wfLinkCell.Controls.Add(wfLink);
-
-                        wfrow.Cells.Add(wfLinkCell);
-
-                        tbl.Rows.Add(wfrow);
-
-                        break;
-                    }
-
-                }
+                
 
                 this.Controls.Add(tbl);
 

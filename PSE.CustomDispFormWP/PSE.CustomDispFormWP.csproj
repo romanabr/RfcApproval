@@ -86,11 +86,21 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApprovalListWP\ApprovalListWP.cs" />
+    <Compile Include="ApprovalTaskWP\ApprovalTaskWP.cs" />
     <Compile Include="CustomDispWebPart\CustomDispWebPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ApprovalListWP\ApprovalListWP.webpart" />
+    <None Include="ApprovalListWP\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e35591dc-d533-403b-89f4-3be00bcfc955}</SharePointProjectItemId>
+    </None>
+    <None Include="ApprovalTaskWP\ApprovalTaskWP.webpart" />
+    <None Include="ApprovalTaskWP\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{86034f0a-b2a4-4ae6-90df-83c254601fb6}</SharePointProjectItemId>
+    </None>
     <None Include="CustomDispWebPart\CustomDispWebPart.webpart" />
     <None Include="CustomDispWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0086484d-b7e0-42f2-8df4-05eb8afcee03}</SharePointProjectItemId>
@@ -109,6 +119,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApprovalListWP\Elements.xml" />
+    <Content Include="ApprovalTaskWP\Elements.xml" />
     <Content Include="CustomDispWebPart\Elements.xml" />
     <Content Include="Features\CustomDispFormWebPart\CustomDispFormWebPart.Template.xml">
       <DependentUpon>CustomDispFormWebPart.feature</DependentUpon>
@@ -122,6 +134,10 @@
     <ProjectReference Include="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj">
       <Project>{9d45b3b0-171c-4375-a598-993d89a33618}</Project>
       <Name>RedSys.RFC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedSys.RFC.Data\RedSys.RFC.Data.csproj">
+      <Project>{b1038681-7c0d-42dc-a5de-a01d18320e6d}</Project>
+      <Name>RedSys.RFC.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

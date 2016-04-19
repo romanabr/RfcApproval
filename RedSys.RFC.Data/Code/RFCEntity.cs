@@ -23,6 +23,8 @@ namespace RedSys.RFC.Data.Code
             }
         }
 
+        public List<KEEntity> KEEntities { get; set; }
+
         public RFCEntity(SPListItem item)
         {
             currentItem = item;
@@ -34,6 +36,11 @@ namespace RedSys.RFC.Data.Code
         {
             return tasks.Count();
         }
+
+        public int GetKECount()
+        {
+            return KEEntity.GetKEEntities(currentItem);
+        } 
 
         public void SetDocSetPermissionWorklow()
         {
@@ -95,4 +102,6 @@ namespace RedSys.RFC.Data.Code
         }
 
     }
+
+  
 }

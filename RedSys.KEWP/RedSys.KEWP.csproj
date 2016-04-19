@@ -68,8 +68,8 @@
       <DependentUpon>KEEffectListView.ascx</DependentUpon>
     </Compile>
     <Compile Include="KEEffectListView\KEEffectListView.ascx.g.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>KEEffectListView.ascx</DependentUpon>
     </Compile>
     <Compile Include="KEListView\KEListView.cs" />

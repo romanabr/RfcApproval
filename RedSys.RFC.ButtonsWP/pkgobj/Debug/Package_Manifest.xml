@@ -13,11 +13,28 @@
   </Assemblies>
   <TemplateFiles>
     <TemplateFile Location="Images\ReportWP\approve.png" />
-    <TemplateFile Location="Images\ReportWP\changeEng.png" />
+    <TemplateFile Location="Images\ReportWP\cancel.png" />
+    <TemplateFile Location="Images\ReportWP\comment.png" />
+    <TemplateFile Location="Images\ReportWP\copy.png" />
+    <TemplateFile Location="Images\ReportWP\CopyDocumentType.png" />
+    <TemplateFile Location="Images\ReportWP\deleteFile.png" />
+    <TemplateFile Location="Images\ReportWP\edit.png" />
+    <TemplateFile Location="Images\ReportWP\goToStage1.png" />
+    <TemplateFile Location="Images\ReportWP\goToStage2.png" />
+    <TemplateFile Location="Images\ReportWP\Help.png" />
     <TemplateFile Location="Images\ReportWP\icbreakEng.png" />
     <TemplateFile Location="Images\ReportWP\icrecallEng.png" />
     <TemplateFile Location="Images\ReportWP\icStartApproveEng.png" />
     <TemplateFile Location="Images\ReportWP\mainEng.png" />
+    <TemplateFile Location="Images\ReportWP\notify.png" />
+    <TemplateFile Location="Images\ReportWP\processingTime.png" />
+    <TemplateFile Location="Images\ReportWP\PublishDocumentType.png" />
+    <TemplateFile Location="Images\ReportWP\review.png" />
+    <TemplateFile Location="Images\ReportWP\save.png" />
+    <TemplateFile Location="Images\ReportWP\start.png" />
+    <TemplateFile Location="Images\ReportWP\Stop.png" />
+    <TemplateFile Location="Images\ReportWP\UnPublishDocumentType.png" />
+    <TemplateFile Location="Images\ReportWP\visa.png" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="RedSys.RFC.ButtonsWP_Start Report Workflow WebPart\Feature.xml" />

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-    <!-- Список ролей -->
   <Field Name="RoleKind" StaticName="RoleKind" ID="{D5B9B028-E351-480C-B030-98BBFD89F4F0}" DisplayName="Вид роли" Type="MultiChoice" Group="PSE.Workflow" >
     <CHOICES>
       <CHOICE>МВЗ</CHOICE>
@@ -9,21 +8,18 @@
       <CHOICE>Филиал</CHOICE>
     </CHOICES>
   </Field>
-  <!--Пользователи и роли -->
   <Field Name="AD" StaticName="AD" ID="{E22F4A02-4248-4CFF-87B0-4DA63473880E}" DisplayName="Учетная запись. Справочник AD" Type="UserMulti" Group="PSE.Workflow" />
   <Field Name="Role_Ref" StaticName="Role_Ref" ID="{CA416A1D-3B7A-40CA-997E-BAF9524EEAAE}" DisplayName="Роль" Type="Lookup" Group="PSE.Workflow" List="Lists/RoleLI" ShowField="Title" /> 
   <Field Name="IsDefaultUser" StaticName="IsDefaultUser" ID="{573B675A-51AA-490F-BF09-208C4708E095}" DisplayName="Исполнитель по умолчанию" Type="Boolean" Group="PSE.Workflow">
     <Default>0</Default>
   </Field>
     
-  <!-- Заместители -->
   <Field Name="DeputyUser" StaticName="DeputyUser" ID="{391DC227-2A36-4250-914D-D3ABF1888F43}" DisplayName="Заместитель" Type="UserMulti" Group="PSE.Workflow" />
   <Field Name="Sub" StaticName="Sub" ID="{A8E5A3B3-C92B-4D54-B3A7-8B601A1A19CE}" DisplayName="Замещаемый" Type="UserMulti" Group="PSE.Workflow" />
   <Field Name="Start_Date" StaticName="Start_Date" ID="{63837D31-398E-4292-BD05-BE17670461F7}" DisplayName="Начальная дата" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
   <Field Name="End_Date" StaticName="End_Date" ID="{C3C7FBFB-B7A3-4506-9EF2-D5A80AC3E22C}" DisplayName="Конечная дата" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
   <Field Name="ZamComment" StaticName="ZamComment" ID="{DFC298E9-372F-4323-BADB-6E879647A9A1}" DisplayName="Описание" Type="Note" Group="PSE.Workflow" />
   
-  <!-- Список этапов -->
   <Field Name="StageNumber" StaticName="StageNumber" ID="{0FDF16DA-06E1-4D53-8B53-1E90C4200E3A}" DisplayName="Номер этапа" Type="Integer" Group="PSE.Workflow" />
   <Field Name="StageType" StaticName="StageType" ID="{3F83720E-FD0F-486C-9FE9-AE5A49783118}" DisplayName="Тип этапа" Type="Choice" Group="PSE.Workflow" >
     <CHOICES>
@@ -89,10 +85,9 @@
     </CHOICES>
   </Field>
   
-  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
  <Field Name="TypeOfTask" StaticName="TypeOfTask" ID="{ED7EBB1F-3839-4A4A-98D8-72300D63E827}" DisplayName="Тип задания" Type="Lookup" Group="PSE.Workflow" List="Lists/TaskTypeList" ShowField="Title" />
   
-  <!-- Для задач -->
+
   <Field Name="TaskComment" StaticName="TaskComment" ID="{54E6DD1C-5AD5-453F-8D15-DD7F1DA46D9D}" DisplayName="Комментарий" Type="Note" Group="PSE.Workflow" />
   <Field Name="AssignToUsers" StaticName="AssignToUsers" ID="{6F6D142F-914B-49CE-9DCF-7764B3F1CE04}" DisplayName="Исполнители задачи" Type="UserMulti" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" />
   <Field Name="Approvd" StaticName="Approvd" ID="{BD76650F-2E1F-4DD7-9EF8-3E2D0DF9E0A0}" DisplayName="Утверждено?" Type="Boolean" Group="PSE.Workflow" />
@@ -105,12 +100,10 @@
   <Field Name="CompletedUser" StaticName="CompletedUser" ID="{4196C14C-A96B-4E8D-87B2-BB0E91F67BA1}" DisplayName="Завершивший исполнитель" Type="User" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" />
   <Field Name="TaskResult" StaticName="TaskResult" ID="{141C982A-743B-4791-A6F7-49EC262F6B59}" DisplayName="Решение согласующего" Type="Text" Group="PSE.Workflow"/>
 
-  <!-- Для элемента рабочего процесса -->
   <Field Name="Stage" StaticName="Stage" ID="{F0D9617F-67A7-4BD1-AED3-7256DE77E99F}" DisplayName="Статус рабочего процесса" Group="PSE.Workflow" Type="Text" ShowInDisplayForm="TRUE" ShowInEditForm="FALSE" ShowInNewForm="FALSE"  />
 	<Field Name="WFData" StaticName="WFData" ID="{54E6DD1C-5AD5-453F-8D15-8256DE77E99F}" DisplayName="WFData" Type="Note" Group="PSE.Workflow" ShowInNewForm="FALSE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" />
 	<Field Name="WFCurrentUser" StaticName="WFCurrentUser" ID="{8B6F91A6-E376-43A6-9DC3-B23F98B4D132}" DisplayName="Текущий исполнитель" Type="UserMulti" Group="PSE.Workflow" UserSelectionMode="PeopleOnly" ShowInNewForm ="FALSE" ShowInEditForm="FALSE" />
 
-	<!-- ???? -->
   <Field Name="RepeatedAgreement" StaticName="RepeatedAgreement" ID="{E59BDD9E-8FE6-4330-A034-A83EBCAC75FF}" DisplayName="Повторное согласование" Type="Boolean" Group="PSE.Workflow" />
   <Field Name="RepeatedUserAgreement" StaticName="RepeatedUserAgreement" ID="{E59BDD9E-8FE6-4322-A127-A83EBCAC75AA}" DisplayName="Исключать повтор согласующего" Type="Boolean" Group="PSE.Workflow" />
   <Field Name="ComparePatternText" StaticName="ComparePatternText" ID="{4F99F18E-6990-4F89-900E-AA4B325E594E}" DisplayName="Образ для сравнения текст" Type="Text" Group="PSE.Workflow" />
@@ -121,9 +114,9 @@
   <Field Name="ComparePatternDate" StaticName="ComparePatternDate" ID="{DA7668D3-5179-4D64-8822-EBA3E375C6D6}" DisplayName="Образ для сравнения дата" Type="DateTime" Group="PSE.Workflow" />
   <Field Name="DocumentTypeGuid" StaticName="DocumentTypeGuid" ID="{D170BE8A-019C-45EF-B2AA-ABFA4DF96B62}" DisplayName="Guid" Type="Text" Group="PSE.Workflow" />
   
-  <!-- Для выходных -->
   <Field Name="VacationDay" StaticName="VacationDay" ID="{7D3296BE-4E9F-4094-8B55-FA1A8951667B}" DisplayName="Дата выходного" Type="DateTime" Format="DateOnly" Group="PSE.Workflow" />
-  <!-- Руководители -->
+ 
+	
   <Field Name="MasterUser" StaticName="MasterUser" ID="{3742725E-E5F8-4F4E-B3DB-ADD831491E44}" DisplayName="Руководитель ответственного" Type="UserMulti" Group="PSE.Workflow" />
   <Field Name="RespUser" StaticName="RespUser" ID="{7E9E97C3-7B12-4025-ABFA-BB399C6E3432}" DisplayName="Ответственный" Type="UserMulti" Group="PSE.Workflow" />
   

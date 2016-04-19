@@ -68,6 +68,7 @@
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\KEEntity.cs" />
     <Compile Include="Code\RFCEntity.cs" />
     <Compile Include="Code\RFCEventReceiver.cs" />
     <Compile Include="Code\RFCKeEventReceiver.cs" />

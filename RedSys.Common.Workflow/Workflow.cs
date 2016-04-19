@@ -145,7 +145,7 @@ namespace RedSys.Common.Workflow
             else if (CurrentUsers[UserIndex].UserStep.AgreementType == AgreementType.Parallel)
             {
                 SPFieldUserValueCollection cusers = new SPFieldUserValueCollection(web, CurItem["Текущий исполнитель"].ToString());
-                SPFieldUserValueCollection users = WorkflowUtils.RemoveUsersField(cusers, CurrentUser, web);
+                SPFieldUserValueCollection users = WorkflowUtils.RemoveUsersField(cusers, User.ID, web);
                 CurItem["Текущий исполнитель"] = users;
                 bool end = true;
                 foreach (BranchInfo bi in CurrentUsers)

@@ -131,11 +131,28 @@
       <DependentUpon>Start Report Workflow WebPart.feature</DependentUpon>
     </Content>
     <Content Include="Images\ReportWP\approve.png" />
-    <Content Include="Images\ReportWP\changeEng.png" />
+    <Content Include="Images\ReportWP\cancel.png" />
+    <Content Include="Images\ReportWP\comment.png" />
+    <Content Include="Images\ReportWP\copy.png" />
+    <Content Include="Images\ReportWP\CopyDocumentType.png" />
+    <Content Include="Images\ReportWP\deleteFile.png" />
+    <Content Include="Images\ReportWP\edit.png" />
+    <Content Include="Images\ReportWP\goToStage1.png" />
+    <Content Include="Images\ReportWP\goToStage2.png" />
+    <Content Include="Images\ReportWP\Help.png" />
     <Content Include="Images\ReportWP\icbreakEng.png" />
     <Content Include="Images\ReportWP\icrecallEng.png" />
     <Content Include="Images\ReportWP\icStartApproveEng.png" />
     <Content Include="Images\ReportWP\mainEng.png" />
+    <Content Include="Images\ReportWP\notify.png" />
+    <Content Include="Images\ReportWP\processingTime.png" />
+    <Content Include="Images\ReportWP\PublishDocumentType.png" />
+    <Content Include="Images\ReportWP\review.png" />
+    <Content Include="Images\ReportWP\save.png" />
+    <Content Include="Images\ReportWP\start.png" />
+    <Content Include="Images\ReportWP\Stop.png" />
+    <Content Include="Images\ReportWP\UnPublishDocumentType.png" />
+    <Content Include="Images\ReportWP\visa.png" />
     <Content Include="StartReportWokflow\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

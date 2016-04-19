@@ -28,7 +28,7 @@
     ke.controller('spkeitemController', function ($scope, $http) {
         $http({
             method: 'GET',
-            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('KE%20по%20RFC')/items?$select=ID,Title,RFCInteraptionFlag,KeKeLink/Title,RFCKeLink/Id&$expand=RFCKeLink,KeKeLink&$filter=((RFCKeLink/Id eq <%=ItemId%>) and (RFCKeType eq 'W'))",
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('KE%20по%20RFC')/items?$select=ID,Title,RFCInteraptionFlag,KeKeLink/Title,KeKeLink/RFCKeMnemonica,RFCKeLink/Id&$expand=RFCKeLink,KeKeLink&$filter=((RFCKeLink/Id eq <%=ItemId%>) and (RFCKeType eq 'W'))",
             headers: { "Accept": "application/json;odata=verbose" }
         }).success(function (keitemData, status, headers, config) {
             if (keitemData.d.results.length == 0) {
@@ -52,11 +52,13 @@
         <table class="table table-striped table-hover">
             <tr>
                 <th>Название КЕ</th>
+                <th>Мнемоника</th>
                  <th>Флаг прерывания</th>
-                <th></th>
+                <th>Удалить</th>
             </tr>
             <tr ng-repeat="keitem in keitems">
                 <td>{{keitem.KeKeLink.Title}}</td>
+                <td>{{keitem.KeKeLink.RFCKeMnemonica}}</td>
                  <td><input type="checkbox" disabled="disabled" checked="{{keitem.RFCInteraptionFlag}}" /></td>
                 <td><a href="" onclick="javascript:DeleteKEItem(this);" item-id="{{keitem.ID}}"><img id="ctl00_PlaceHolderMain_Toolbar_RptControls_ButtonDeleteItems_ImageOfButton" src="/_layouts/15/images/delitem.gif?rev=23" alt="Delete Selection" style="border-width:0px;height:16px;width:16px;" /></a></td>
              </tr>

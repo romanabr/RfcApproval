@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="fcbb0227-b430-47f8-8d46-4df41299dbca" solutionId="fcbb0227-b430-47f9-8d46-4df41299dbca" resetWebServer="true" sharePointProductVersion="15.0" name="[Ensol] ReportRibbonModification" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="fcbb0227-b430-47f8-8d46-4df41299dbca" solutionId="fcbb0227-b430-47f9-8d46-4df41299dbca" resetWebServer="true" sharePointProductVersion="15.0" name="PSE.ReportRibbonModification" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="9590d5e5-e42d-4413-9004-cca7b13dff7d" />
   </features>

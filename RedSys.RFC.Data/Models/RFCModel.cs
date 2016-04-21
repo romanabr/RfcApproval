@@ -65,7 +65,10 @@ namespace RedSys.RFC.Data.Models
 				.AddContentTypeFieldLink(RFCFields.StartDateFact)
 				.AddContentTypeFieldLink(RFCFields.StartDatePlan)
 				.AddContentTypeFieldLink(RFCFields.Status)
-				.AddHideContentTypeFieldLinks(new HideContentTypeFieldLinksDefinition
+                .AddContentTypeFieldLink(WorkflowFields.WorkflowCurrentUser.FieldId.Value)
+                 .AddContentTypeFieldLink(WorkflowFields.WorkflowStage.FieldId.Value)
+                 .AddContentTypeFieldLink(WorkflowFields.WorkflowWFData.FieldId.Value)
+                .AddHideContentTypeFieldLinks(new HideContentTypeFieldLinksDefinition
 				{
 					Fields = new List<FieldLinkValue>
 					 {

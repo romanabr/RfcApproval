@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RedSys] RFC.ReportButtonWP" AlwaysForceInstall="TRUE" Description="Вебчасть запуска рабочего процесса, управления процессом согласования" Id="baece3bd-5cca-4cd8-8116-37c805126991" ImageUrl="Ensol/Ensol.png" Scope="Site">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RedSys] RFC.ReportButtonWP" AlwaysForceInstall="TRUE" Description="Вебчасть запуска рабочего процесса, управления процессом согласования" Id="baece3bd-5cca-4cd8-8116-37c805126991" ImageUrl="Beeline/Logo.png" Scope="Site">
   <ElementManifests>
     <ElementManifest Location="StartReportWokflow\Elements.xml" />
     <ElementFile Location="StartReportWokflow\StartReportWorkflow.webpart" />

@@ -126,6 +126,9 @@
     <None Include="Features\WebCustomise\WebCustomise.feature">
       <FeatureId>{f2625283-c41f-4238-bb7d-736af2541d5e}</FeatureId>
     </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{707c01cf-26ea-4267-b0cf-7d40a4630ab9}</SharePointProjectItemId>
+    </None>
     <None Include="JSLink\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b162d6c2-a1f4-47a8-9d35-83115f858a60}</SharePointProjectItemId>
     </None>
@@ -141,7 +144,6 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
     <None Include="JSLink\jquery-1.12.2.min.map" />
-    <None Include="Scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj">
@@ -152,39 +154,6 @@
   <ItemGroup>
     <Content Include="Asset\Elements.xml" />
     <Content Include="Asset\SiteLogo.png" />
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="DocumentSetWelcomePage\docsethomepage.aspx" />
     <Content Include="DocumentSetWelcomePage\Elements.xml" />
     <Content Include="Features\Data\Data.Template.xml">
@@ -202,6 +171,7 @@
     <Content Include="Features\WebCustomise\WebCustomise.Template.xml">
       <DependentUpon>WebCustomise.feature</DependentUpon>
     </Content>
+    <Content Include="Images\Beeline\Logo.png" />
     <Content Include="JSLink\angular.js" />
     <Content Include="JSLink\Elements.xml" />
     <Content Include="JSLink\jquery-1.12.2.intellisense.js" />
@@ -215,9 +185,6 @@
     <Content Include="JSLink\SPUtility.js" />
     <Content Include="Layouts\RedSys.RFC.Data\kekelinkcontenttype.js" />
     <Content Include="Layouts\RedSys.RFC.Data\rfccontenttype.js" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\angular.min.js" />
     <Content Include="JSLink\camljs.js" />
   </ItemGroup>
   <ItemGroup />

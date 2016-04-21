@@ -8,7 +8,7 @@
 });
 
 function LoadCurrentUser() {
-	var Name = SPUtility.GetSPField('Name');
+	var Name = SPUtility.GetSPFieldByInternalName('FileLeafRef');
 	Name.LabelRow.innerText = 'Номер изменения';
 	Name.SetValue('Будет заполнен автоматически').MakeReadOnly();
 	var Type = SPUtility.GetSPFieldByInternalName('RFCType');

@@ -21,13 +21,20 @@ namespace RedSys.RFC.Data.Lists
 			Url = "MyRFC.aspx",
 			Fields = new Collection<string>
 			{
-				BuiltInInternalFieldNames.DocIcon,
-				BuiltInInternalFieldNames.LinkFilename,
-				BuiltInInternalFieldNames.Editor,
-				BuiltInInternalFieldNames._UIVersionString,
-				BuiltInInternalFieldNames.ContentType
-			},
-			Query = "<Where><Or><FieldRef Name='RFCManager'/><Value>[Me]</Value><FieldRef Name='" + BuiltInInternalFieldNames.Author + "'/><Value>[Me]</Value></Or></Where>"
+                 BuiltInInternalFieldNames.LinkFilename,
+                        RFCFields.Status.InternalName,
+                        RFCFields.Category.InternalName,
+                        RFCFields.Type.InternalName,
+                        RFCFields.Description.InternalName,
+                        RFCFields.InteraptionFlag.InternalName,
+                        BuiltInInternalFieldNames.Created,
+                        BuiltInInternalFieldNames.Author,
+                        RFCFields.StartDatePlan.InternalName,
+                       RFCFields.StartDateFact.InternalName,
+                        RFCFields.EndDatePlan.InternalName,
+                         RFCFields.EndDateFact.InternalName
+            },
+			Query = "<Where><Or><Eq>FieldRef Name='RFCManager' LookupId='True' /><Value Type='Integer'><UserID /></Value></Eq><Eq><FieldRef Name='" + BuiltInInternalFieldNames.Author + "' LookupId='True' /><Value Type='Integer'><UserID /></Value></Eq></Or></Where>"
 		};
 
 		public static ListViewDefinition OnApprove = new ListViewDefinition
@@ -37,13 +44,20 @@ namespace RedSys.RFC.Data.Lists
 			Url = "OnApprove.aspx",
 			Fields = new Collection<string>
 			{
-				BuiltInInternalFieldNames.DocIcon,
-				BuiltInInternalFieldNames.LinkFilename,
-				BuiltInInternalFieldNames.Editor,
-				BuiltInInternalFieldNames._UIVersionString,
-				BuiltInInternalFieldNames.ContentType
-			},
-			Query = "<Where><Or><FieldRef Name='RFCManager'/><Value>[Me]</Value><FieldRef Name='" + BuiltInInternalFieldNames.Author + "'/><Value>[Me]</Value></Or></Where>"
+                         BuiltInInternalFieldNames.LinkFilename,
+                        RFCFields.Status.InternalName,
+                        RFCFields.Category.InternalName,
+                        RFCFields.Type.InternalName,
+                        RFCFields.Description.InternalName,
+                        RFCFields.InteraptionFlag.InternalName,
+                        BuiltInInternalFieldNames.Created,
+                        BuiltInInternalFieldNames.Author,
+                        RFCFields.StartDatePlan.InternalName,
+                        RFCFields.StartDateFact.InternalName,
+                        RFCFields.EndDatePlan.InternalName,
+                         RFCFields.EndDateFact.InternalName
+            },
+			Query = "<Where><Or><Eq>FieldRef Name='RFCManager' LookupId='True' /><Value Type='Integer'><UserID /></Value></Eq><Eq><FieldRef Name='" + BuiltInInternalFieldNames.Author + "' LookupId='True' /><Value Type='Integer'><UserID /></Value></Eq></Or></Where>"
 		};
 
 		public static ListViewDefinition RfcUserListView = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView =>
@@ -80,7 +94,6 @@ namespace RedSys.RFC.Data.Lists
 				listView.Fields = new Collection<string> {
 						BuiltInInternalFieldNames.LinkTitle,
 						RFCFields.InteraptionFlag.InternalName,
-						RFCFields.Type.InternalName,
 						RFCFields.KeMnemonica.InternalName,
 						BuiltInInternalFieldNames.Author,
 						BuiltInInternalFieldNames.Created

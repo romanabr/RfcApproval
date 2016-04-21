@@ -4,6 +4,8 @@
     <projectOutputAssembly location="RedSys.RFC.Core.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj" />
     <customAssembly location="SPMeta2.Standard.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.Core.Standard.1.2.60\lib\net45\SPMeta2.Standard.dll" />
     <customAssembly location="SPMeta2.SSOM.Standard.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.SSOM.Standard.1.2.60\lib\net45\SPMeta2.SSOM.Standard.dll" />
+    <customAssembly location="SPMeta2.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.Core.1.2.60\lib\net45\SPMeta2.dll" />
+    <customAssembly location="SPMeta2.SSOM.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\SPMeta2.SSOM.Foundation.1.2.60\lib\net45\SPMeta2.SSOM.dll" />
   </assemblies>
   <features>
     <featureReference itemId="041ab28e-ea5b-45e9-ae69-2aa1abb6753a" />
@@ -14,5 +16,6 @@
   </features>
   <projectItems>
     <projectItemReference itemId="d02ab99b-1d4a-401d-9451-8bddb3eef0ec" />
+    <projectItemReference itemId="707c01cf-26ea-4267-b0cf-7d40a4630ab9" />
   </projectItems>
 </package>

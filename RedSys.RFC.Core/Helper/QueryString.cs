@@ -232,7 +232,7 @@ namespace RedSys.RFC.Core.Helper
 			{
 				String val = m_InternalStorage[name];
 
-				if (val != null && val.Length > 0)
+				if (!string.IsNullOrEmpty(val))
 					result += name + "=" + val + "&";
 			}
 

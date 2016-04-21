@@ -13,13 +13,13 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml;
 using RedSys.RFC.Core.Helper;
-using CamlexNET;
+
 using Microsoft.Office.DocumentManagement.DocumentSets;
-using Microsoft.Office.Server.Audience;
+
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
-using WP_Button.Code.Translate;
+
 using RedSys.Common.Workflow;
 using RedSys.RFC.Data.Fields;
 using RedSys.RFC.Data;
@@ -32,7 +32,6 @@ namespace ReportButton.StartReportWorkflow
 	public class StartReportWorkflow : WebPart
 	{
 		private SPLinkButton _copyButton;
-		private SPLinkButton _exportButton;
         private SPLinkButton _superApproveButton;
 		private readonly Label _lblInfo;
 		private string _oldstatus;
@@ -55,43 +54,7 @@ namespace ReportButton.StartReportWorkflow
 				Visible = false
 			};
 		}
-
-		private string EnsureParentFolder(SPWeb parentWeb, string destinUrl)
-		{
-			destinUrl = parentWeb.GetFile(destinUrl).Url;
-
-			var index = destinUrl.LastIndexOf("/");
-			var parentFolderUrl = string.Empty;
-
-			if (index <= -1) return parentFolderUrl;
-			parentFolderUrl = destinUrl.Substring(0, index);
-
-			var parentFolder
-				= parentWeb.GetFolder(parentFolderUrl);
-
-			if (!parentFolder.Exists)
-			{
-				SPSecurity.RunWithElevatedPrivileges(delegate
-				{
-					using (var site = new SPSite(parentWeb.Url))
-					{
-						using (var web = site.OpenWeb())
-						{
-							var curFolder = web.RootFolder;
-							foreach (var folder in parentFolderUrl.Split('/'))
-							{
-								if (!(parentWeb.Lists[parentFolder.ParentListId] is SPDocumentLibrary)) continue;
-								web.AllowUnsafeUpdates = true;
-								curFolder = curFolder.SubFolders.Add(folder);
-								web.AllowUnsafeUpdates = false;
-							}
-						}
-					}
-				});
-			}
-			return parentFolderUrl;
-		}
-
+        
 		protected override void OnInit(EventArgs e)
 		{
 			base.OnInit(e);
@@ -221,7 +184,7 @@ namespace ReportButton.StartReportWorkflow
 				}
 
 
-				var statusesroute = ApprovalRouteState != null ? ApprovalRouteState.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries) : null;
+				var statusesroute = ApprovalRouteState?.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
 
 				if (ShowApprovalRoute && statusesroute != null && statusesroute.Contains(status))
@@ -230,7 +193,7 @@ namespace ReportButton.StartReportWorkflow
 					qs["DocID"] = SPContext.Current.ListItem.ID.ToString();
 					var approvalListButton = new SPLinkButton
 					{
-						ImageUrl = "~/_layouts/15/images/WP Button/icRoute.png",
+						ImageUrl = "~/_layouts/15/images/ReportWP/icRoute.png",
 						OnClientClick = "javascript:OpenDialog('" + QueryString.ForceUrlToBeReloaded(qs.ToString()) +
 										"');return false;"
 					};
@@ -243,9 +206,8 @@ namespace ReportButton.StartReportWorkflow
 			catch (Exception ex)
 			{
 				ExceptionHelper.DUmpException(ex);
-				var lbl = new Label();
-				lbl.Text = "Ошибка: ";
-				lbl.Text += ex.Message;
+			    var lbl = new Label {Text = "Ошибка: "};
+			    lbl.Text += ex.Message;
 				Controls.Add(lbl);
 			}
 		}
@@ -262,27 +224,25 @@ namespace ReportButton.StartReportWorkflow
                         {
                             oWeb.AllowUnsafeUpdates = true;
                             var oLst = oWeb.GetListExt(SPContext.Current.List.RootFolder.Url);
-                            if (Page.Request.QueryString["ID"] != null)
-                            {
-                                var curItem = oLst.GetItemById(int.Parse(Page.Request.QueryString["ID"]));
-                                _oldstatus = curItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
-                                _wf = new Workflow(curItem);
-                                _wf.Stop(SPContext.Current.Web.CurrentUser);
+                            
+                            var curItem = oLst.GetItemById(SPContext.Current.ListItem.ID);
+                            _oldstatus = curItem.GetFieldValue(WorkflowFields.WorkflowStage.FieldInternalName);
+                            _wf = new Workflow(curItem);
+                            _wf.Stop(SPContext.Current.Web.CurrentUser);
 
-                                //List<SPUser> owners = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyOwners.InternalName);
-                                //List<SPUser> approvers = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyApprovers.InternalName);
-                                List<SPUser> currentApprover = curItem.GetFieldValueUserCollection(WorkflowFields.WorkflowCurrentUser.FieldInternalName);
-                                //MailSender.SendMail(curItem, MailType.RECALLED, owners );
+                            //List<SPUser> owners = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyOwners.InternalName);
+                            //List<SPUser> approvers = curItem.GetFieldValueUserCollection(AbbyyFields.AbbyyApprovers.InternalName);
+                            List<SPUser> currentApprover = curItem.GetFieldValueUserCollection(WorkflowFields.WorkflowCurrentUser.FieldInternalName);
+                            //MailSender.SendMail(curItem, MailType.RECALLED, owners );
                                 
 
-                                curItem[WorkflowFields.WorkflowCurrentUser.FieldInternalName] = string.Empty;
-                                curItem[WorkflowFields.WorkflowStage.FieldInternalName] = RFCStatus.RECALLED;
-                                curItem.SystemUpdate(false);
+                            curItem[WorkflowFields.WorkflowCurrentUser.FieldInternalName] = string.Empty;
+                            curItem[WorkflowFields.WorkflowStage.FieldInternalName] = RFCStatus.RECALLED;
+                            curItem.SystemUpdate(false);
 
-                                if (ChangeChild)
-                                {
-                                    LogData(curItem, RFCStatus.RECALLED);
-                                }
+                            if (ChangeChild)
+                            {
+                                LogData(curItem, RFCStatus.RECALLED);
                             }
                         }
                         catch (ThreadAbortException)
@@ -528,10 +488,10 @@ namespace ReportButton.StartReportWorkflow
 				var viewFields = string.Empty;
 
 				SPList childList = null;
-				foreach (var str in ChildLib.Split(';'))
+				foreach (var str in ChildLib.Split(new[] { ';'}, StringSplitOptions.RemoveEmptyEntries))
 				{
 					childList = oItem.Web.Lists[str];
-					viewLists += string.Format("<List ID='{0}'/>", childList.ID);
+					viewLists += $"<List ID='{childList.ID}'/>";
 				}
 
 				if (childList != null)

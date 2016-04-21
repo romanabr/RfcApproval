@@ -280,16 +280,17 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             this.Style.Add("padding", "0");
             showWP = false;
 
+
             Comment = new TextBox();
             Comment.Rows = 1;
             Comment.TextMode = TextBoxMode.MultiLine;
-            Comment.Width = 380;
+            Comment.Style.Add("width","calc(100% - 10px)");
 
             TakeInProcess = new Button();
             TakeInProcess.Text = "Взять в работу";
             TakeInProcess.Font.Bold = true;
             TakeInProcess.Click += TakeInProcess_Click;
-            TakeInProcess.Width = 392;
+            //TakeInProcess.Width = 392;
             TakeInProcess.Style.Add("margin", "0");
             TakeInProcess.Visible = false;
             TakeInProcess.UseSubmitBehavior = false;
@@ -298,18 +299,22 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             Approve.Text = "Согласовать";
             Approve.Font.Bold = true;
             Approve.Click += new EventHandler(Approve_Click);
-            Approve.Width = 189;
+            //Approve.Width = 189;
             Approve.BackColor = Color.LimeGreen;
             Approve.Style.Add("margin", "0");
+            Approve.Style.Add("width", "calc(50% - 6px)");
+            Approve.Style.Add("box-sizing", "border-box");
             Approve.UseSubmitBehavior = false;
 
             Decline = new Button();
-            Decline.Text = "Отправить на доработку";
+            Decline.Text = "Отклонить";
             Decline.Click += new EventHandler(Decline_Click);
             Decline.BackColor = Color.Tomato;
             Decline.Font.Bold = true;
-            Decline.Width = 189;
+            //Decline.Width = 189;
             Decline.UseSubmitBehavior = false;
+            Decline.Style.Add("width", "calc(50% - 6px)");
+            Decline.Style.Add("box-sizing", "border-box");
 
             firstrow = new LiteralControl();
             beforerow = new LiteralControl();
@@ -318,7 +323,9 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             midrow = new LiteralControl();
             afterrow = new LiteralControl();
             p = new Panel();
+            p.GroupingText = "Задача";
             p.Visible = false;
+            p.Style.Add("width", "100%");
 
             InProcessUserPicker = new PeopleEditor();
             InProcessUserPicker.MultiSelect = false;
@@ -326,14 +333,14 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             InProcessUserPicker.Width = 260;
             InProcessUserPicker.PlaceButtonsUnderEntityEditor = false;
             SendInProcess = new Button();
-            SendInProcess.Text = "Assign";
+            SendInProcess.Text = "Назначить";
             SendInProcess.Font.Bold = true;
             SendInProcess.Click += SendInProcess_Click;
             SendInProcess.Width = 98;
             SendInProcess.UseSubmitBehavior = false;
             SendInProcess.Style.Add("margin", "0");
             SendInProcess.Visible = false;
-            firstrow.Text = "<table><tr><td>";
+            firstrow.Text = "<table width='100%'><tr><td colsan='3'>";
             p.Controls.Add(firstrow);
             p.Controls.Add(TakeInProcess);
             p.Controls.Add(sendsplitrow);
@@ -343,7 +350,7 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             p.Controls.Add(beforerow);
 
             p.Controls.Add(Approve);
-            p.Controls.Add(new LiteralControl("</td><td colspan='2'>"));
+            //p.Controls.Add(new LiteralControl("</td><td colspan='2'>"));
             p.Controls.Add(Decline);
 
             p.Controls.Add(midrow);
@@ -355,7 +362,7 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             p.Controls.Add(UserPicker);
             p.Controls.Add(afterrow);
             Delegate = new Button();
-            Delegate.Text = "Send";
+            Delegate.Text = "Отправить";
             Delegate.Font.Bold = true;
             Delegate.Click += Delegate_Click;
             Delegate.Width = 98;
@@ -365,8 +372,7 @@ namespace PSE.CustomDispFormWP.ApprovalTaskWP
             Delegate.BackColor = Color.Yellow;
             p.Controls.Add(Delegate);
 
-            commentrow = new LiteralControl();
-            commentrow.Text = "</td></tr><tr><td colspan='3'>";
+            commentrow = new LiteralControl("</td></tr><tr><td colspan='3'><span style='font-weight:bold'>Комментарий</span></td></tr><tr><td colspan='3'>");
             p.Controls.Add(commentrow);
             p.Controls.Add(Comment);
 

@@ -28,11 +28,13 @@ namespace RedSys.RFC.Data.Fields
 
         public static NoteFieldDefinition WorkflowValue = new NoteFieldDefinition
         {
-            Id = new Guid("8b6f91a6-e376-43a6-9dc3-b23f98b4d132"),
+            Id = new Guid("8b6f91a6-e376-43a6-9dc3-b23f98b4d133"),
             Title = "Value",
             InternalName = "Value",
             Group = "PSE.Common",
-            Required = true
+            Required = true,
+            RichText = false,
+            RichTextMode = BuiltInRichTextMode.Compatible
         };
 
 

@@ -27,7 +27,7 @@ namespace RedSys.RFC.Data.Models
             var groupItemDefinitions = GetGroupItemDefinition();
             var responsibleItemDefinitions = GetResponsibleItemDefinitions();
             var catalogueItemDefinitions = GetCatalogueItemDefinitions();
-            var effectItemDefinitions = GetEffectItemDefinitions();
+            //var effectItemDefinitions = GetEffectItemDefinitions();
 
             var model = SPMeta2Model.NewWebModel(web =>
             {
@@ -45,7 +45,8 @@ namespace RedSys.RFC.Data.Models
 
 
                 web.AddList(RFCLists.RFCManagerList, list =>
-                {list.AddListItems(managerItemDefinitions);
+                {
+                 list.AddListItems(managerItemDefinitions);
                 list.AddListView(RFCViews.RFCManagerListView);
             });
 
@@ -58,13 +59,14 @@ namespace RedSys.RFC.Data.Models
             });
 
                 web.AddList(RFCLists.KECatalogueList, list =>
-                {list.AddListItems(catalogueItemDefinitions);
+                {
+                    //list.AddListItems(catalogueItemDefinitions);
                 list.AddListView(RFCViews.RfcKeCatalogueListView);
             });
 
                 web.AddList(RFCLists.KeEffectList, list =>
                 {
-                    list.AddListItems(effectItemDefinitions);
+                    //list.AddListItems(effectItemDefinitions);
                 list.AddListView(RFCViews.RFCKEEffectListView);
             });
 
@@ -83,6 +85,8 @@ namespace RedSys.RFC.Data.Models
 
                
             });
+
+            DeployModel(model);
 
         }
 
@@ -234,7 +238,7 @@ namespace RedSys.RFC.Data.Models
 
         private List<ListItemDefinition> GetManagerItemDefinition()
         {
-            SPUser user = currentWeb.EnsureUser("psdev\\pushkinse");
+            SPUser user = currentWeb.SiteUsers[1];
             return new List<ListItemDefinition>
             {
                 new ListItemDefinition

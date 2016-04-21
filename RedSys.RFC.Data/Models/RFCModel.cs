@@ -246,16 +246,18 @@ namespace RedSys.RFC.Data.Models
 
 				});
 
-				web.AddList(RFCLists.RFCListDefinition, list =>
-				{
-					list.AddContentTypeLink(RFCContentType.RfcDocSet);
-					list.AddListFieldLink(BuiltInFieldDefinitions.Title.Inherit(
-						f => { f.Title = "Номер изменения"; }
-					));
-                    list.AddListView(RFCViews.MainView);
-					list.AddListView(RFCViews.MyRFC);
-					list.AddListView(RFCViews.OnApprove);
-					list.AddListView(RFCViews.RFCFiles);
+                web.AddList(RFCLists.RFCListDefinition, list =>
+                {
+                list.AddContentTypeLink(RFCContentType.RfcDocSet);
+                list.AddListFieldLink(BuiltInFieldDefinitions.Title.Inherit(
+                    f => { f.Title = "Номер изменения"; }
+                ));
+                list.AddListView(RFCViews.MainView);
+                list.AddListView(RFCViews.MyRFC);
+                list.AddListView(RFCViews.OnApprove);
+                list.AddListView(RFCViews.RFCFiles);
+
+               
 				});
 			});
 
@@ -270,15 +272,17 @@ namespace RedSys.RFC.Data.Models
 			RFCFields.KeParentLink.LookupListTitle = RFCLists.KECatalogueList.Title;
 			RFCFields.KeChildLink.LookupListTitle = RFCLists.KECatalogueList.Title;
 
-			SPContentType ctreport = currentWeb.ContentTypes[RFCContentType.RfcDocSet.Name];
+            SPList docSetList = currentWeb.GetListExt(RFCLists.RFCListDefinition.CustomUrl);
+            SPContentType ctreport = currentWeb.ContentTypes[RFCContentType.RfcDocSet.Name];
 			DocumentSetTemplate ds = DocumentSetTemplate.GetDocumentSetTemplate(ctreport);
 
-			SPList docSetList = currentWeb.GetListExt(RFCLists.RFCListDefinition.CustomUrl);
+			
 			ds.WelcomePageView  = docSetList.Views["Файлы RFC"];
-			ds.SharedFields.Add(currentWeb.Fields.GetFieldByInternalName(RFCFields.Description.InternalName));
 			ds.Update(true);
 			ctreport.Update(true);
 			currentWeb.Update();
+
+           
 
 			DeployModel(lookupModel);
 		}

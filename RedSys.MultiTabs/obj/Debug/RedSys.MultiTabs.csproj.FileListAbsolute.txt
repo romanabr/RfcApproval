@@ -157,6 +157,6 @@ C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\bin\Debug\ko\System
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\bin\Debug\zh-Hant\System.Spatial.resources.dll
-C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\obj\Debug\RedSys.MultiTabs.csprojResolveAssemblyReference.cache
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\obj\Debug\RedSys.MultiTabs.dll
 C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\obj\Debug\RedSys.MultiTabs.pdb
+C:\Users\pushkinse\Source\Repos\RfcApproval\RedSys.MultiTabs\obj\Debug\RedSys.MultiTabs.csprojResolveAssemblyReference.cache

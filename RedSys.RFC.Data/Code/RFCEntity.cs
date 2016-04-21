@@ -61,7 +61,7 @@ namespace RedSys.RFC.Data.Code
                         SPUser author = item.GetFieldValueUser(SPBuiltInFieldId.Author);
                         List<SPUser> users = RFCTasks.GetKEUsers(item);
                         SPGroup ownerGroup = web.AssociatedOwnerGroup;
-                        SPGroup readGroup = web.AssociatedVisitorGroup;
+                        SPGroup readGroup = web.AssociatedMemberGroup;
 
                         item.AssignPermissionsToItem(ownerGroup, SPRoleType.Reader);
                         item.AssignPermissionsToItem(readGroup, SPRoleType.Reader);
@@ -90,7 +90,7 @@ namespace RedSys.RFC.Data.Code
                         SPUser manager = item.GetFieldValueUser(RFCFields.Manager.InternalName);
                         SPUser author = item.GetFieldValueUser(SPBuiltInFieldId.Author);
                         SPGroup ownerGroup = web.AssociatedOwnerGroup;
-                        SPGroup readGroup = web.AssociatedVisitorGroup;
+                        SPGroup readGroup = web.AssociatedMemberGroup;
                         
                         item.AssignPermissionsToItem(ownerGroup, SPRoleType.Administrator);
                         item.AssignPermissionsToItem(readGroup, SPRoleType.Reader);

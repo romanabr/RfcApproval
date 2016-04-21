@@ -2,6 +2,7 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4ee3a049-14ee-404d-8972-12ed24e133d7" solutionId="4ee3a049-14ee-404d-8972-12ed24e133d7" resetWebServer="false" sharePointProductVersion="15.0" name="PSE.WorkflowListsTemplates" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
     <projectOutputAssembly location="RedSys.Common.Workflow.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.Common.Workflow\RedSys.Common.Workflow.csproj" />
+    <projectOutputAssembly location="RedSys.RFC.Core.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\RedSys.RFC.Core\RedSys.RFC.Core.csproj" />
   </assemblies>
   <features>
     <featureReference itemId="09a24ede-d6f0-4f15-be4a-320e07e951f5" />

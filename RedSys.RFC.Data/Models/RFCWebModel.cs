@@ -55,13 +55,13 @@ namespace RedSys.RFC.Data.Models
 			currentWeb.Update();
 
 			
-			SPFile colorPaletteFile = currentWeb.GetFile("/_catalogs/theme/15/palette032.spcolor");
+			SPFile colorPaletteFile = currentWeb.GetFile(SPUtility.ConcatUrls(currentWeb.Url, "/_catalogs/theme/15/palette032.spcolor"));
 			if (null == colorPaletteFile || !colorPaletteFile.Exists)
 			{
 				return;
 			}
 			
-			SPFile fontSchemeFile = currentWeb.GetFile("/_catalogs/theme/15/SharePointPersonality.spfont");
+			SPFile fontSchemeFile = currentWeb.GetFile(SPUtility.ConcatUrls(currentWeb.Url, "/_catalogs/theme/15/SharePointPersonality.spfont"));
 			if (null == fontSchemeFile || !fontSchemeFile.Exists)
 			{
 				return;
@@ -83,12 +83,12 @@ namespace RedSys.RFC.Data.Models
 				IsExternal = true
 			};
 
-			var hr = new QuickLaunchNavigationNodeDefinition
-			{
-				Title = "Документация",
-				Url = document !=null ? document.DefaultViewUrl : "test.aspx",
-				IsExternal = true
-			};
+			//var docs = new QuickLaunchNavigationNodeDefinition
+			//{
+			//	Title = "Документация",
+			//	Url = document !=null ? document.DefaultViewUrl : "test.aspx",
+			//	IsExternal = true
+			//};
 
 			var it = new QuickLaunchNavigationNodeDefinition
 			{
@@ -113,7 +113,7 @@ namespace RedSys.RFC.Data.Models
 			var create = new QuickLaunchNavigationNodeDefinition
 			{
 				Title = "Создать запрос на изменение",
-				Url = list != null ?  "/_layouts/15/NewDocSet.aspx?List=" + list.ID.ToString("B")+  "&ContentTypeId="+ list.ContentTypes[RFCContentType.RfcDocSet.Name].Id.ToString() +"&RootFolder=" +SPEncode.UrlEncode(list.RootFolder.Url) : "test.aspx",
+				Url = list != null ?  "~site/_layouts/15/NewDocSet.aspx?List=" + list.ID.ToString("B")+  "&ContentTypeId="+ list.ContentTypes[RFCContentType.RfcDocSet.Name].Id.ToString() +"&RootFolder=" +SPEncode.UrlEncode(list.RootFolder.Url) : "test.aspx",
 				IsExternal = true
 			};
 
@@ -124,7 +124,7 @@ namespace RedSys.RFC.Data.Models
 					{
 						node
 							.AddQuickLaunchNavigationNode(create)
-							.AddQuickLaunchNavigationNode(hr)
+							//.AddQuickLaunchNavigationNode(docs)
 							.AddQuickLaunchNavigationNode(it)
 							.AddQuickLaunchNavigationNode(clients)
 							.AddQuickLaunchNavigationNode(onapprove);

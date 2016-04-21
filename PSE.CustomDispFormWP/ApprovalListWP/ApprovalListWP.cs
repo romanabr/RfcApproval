@@ -379,7 +379,7 @@ vertical-align: top;}
             DateTime dateEnd = wf.CompleteDate;
 
             string row = @"<tr " + style + ">" +
-                "<td>Stop workflow</td>" +
+                "<td>Процесс остановлен</td>" +
                 "<td>" + usr + "</td>" +
                 "<td colspan='2'>" + dateEnd.ToString() + "</td>" +
                 "<td colspan='2'></td></tr>";

@@ -82,7 +82,7 @@ namespace RedSys.RFC.Data.ContentTypes
 
 		public static ContentTypeDefinition KEResponsible = new ContentTypeDefinition
 		{
-			Name = "Ответстенный за KE",
+			Name = "Ответственный за KE",
 			Id = new Guid("AAC93B98-F776-4D5C-9E6E-66F2DC45A410"),
 			ParentContentTypeId = BuiltInContentTypeId.Item,
 			Group = RFCConst.RFCGroup

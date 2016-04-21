@@ -17,19 +17,19 @@ namespace Console
 	{
 		static void Main(string[] args)
 		{
-			using (SPSite site = new SPSite("http://portal.psdev.com"))
+			using (SPSite site = new SPSite("http://win-d9voj928gpu/sites/beeline"))
 			{
 				using (SPWeb web = site.OpenWeb())
 				{
 
-                    RFCModel rfcModel = new RFCModel(web);
-                    rfcModel.Deploy();
+                   // RFCModel rfcModel = new RFCModel(web);
+                   // rfcModel.Deploy();
                     //RFCWebModel rfcWebModel = new RFCWebModel(web);
                     //rfcWebModel.Deploy();
                     //RFCListViewModel rlv = new RFCListViewModel(web);
                     //rlv.Deploy();
-                    //VariablesModel vm = new VariablesModel(web);
-                    //vm.Deploy();
+                    VariablesModel vm = new VariablesModel(web);
+                    vm.Deploy();
 					//SPWeb web = (SPWeb)properties.Feature.Parent;
 					//RFCModel rfcModel = new RFCModel(web);
 					//rfcModel.Deploy();

@@ -611,8 +611,6 @@ namespace RedSys.RFC.Core.Helper
 
         public static void GracefulSPListItemUpdate(SPListItem curListItem, bool generateNewVersion)
         {
-            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            /// http://shireefadel.blogspot.ru/2009/12/file-has-been-modified-by.html
             var itemID = curListItem.ID;
             bool tryAgain = false;
             #region Prevent message "has been modified blah-blah-blah"
@@ -646,8 +644,6 @@ namespace RedSys.RFC.Core.Helper
 
         public static void GracefulSPListItemUpdate(SPListItem curListItem, bool generateNewVersion, System.Action<SPListItem> doUpdate)
         {
-            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            /// http://shireefadel.blogspot.ru/2009/12/file-has-been-modified-by.html
             var itemID = curListItem.ID;
             bool tryAgain = false;
             #region Prevent message "has been modified blah-blah-blah"

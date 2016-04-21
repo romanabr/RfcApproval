@@ -91,7 +91,6 @@
       <DependentUpon>AddDocument.ascx</DependentUpon>
     </Compile>
     <Compile Include="Code\Translate\Translate.cs" />
-    <Compile Include="Copydoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartReportWokflow\StartReportWorkFlow.cs" />
     <Compile Include="WorkflowsWorkflowStepTask.cs" />

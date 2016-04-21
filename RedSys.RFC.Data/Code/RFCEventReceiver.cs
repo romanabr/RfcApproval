@@ -12,6 +12,7 @@ using RedSys.RFC.Core.Helper;
 using RedSys.RFC.Core.Mail;
 using RedSys.RFC.Data.Lists;
 using RedSys.RFC.Data.Const;
+using RedSys.RFC.Data.Fields;
 
 namespace RedSys.RFC.Data.Code
 {
@@ -35,8 +36,8 @@ namespace RedSys.RFC.Data.Code
 			if (listItem.FileSystemObjectType == SPFileSystemObjectType.Folder && listItem.ContentType.Name == RFCContentType.RfcDocSet.Name)
 			{
 				listItem[BuiltInInternalFieldNames.Title] = "Запрос на изменение № "+ listItem.ID.ToString();
-				listItem[BuiltInInternalFieldNames.Name] = "Запрос на изменение № " + listItem.ID.ToString();
-
+				listItem[BuiltInInternalFieldNames.FileLeafRef] = "Запрос на изменение № " + listItem.ID.ToString();
+			    listItem[WorkflowFields.WorkflowStage.FieldInternalName] = "Черновик";
 				SPFieldLookupValue typeLookupValue = listItem.GetFieldValueLookup(RFCFields.Type.InternalName);
 				SPList typeList = web.GetListExt(RFCLists.RFCManagerList.CustomUrl);
 

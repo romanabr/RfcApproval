@@ -201,7 +201,7 @@ namespace RedSys.RFC.Data
 		public static TextFieldDefinition KeMnemonica = new TextFieldDefinition
 		{
 			Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C27}"),
-			Title = "Мнемонике",
+			Title = "Мнемоника",
 			InternalName = "RFCKeMnemonica",
 			Group = RFCConst.RFCGroup,
 			Required = true
@@ -212,18 +212,20 @@ namespace RedSys.RFC.Data
 			Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C30}"),
 			Title = "Связь с RFC",
 			InternalName = "RFCKeLink",
-			Group = RFCConst.RFCGroup,
-			Required = true
+			Group = RFCConst.RFCGroup, 
+            Required = true
 		};
 
 		public static LookupFieldDefinition KeToKeLink = new LookupFieldDefinition
 		{
 			Id = new Guid("{4D364429-3DFA-4DFA-B805-725A48379C31}"),
-			Title = "Связь с КЕ",
+			Title = "КЕ",
 			InternalName = "KeKeLink",
 			Group = RFCConst.RFCGroup,
-			Required = true
-		};
+			Required = true,
+            LookupField = "RFCKeMnemonica" 
+
+        };
 
 		public static UserFieldDefinition KeManager= new UserFieldDefinition
 		{

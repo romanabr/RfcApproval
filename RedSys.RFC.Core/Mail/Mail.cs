@@ -37,6 +37,7 @@ namespace RedSys.RFC.Core.Mail
 		/// <param name="templateName"></param>
 		public MailGenerator(SPListItem listItem, string templateName)
 		{
+            ListItem = listItem;
 			SPWeb web = listItem.Web;
 			SPList mailTemplateList = web.GetListExt(Const.Const.MailTemplateListUrl);
 

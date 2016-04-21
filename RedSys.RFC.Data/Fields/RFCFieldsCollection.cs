@@ -36,7 +36,9 @@ namespace RedSys.RFC.Data.Fields
 			RFCFields.Type,
 			RFCFields.RFCBusinessRole,
 			RFCFields.RFCUser,
-			RFCFields.RFCUserType
+			RFCFields.RFCUserType,
+
+            WorkflowFields.WorkflowValue
 		};
 		
 	}

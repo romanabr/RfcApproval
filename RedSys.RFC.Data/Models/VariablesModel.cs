@@ -50,7 +50,7 @@ namespace RedSys.RFC.Data.Models
                                         new FieldValue
                                         {
                                              FieldName = WorkflowFields.WorkflowValue.InternalName,
-                                             Value = ""
+                                             Value = "Краткое описание"
                                         }
                                    }
                             },
@@ -65,7 +65,7 @@ namespace RedSys.RFC.Data.Models
                                         new FieldValue
                                         {
                                              FieldName = WorkflowFields.WorkflowValue.InternalName,
-                                             Value = ""
+                                             Value = "Управление изменениями"
                                         }
                                    }
                             }
@@ -81,7 +81,22 @@ namespace RedSys.RFC.Data.Models
                                         new FieldValue
                                         {
                                              FieldName = WorkflowFields.WorkflowValue.InternalName,
-                                             Value = ""
+                                             Value = "true"
+                                        }
+                                   }
+                            } ,
+                            new ListItemDefinition
+                            {
+
+                                Title = "PSE.CustomUpload - Version",
+                                SystemUpdate = true,
+                                Overwrite = false,
+                                Values = new List<FieldValue>
+                                   {
+                                        new FieldValue
+                                        {
+                                             FieldName = WorkflowFields.WorkflowValue.InternalName,
+                                             Value = "false"
                                         }
                                    }
                             }

@@ -37,7 +37,7 @@ namespace PSE.CustomUpload.Layouts.PSE.CustomUpload
             search.Query = Camlex.Query().Where(x => (string)x["Title"] == "PSE.CustomUpload - Поля").ToString();
             resultItems = lstVar.GetItems(search);
             if (resultItems.Count == 1)
-                FieldsStr = Convert.ToString(resultItems[0]["Value"]);
+                FieldsStr = Convert.ToString(resultItems[0]["PSEValue"]);
 
             SPQuery checkInQuery = new SPQuery();
             checkInQuery.ViewAttributes = "Scope=\"RecursiveAll\"";
@@ -45,7 +45,7 @@ namespace PSE.CustomUpload.Layouts.PSE.CustomUpload
             SPListItemCollection checkInRequiredCollection = lstVar.GetItems(checkInQuery);
             if (checkInRequiredCollection != null && checkInRequiredCollection.Count >= 1)
             {
-                CheckInRequired = checkInRequiredCollection[0]["Value"].ToString();
+                CheckInRequired = checkInRequiredCollection[0]["PSEValue"].ToString();
             }
 
             ctlPanelFields.Controls.Add(new LiteralControl("<hr/>"));
@@ -76,7 +76,7 @@ namespace PSE.CustomUpload.Layouts.PSE.CustomUpload
             SPListItemCollection versionCollection = lstVar.GetItems(versionQuery);
             if (versionCollection != null && versionCollection.Count >= 1)
             {
-                VersionFieldVisble = Convert.ToBoolean(versionCollection[0]["Value"]);
+                VersionFieldVisble = Convert.ToBoolean(versionCollection[0]["PSEValue"]);
                 VersionCommentSection.Visible = VersionFieldVisble;
             }
 

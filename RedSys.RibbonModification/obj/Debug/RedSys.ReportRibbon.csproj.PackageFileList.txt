@@ -1,1 +1,1 @@
-bin\Debug\[Ensol] ReportRibbonModification.wsp
+bin\Debug\PSE.ReportRibbonModification.wsp

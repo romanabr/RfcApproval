@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RFC] RFC.Файлы и скрипты" Description="Файлы и скрипты" Id="c9b345c3-5656-4007-876e-27e8d263db93" Scope="Web">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="[RFC] RFC.Файлы и скрипты" AlwaysForceInstall="TRUE" Description="Файлы и скрипты" Id="c9b345c3-5656-4007-876e-27e8d263db93" Scope="Web">
   <ElementManifests>
     <ElementManifest Location="JSLink\Elements.xml" />
     <ElementFile Location="JSLink\jquery-1.12.2.min.map" />

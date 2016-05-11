@@ -45,7 +45,7 @@ namespace PSE.CustomUpload
                 resultItems = lstVar.GetItems(search);
                 string listSTR = "";
                 if (resultItems.Count == 1)
-                    listSTR = Convert.ToString(resultItems[0]["Value"]);
+                    listSTR = Convert.ToString(resultItems[0]["PSEValue"]);
                 if (listSTR.Contains(lst.Title))
                 {
                     QueryString customUploadPage;

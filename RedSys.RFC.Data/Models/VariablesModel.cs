@@ -3,6 +3,7 @@ using RedSys.RFC.Core.Helper;
 using RedSys.RFC.Data.Fields;
 using RedSys.RFC.Data.Lists;
 using SPMeta2.Definitions;
+using SPMeta2.Definitions.ContentTypes;
 using SPMeta2.Definitions.Fields;
 using SPMeta2.Enumerations;
 using SPMeta2.Syntax.Default;
@@ -37,7 +38,6 @@ namespace RedSys.RFC.Data.Models
             web.AddList(RFCLists.VariablesList, list =>
              {
                  list.AddField(WorkflowFields.WorkflowValue);
-
                  list.AddListItems(new List<ListItemDefinition>
                             {
                             new ListItemDefinition

@@ -15,7 +15,7 @@ namespace RedSys.RFC.Data.Lists
         {
             Title = "Variables",
             CustomUrl = "Lists/Variables",
-            ContentTypesEnabled = false,
+            ContentTypesEnabled = true,
             EnableVersioning = true,
             TemplateType = BuiltInListTemplateTypeId.GenericList,
         };

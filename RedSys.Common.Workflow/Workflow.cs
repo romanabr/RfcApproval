@@ -195,18 +195,20 @@ namespace RedSys.Common.Workflow
         {
             User = user;
             bool result = false;
+            string loginName = (user == null || string.IsNullOrEmpty(user.LoginName)) ? string.Empty : user.LoginName.Split(new[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+            if (string.IsNullOrEmpty(loginName)) return result;
             if (CurrentUsers[0].UserStep.AgreementType == AgreementType.Parallel)
             {
                 foreach (BranchInfo br in CurrentUsers)
                 {
-                    if (br.User.RealUserName == user.LoginName || br.User.UserName == user.LoginName)
+                    if (br.User.RealUserName.Contains(loginName) || br.User.UserName.Contains(loginName))
                     {
                         CurrentUser = br;
                         result = true;
                     }
                     foreach (UserInfo ui in br.AdditionalUsers)
                     {
-                        if (ui.RealUserName == user.LoginName || ui.UserName == user.LoginName)
+                        if (ui.RealUserName.Contains(loginName) || ui.UserName.Contains(loginName))
                         {
                             CurrentUser = br;
                             result = true;
@@ -217,14 +219,14 @@ namespace RedSys.Common.Workflow
             else
             {
                 BranchInfo br = CurrentUsers[UserIndex];
-                if (br.User.RealUserName == user.LoginName || br.User.UserName == user.LoginName)
+                if (br.User.RealUserName.Contains(loginName) || br.User.UserName.Contains(loginName))
                 {
                     CurrentUser = br;
                     result = true;
                 }
                 foreach (UserInfo ui in br.AdditionalUsers)
                 {
-                    if (ui.RealUserName == user.LoginName || ui.UserName == user.LoginName)
+                    if (ui.RealUserName.Contains(loginName) || ui.UserName.Contains(loginName))
                     {
                         CurrentUser = br;
                         result = true;
